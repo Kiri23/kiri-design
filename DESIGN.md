@@ -132,7 +132,7 @@ Las clases viven en `css/componentes.css` (`tokens.css` lo importa). Todas lleva
 |---|---|
 | `.kiri-barra` + `h1` + `.kiri-marca-punto` | El punto azul junto al título ES el logo. |
 | `.kiri-tab` + `.kiri-cuenta` | Estado activo con `aria-selected="true"`, no con una clase. |
-| `.kiri-btn` | Base. `--primario` (tinta), `--marca` (azul, **solo** en pantallas de un paso sin otra acción: bienvenida, onboarding), `--texto`, `--peligro`, `--ancho`. |
+| `.kiri-btn` | Base. `--primario` (tinta), `--marca` (azul: **solo para continuar** — ver abajo), `--texto`, `--peligro`, `--ancho`. |
 | `.kiri-link` | Azul de letra + subrayado. |
 | `.kiri-panel` | Superficie elevada. |
 | `.kiri-aviso` | `--marca`, `--bien`, `--mal`, `--ojo`. |
@@ -165,6 +165,12 @@ pregunta es siempre la misma — *¿qué señal uso para decir en qué estado es
 
 **Un solo botón primario por pantalla.** Si hay dos acciones del mismo peso,
 ninguna es primaria: las dos van `.kiri-btn` base.
+
+**La única excepción al azul: continuar.** `--kiri-btn--marca` existe porque el
+botón de un onboarding sí es una acción, pero una sin elección — no hay nada que
+decidir, solo seguir. Eso es navegar, no confirmar. La prueba son dos preguntas, y
+con que una dé *sí* el azul está mal: ¿hay otra acción en la pantalla? ¿el botón
+escribe un dato? Confirmar siempre es tinta.
 
 Estados obligatorios en todo lo que se toca: reposo, `:hover`
 (`--kiri-toque`), `:active` (hundir 2% + `--kiri-toque-fuerte`), `:focus-visible`

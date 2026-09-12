@@ -37,7 +37,5 @@ date: 2026-09-12
 
 ## Pendiente
 
-- Segmentado, confirmación destructiva como clase, toast apilado, convención de ícono.
-- Decidir si se borra `.kiri-btn--marca` (contradice la regla central).
-- Versión / changelog.
-- La doc de agentes en `DESIGN.md` §9 todavía apunta a `~/Code/kiri-design`.
+Las decisiones abiertas del sistema viven en [`tareas.md`](./tareas.md), no acá:
+este archivo lo reescribe la app de Claude Design en cada sincronización.

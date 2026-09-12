@@ -57,9 +57,10 @@
 /* El truco: tinta sobre fondo funciona en los DOS modos con una regla. */
 .kiri-btn--primario { background: var(--kiri-tinta); color: var(--kiri-fondo); border-color: var(--kiri-tinta); }
 .kiri-btn--primario:hover, .kiri-btn--primario:active { background: var(--kiri-tinta); }
-/* --marca: SOLO donde no hay otra acción compitiendo (bienvenida,
-   onboarding, pantalla de un paso). En una pantalla con lista o
-   formulario el primario es --primario. */
+/* --marca: la única excepción al "el azul no es la acción". Solo para
+   CONTINUAR: un paso adelante sin elección y sin escribir nada
+   (bienvenida, onboarding). Si hay otra acción en la pantalla, o si el
+   botón guarda un dato, va --primario. Confirmar siempre es tinta. */
 .kiri-btn--marca { background: var(--kiri-marca); color: var(--kiri-sobre-marca); border-color: var(--kiri-marca); }
 .kiri-btn--marca:hover, .kiri-btn--marca:active { background: var(--kiri-marca); }
 .kiri-btn--texto   { background: transparent; border-color: transparent; font-weight: 500; color: var(--kiri-tinta-suave); }
