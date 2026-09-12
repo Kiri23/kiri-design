@@ -83,8 +83,10 @@ arrastra el texto de adentro por debajo de 4.5:1.
 
 ### Cómo se cambia de modo
 
-Cada token se declara **una sola vez** con `light-dark(oscuro, claro)`. El modo
-lo decide `color-scheme`:
+Cada token se declara **una sola vez** con `light-dark(claro, oscuro)` — ese es
+el orden de la especificación: **el primer valor es el del modo claro**. Oscuro
+es el modo de origen del diseño, pero en el código va segundo. El modo lo decide
+`color-scheme`:
 
 ```html
 <html>                      <!-- sigue al teléfono -->
@@ -154,8 +156,25 @@ Cada pieza tiene **dos archivos** en `componentes/<grupo>/`:
 | `<pieza>.prompt.md` | el agente | **cuándo usar cuál**, en prosa, con las clases exactas |
 | `<pieza>s.card.html` | vos | la ficha visual: todos los estados juntos, incluido lo que está mal |
 
+Y además de las piezas están los **fundamentos**, en `guidelines/`: dieciséis
+fichas donde cada una muestra **una decisión** con su token al lado en mono —
+no un componente. Comparten el armazón de `guidelines/guia.css` (`.g-fila`,
+`.g-tok`, `.g-num`, `.g-modos`, `.g-sino`, `.g-mal`) y un solo criterio,
+`guidelines/fundamentos.prompt.md`, porque el argumento de cada fundamento
+está escrito en la ficha misma.
+
+Dos de ellas cubren lo que este archivo no decía en ningún lado: **voz** (cómo
+se escribe un mensaje) e **interacción** (`toque`, `toque-fuerte`, `velo`,
+`apagado`, `apagado-fondo`).
+
+**Los dos modos van en UNA ficha.** Como cada token se declara con
+`light-dark(claro, oscuro)`, alcanza con poner `color-scheme: light` y
+`color-scheme: dark` en dos divs hermanos y todo lo de adentro se resuelve en
+ese modo. Verificado en Chrome 152 sobre el Pixel: no hace falta una ficha por
+tema.
+
 Las fichas son HTML y CSS puro — sin React, sin build, sin CDN de scripts. Verlas todas:
-`kiri-serve galeria.html -d ~/Code/kiri-design -p 8792`.
+`kiri-serve galeria.html -p 8792`.
 
 Los grupos: `estructura` (barra, panel) · `acciones` (botón) · `datos` (lista,
 tabla) · `formulario` (campo, opción) · `navegacion` (nav, hoja) · `estado`
@@ -238,12 +257,20 @@ solo para dejar de estirar (el `max-width` ya hace casi todo el trabajo).
 
 ## 9 · Prompt para agentes
 
-Pegá esto al pedirle una pantalla a cualquier agente:
+Pegá esto al pedirle una pantalla a cualquier agente. **Las rutas son
+relativas a la raíz del repo `kiri-design`**, no a ninguna máquina: el mismo
+prompt sirve en la nube, en otra computadora o en un repo que lo tenga
+vendorizado.
 
 ```
-Usá el design system Kiri. Leé ~/Code/kiri-design/DESIGN.md y enlazá
-~/Code/kiri-design/tokens.css — no escribas CSS nuevo de colores ni de
-tipografía, usá solo tokens var(--kiri-*) y clases .kiri-*.
+Usá el design system Kiri, que vive en el repo `kiri-design`. Desde la raíz
+de ese repo: leé `DESIGN.md` (el porqué), `guidelines/` (los fundamentos, una
+decisión por ficha) y enlazá `tokens.css`. No escribas CSS nuevo de colores ni
+de tipografía: usá solo tokens var(--kiri-*) y clases .kiri-*.
+
+Ajustá el href de tokens.css a la ruta relativa desde tu archivo hasta la raíz
+del repo. Desde la raíz es `tokens.css`; desde `guidelines/` es
+`../tokens.css`; desde `componentes/<grupo>/` es `../../tokens.css`.
 
 Las cinco reglas que no se negocian:
 1. El azul es la MARCA (barra, logo, tab activo). El botón primario es TINTA
@@ -254,5 +281,13 @@ Las cinco reglas que no se negocian:
 5. Nada que se toque mide menos de 46px de alto.
 
 Si te falta un color o un componente, NO inventes un hex: decime qué token
-habría que agregar a tokens.css y por qué.
+habría que agregar a `css/color.css` y por qué.
+```
+
+Lo que el prompt afirma se puede verificar sin abrir el navegador:
+
+```sh
+node _verificar.mjs   # @dsCard en línea 1, cero hex crudos, cero tokens
+                      # inventados, cero fuentes de fuera, y ninguna ficha
+                      # suelta fuera de la const PIEZAS del taller
 ```
