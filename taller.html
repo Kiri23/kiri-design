@@ -49,11 +49,12 @@
   .obra { display:grid; grid-template-rows:1fr 7px var(--abajo); min-height:0 }
 
   .vista { overflow:auto; -webkit-overflow-scrolling:touch; padding:var(--kiri-e-4); display:grid; justify-items:center; align-content:start }
-  .vista-cab { width:100%; max-width:var(--ancho,100%); margin-bottom:var(--kiri-e-2); display:flex; align-items:baseline; gap:var(--kiri-e-3) }
+  .vista-cab { width:var(--ancho,100%); margin-bottom:var(--kiri-e-2); display:flex; align-items:baseline; gap:var(--kiri-e-3) }
   .vista-cab h2 { margin:0; font:700 var(--kiri-t-md)/1.2 var(--kiri-ui); letter-spacing:-.02em }
   .vista-cab p { margin:0; flex:1; min-width:0; font-size:var(--kiri-t-sm); color:var(--kiri-tinta-suave) }
   .vista iframe {
-    width:100%; max-width:var(--ancho,100%); height:var(--alto,700px);
+    /* ANCHO, no tope: la ficha se ve al ancho que declara y la vista rueda. */
+    width:var(--ancho,100%); height:var(--alto,700px);
     border:var(--kiri-b-hilo) solid var(--kiri-linea); border-radius:var(--kiri-r);
     background:var(--kiri-fondo); display:block;
   }
@@ -109,7 +110,11 @@
       transition:transform var(--kiri-mov) var(--kiri-curva), visibility 0s;
       box-shadow:0 0 0 100vmax var(--kiri-velo);
     }
-    .vista-cab, .vista iframe { max-width:100% }
+    /* El preview NO se aplasta al ancho del teléfono: muestra la ficha al
+       ancho que declara en su @dsCard y la vista rueda de lado. Es el idioma
+       de .kiri-tabla-marco — rueda el marco, no la página. Con el botón
+       "Todo" se la fuerza a entrar, para ver cómo se porta angosta. */
+    .vista { justify-items:start }
 
     /* El panel de abajo desaparece: la obra es solo la vista. Se pide con
        el botón de la barra y sube como hoja, de abajo hacia arriba. */

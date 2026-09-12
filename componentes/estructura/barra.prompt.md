@@ -50,3 +50,19 @@ Tres piezas que son una: `.kiri-barra` + el punto + `.kiri-tabs`.
   como el borde de la pantalla, no como una tarjeta.
 - Nunca dos barras, ni una barra dentro de un panel.
 - Título en `--kiri-t-xl` con `letter-spacing: -.03em`. Space Grotesk se abre sola.
+
+## Lo que todavía no resuelve
+
+**Con tabs, la barra necesita 351px de ancho propio** y no avisa cuando no los
+tiene. Medido: título de cuatro letras 80 + gap 12 + dos tabs con cuenta 227 +
+32 de padding. Por debajo de eso los tabs **se salen de la barra** — ni el `h1`
+ni `.kiri-tabs` pueden encoger (los dos son `flex: 0 1 auto` con `min-width:
+auto`) y `.kiri-tabs` es `overflow-x: visible`, así que nada atrapa el
+desborde: lo que sobra se corta contra el borde del contenedor.
+
+Un Pixel de 412px entra con 61px de aire. Un teléfono de 360px entra raspando.
+Con un título largo, o con un tercer tab, no entra.
+
+Mientras tanto: si la pantalla necesita tres tabs o el título es largo, medí
+antes. La salida, cuando se decida, es una de dos — que `.kiri-tabs` ruede de
+lado (el idioma de `.kiri-tabla-marco`) o que baje a su propia fila.
