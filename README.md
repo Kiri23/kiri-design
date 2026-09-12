@@ -7,6 +7,8 @@ El design system de Christian Nogueras. Dos archivos hacen el trabajo:
 | [`tokens.css`](./tokens.css) | **La ley.** Tokens + clases `.kiri-*`. Pegalo y funciona, sin build. |
 | [`DESIGN.md`](./DESIGN.md) | El porqué, en un formato que un agente puede seguir. Incluye el prompt. |
 | [`demo.html`](./demo.html) | La prueba: pantallas reales de Rutero, Notif, Mail y los cursos sin un solo hex propio. |
+| [`galeria.html`](./galeria.html) | **La galería.** Una ficha por pieza con todos sus estados. |
+| `componentes/<grupo>/` | Por pieza: un `.prompt.md` (el criterio) y un `.card.html` (la ficha visual). |
 
 ## Usarlo en una app
 
@@ -18,7 +20,7 @@ El design system de Christian Nogueras. Dos archivos hacen el trabajo:
 ## Ver el demo
 
 ```sh
-kiri-serve demo.html -d ~/Code/kiri-design -p 8792
+kiri-serve galeria.html -d ~/Code/kiri-design -p 8792
 ```
 
 ## La regla central

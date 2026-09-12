@@ -1,0 +1,85 @@
+<!-- @dsCard group="Componentes" viewport="760x420" name="Botones" subtitle="Un verbo por pantalla: primario, base, marca, texto, peligro, ancho, deshabilitado" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Botones</title>
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel=stylesheet href="../../tokens.css">
+<style>
+  body { padding: var(--kiri-e-4); }
+  .lienzo { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:var(--kiri-e-5); }
+  .col { display:flex; flex-direction:column; gap:var(--kiri-e-2); min-width:0; }
+  .rot { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.08em; text-transform:uppercase;
+         color:var(--kiri-tinta-suave); margin-top:var(--kiri-e-2); }
+  .rot:first-child { margin-top:0; }
+  .fila { display:flex; gap:var(--kiri-e-2); flex-wrap:wrap; }
+  .mal { border:1px dashed var(--kiri-mal); border-radius:var(--kiri-r); padding:var(--kiri-e-3); }
+  .mal .por { font-size:var(--kiri-t-sm); color:var(--kiri-mal); margin:var(--kiri-e-2) 0 0; }
+</style>
+<div class=lienzo>
+
+  <div class=col>
+    <p class=rot>El verbo de la pantalla</p>
+    <button class="kiri-btn kiri-btn--primario kiri-btn--ancho">Empezar la ruta</button>
+
+    <p class=rot>Dos del mismo peso · ninguna es primaria</p>
+    <div class=kiri-acciones>
+      <button class=kiri-btn>Sacar foto</button>
+      <button class=kiri-btn>Elegir del carrete</button>
+    </div>
+
+    <p class=rot>Primario + secundario</p>
+    <div class=kiri-acciones>
+      <button class="kiri-btn kiri-btn--primario">Entregado</button>
+      <button class=kiri-btn>No pude</button>
+    </div>
+
+    <p class=rot>Terciario · lo que no se toca manejando</p>
+    <div class=fila>
+      <button class="kiri-btn kiri-btn--texto">Escribir la dirección a mano</button>
+    </div>
+  </div>
+
+  <div class=col>
+    <p class=rot>Marca · navegar, nunca confirmar</p>
+    <div class=fila>
+      <button class="kiri-btn kiri-btn--marca">Ver la ruta</button>
+      <a class="kiri-btn kiri-btn--marca" href="#">Abrir el panel</a>
+    </div>
+
+    <p class=rot>Peligro · destruye algo</p>
+    <div class=fila>
+      <button class="kiri-btn kiri-btn--peligro">Borrar la tanda</button>
+    </div>
+
+    <p class=rot>Deshabilitado · se ve, no se toca</p>
+    <div class=fila>
+      <button class=kiri-btn disabled>Calcular</button>
+      <button class="kiri-btn kiri-btn--primario" disabled>Entregado</button>
+    </div>
+
+    <p class=rot>Con foco de teclado</p>
+    <div class=fila>
+      <button class="kiri-btn" autofocus>Tocá Tab para verlo</button>
+    </div>
+
+    <p class=rot>Envolviendo un input de archivo</p>
+    <div class=fila>
+      <label class="kiri-btn kiri-btn--primario">Subir foto<input type=file hidden></label>
+    </div>
+  </div>
+
+  <div class=col>
+    <p class=rot>Así NO</p>
+    <div class=mal>
+      <div class=kiri-acciones>
+        <button class="kiri-btn kiri-btn--primario">Entregado</button>
+        <button class="kiri-btn kiri-btn--marca">Navegar</button>
+      </div>
+      <p class=por>Dos llenos en la misma vista. El ojo no sabe cuál es la acción.</p>
+    </div>
+    <div class=mal>
+      <div class=fila><button class="kiri-btn kiri-btn--marca">Entregado</button></div>
+      <p class=por>El azul es la marca, no confirma. Confirmar es tinta.</p>
+    </div>
+  </div>
+
+</div>

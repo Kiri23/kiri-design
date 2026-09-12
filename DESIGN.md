@@ -107,9 +107,20 @@ Las clases viven en `tokens.css`. Todas llevan prefijo `kiri-`.
 | `.kiri-aviso` | `--marca`, `--bien`, `--mal`, `--ojo`. |
 | `.kiri-vacio` | Pantalla sin datos. `<strong>` = la frase grande. |
 | `.kiri-lista` | `li` con `.nombre` y `.meta`. |
+| `.kiri-tabla` + `.kiri-tabla-marco` | **Siempre** dentro del marco: es el que rueda de lado. Números con `.num` (derecha + mono). `--compacta`, `--tocable`. |
 | `.kiri-campo` | `label.kiri-campo > span` + input. |
 | `.kiri-chip`, `.kiri-medidor`, `.kiri-toast` | |
 | `.kiri-lectura` | Envoltura de texto largo: serif, 38rem de ancho. |
+
+Cada pieza tiene **dos archivos** en `componentes/<grupo>/`:
+
+| | Para quién | Qué hace |
+|---|---|---|
+| `<pieza>.prompt.md` | el agente | **cuándo usar cuál**, en prosa, con las clases exactas |
+| `<pieza>s.card.html` | vos | la ficha visual: todos los estados juntos, incluido lo que está mal |
+
+Las fichas son HTML y CSS puro — sin React, sin build, sin CDN de scripts. Verlas todas:
+`kiri-serve galeria.html -d ~/Code/kiri-design -p 8792`.
 
 **Un solo botón primario por pantalla.** Si hay dos acciones del mismo peso,
 ninguna es primaria: las dos van `.kiri-btn` base.
@@ -154,6 +165,8 @@ sin `blur` de fondo.
 - ❌ Texto gris sobre gris por debajo de 4.5:1.
 - ❌ Inventar un hex en un componente. Si falta un color, se agrega un token.
 - ❌ Tocables por debajo de 46px.
+- ❌ Una `<table>` sin `.kiri-tabla-marco`: hace rodar la página entera de lado.
+- ❌ Números de tabla a la izquierda o sin mono: la tabla existe para comparar.
 - ❌ Definir un color SOLO dentro del `@media` de claro: todo token existe en
   `:root` (oscuro) primero.
 

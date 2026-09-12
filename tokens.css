@@ -284,6 +284,78 @@ button, input, textarea, select { font: inherit; color: inherit; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
+   TABLA — para datos que se comparan. Si no se comparan, es una lista.
+   En un teléfono la tabla SIEMPRE va dentro de .kiri-tabla-marco,
+   que es el que rueda de lado. El body nunca rueda de lado.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.kiri-tabla-marco {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--kiri-linea);
+  border-radius: var(--kiri-r);
+  background: var(--kiri-panel);
+}
+
+.kiri-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--kiri-t-sm);
+}
+
+.kiri-tabla th {
+  position: sticky; top: 0; z-index: 1;
+  background: var(--kiri-panel);
+  text-align: left; white-space: nowrap;
+  padding: var(--kiri-e-2) var(--kiri-e-3);
+  font: 600 var(--kiri-t-xs)/1.4 var(--kiri-ui);
+  letter-spacing: .05em; text-transform: uppercase;
+  color: var(--kiri-tinta-suave);
+  border-bottom: 1px solid var(--kiri-linea);
+}
+
+.kiri-tabla td {
+  padding: var(--kiri-e-3);
+  border-bottom: 1px solid var(--kiri-linea-suave);
+  vertical-align: top;
+}
+.kiri-tabla tbody tr:last-child td { border-bottom: 0; }
+
+/* La primera columna es el nombre: es la que buscás con el ojo. */
+.kiri-tabla td:first-child { font-weight: 600; color: var(--kiri-tinta); }
+
+/* Números: a la derecha y en mono, o no se pueden comparar de un vistazo. */
+.kiri-tabla .num, .kiri-tabla th.num {
+  text-align: right;
+  font-family: var(--kiri-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Fila de total: se separa con una regla gruesa, no con negrita sola. */
+.kiri-tabla tfoot td {
+  border-top: 2px solid var(--kiri-linea);
+  border-bottom: 0;
+  font-weight: 700;
+  color: var(--kiri-tinta);
+}
+
+/* Fila marcada: tinte de marca, nunca un borde de color que mueva el layout. */
+.kiri-tabla tr.marcada td { background: var(--kiri-marca-tinte); }
+
+/* Compacta: para tablas de más de ~12 filas. */
+.kiri-tabla--compacta td { padding: var(--kiri-e-2) var(--kiri-e-3); }
+.kiri-tabla--compacta { font-size: var(--kiri-t-xs); }
+
+/* Tabla clicable: la fila entera es el blanco, y mide 46px de alto. */
+.kiri-tabla--tocable td { height: var(--kiri-tocable); }
+.kiri-tabla--tocable tbody tr { cursor: pointer; }
+.kiri-tabla--tocable tbody tr:active td { background: var(--kiri-linea-suave); }
+
+/* Celda vacía: un guion, nunca blanco. El blanco se lee como error. */
+.kiri-tabla .vacia { color: var(--kiri-tinta-suave); }
+
+/* ═══════════════════════════════════════════════════════════════════
    ANCHO Y MOVIMIENTO
    ═══════════════════════════════════════════════════════════════════ */
 

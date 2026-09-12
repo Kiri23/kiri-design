@@ -1,0 +1,44 @@
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · galería</title>
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:ital,wght@0,400;0,600&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel=stylesheet href="tokens.css">
+<style>
+  .ficha { margin-top: var(--kiri-e-5); }
+  .ficha h2 { font:700 var(--kiri-t-md)/1.2 var(--kiri-ui); letter-spacing:-.02em; margin:0 0 2px;
+              display:flex; align-items:center; gap:var(--kiri-e-2); }
+  .ficha p.sub { margin:0 0 var(--kiri-e-2); font-size:var(--kiri-t-sm); color:var(--kiri-tinta-suave); }
+  .ficha iframe { width:100%; height:var(--alto,440px); border:1px solid var(--kiri-linea);
+                  border-radius:var(--kiri-r); background:var(--kiri-fondo); display:block; }
+  .vinculos { display:flex; gap:var(--kiri-e-3); margin-top:var(--kiri-e-2); font-size:var(--kiri-t-sm); }
+</style>
+<div class=kiri-barra>
+  <h1><span class=kiri-marca-punto></span>Kiri</h1>
+  <div class=kiri-tabs role=tablist>
+    <button class=kiri-tab role=tab aria-selected=true>Galería <span class=kiri-cuenta>2</span></button>
+  </div>
+</div>
+<main class=kiri-pantalla style="max-width:860px">
+  <p class="kiri-aviso kiri-aviso--marca">Cada ficha muestra <b>todos</b> los estados de una pieza, incluido lo que está mal. Si algo no está acá, no existe en Kiri.</p>
+
+  <section class=ficha style="--alto:520px">
+    <h2>Botones</h2>
+    <p class=sub>Un verbo por pantalla: primario, base, marca, texto, peligro, ancho, deshabilitado.</p>
+    <iframe src="componentes/acciones/botones.card.html" title="Ficha de botones" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/acciones/boton.prompt.md">El criterio (boton.prompt.md)</a>
+       <a class=kiri-link href="componentes/acciones/botones.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:900px">
+    <h2>Tabla</h2>
+    <p class=sub>Números a la derecha en mono, marco que rueda de lado, total en tfoot.</p>
+    <iframe src="componentes/datos/tabla.card.html" title="Ficha de tabla" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/datos/tabla.prompt.md">El criterio (tabla.prompt.md)</a>
+       <a class=kiri-link href="componentes/datos/tabla.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:1100px">
+    <h2>Pantallas completas</h2>
+    <p class=sub>Rutero, Notif, Mail y los cursos con los mismos tokens.</p>
+    <iframe src="demo.html" title="Demo" loading=lazy></iframe>
+  </section>
+</main>

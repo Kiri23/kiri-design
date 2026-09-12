@@ -1,0 +1,73 @@
+<!-- @dsCard group="Componentes" viewport="760x520" name="Tabla" subtitle="Números a la derecha en mono, marco que rueda de lado, total en tfoot" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Tabla</title>
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel=stylesheet href="../../tokens.css">
+<style>
+  body { padding: var(--kiri-e-4); }
+  .rot { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.08em; text-transform:uppercase;
+         color:var(--kiri-tinta-suave); margin:var(--kiri-e-5) 0 var(--kiri-e-2); }
+  .rot:first-child { margin-top:0; }
+  .angosto { max-width:340px; }
+  .mal { border:1px dashed var(--kiri-mal); border-radius:var(--kiri-r); padding:var(--kiri-e-3); }
+  .mal .por { font-size:var(--kiri-t-sm); color:var(--kiri-mal); margin:var(--kiri-e-2) 0 0; }
+  table.pelada { width:100%; border-collapse:collapse; font-size:var(--kiri-t-sm); }
+  table.pelada th, table.pelada td { padding:var(--kiri-e-2); border-bottom:1px solid var(--kiri-linea-suave); text-align:left; }
+</style>
+
+<p class=rot>Normal · con total</p>
+<div class=kiri-tabla-marco>
+  <table class=kiri-tabla>
+    <thead><tr><th>Pueblo</th><th class=num>Paradas</th><th class=num>Km</th><th class=num>Minutos</th></tr></thead>
+    <tbody>
+      <tr><td>Bayamón</td><td class=num>6</td><td class=num>14.2</td><td class=num>38</td></tr>
+      <tr class=marcada><td>Toa Alta</td><td class=num>4</td><td class=num>9.8</td><td class=num>26</td></tr>
+      <tr><td>Dorado</td><td class=num>4</td><td class=vacia>—</td><td class=vacia>—</td></tr>
+    </tbody>
+    <tfoot><tr><td>Total</td><td class=num>14</td><td class=num>24.0</td><td class=num>64</td></tr></tfoot>
+  </table>
+</div>
+
+<p class=rot>Compacta · más de 12 filas</p>
+<div class=kiri-tabla-marco>
+  <table class="kiri-tabla kiri-tabla--compacta">
+    <thead><tr><th>Negocio</th><th>Pueblo</th><th class=num>Orden</th></tr></thead>
+    <tbody>
+      <tr><td>Farmacia Del Pueblo</td><td>Bayamón</td><td class=num>1</td></tr>
+      <tr><td>Colmado Santa Rita</td><td>Toa Alta</td><td class=num>2</td></tr>
+      <tr><td>Panadería Los Cidrines</td><td>Dorado</td><td class=num>3</td></tr>
+      <tr><td>Ferretería El Tornillo</td><td>Dorado</td><td class=num>4</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p class=rot>Tocable · la fila entera es el blanco, 46px</p>
+<div class=kiri-tabla-marco>
+  <table class="kiri-tabla kiri-tabla--tocable">
+    <thead><tr><th>Correo</th><th class=num>Sin leer</th></tr></thead>
+    <tbody>
+      <tr><td>Facturas</td><td class=num>12</td></tr>
+      <tr><td>Banco</td><td class=num>3</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p class=rot>Angosta · el marco rueda de lado, la página no</p>
+<div class="kiri-tabla-marco angosto">
+  <table class=kiri-tabla>
+    <thead><tr><th>Negocio</th><th>Dirección</th><th class=num>Km</th><th class=num>Min</th></tr></thead>
+    <tbody>
+      <tr><td>Farmacia Del Pueblo</td><td>Calle Barbosa 145</td><td class=num>14.2</td><td class=num>38</td></tr>
+      <tr><td>Colmado Santa Rita</td><td>PR-165 km 4.2</td><td class=num>9.8</td><td class=num>26</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p class=rot>Así NO</p>
+<div class=mal>
+  <table class=pelada>
+    <thead><tr><th>Pueblo</th><th>Km</th></tr></thead>
+    <tbody><tr><td>Bayamón</td><td>14.2</td></tr><tr><td>Toa Alta</td><td>9.8</td></tr><tr><td>Dorado</td><td></td></tr></tbody>
+  </table>
+  <p class=por>Números a la izquierda y sin mono: no se pueden comparar. Y la celda vacía se lee como error — va un <b>—</b>.</p>
+</div>
