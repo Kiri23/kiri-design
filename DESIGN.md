@@ -4,8 +4,18 @@ El lenguaje visual de las aplicaciones de Christian Nogueras.
 Un agente que lea este archivo debe poder construir una pantalla nueva sin
 preguntar nada, y que esa pantalla se vea hermana de las demás.
 
-**La fuente de verdad del color es [`tokens.css`](./tokens.css).** Este archivo
-explica *por qué*. Si los dos se contradicen, manda `tokens.css`.
+**La fuente de verdad es el CSS.** Este archivo explica *por qué*; si los dos se
+contradicen, manda el CSS.
+
+| Archivo | Qué tiene |
+|---|---|
+| `tokens/colors.css` | los colores, en sus dos modos |
+| `tokens/typography.css` | las letras y la escala |
+| `tokens/spacing.css` | el aire, las esquinas, el mínimo tocable |
+| `kiri.css` | los componentes |
+| **`kiri-todo.css`** | **lo único que una app enlaza** — junta los cuatro |
+
+Un token nuevo va en el archivo de `tokens/` que le toca, nunca en `kiri.css`.
 
 ---
 
@@ -95,7 +105,7 @@ Cargar:
 
 ## 4 · Componentes
 
-Las clases viven en `tokens.css`. Todas llevan prefijo `kiri-`.
+Las clases viven en `kiri.css`. Todas llevan prefijo `kiri-`.
 
 | Clase | Notas |
 |---|---|
@@ -185,7 +195,7 @@ Pegá esto al pedirle una pantalla a cualquier agente:
 
 ```
 Usá el design system Kiri. Leé ~/Code/kiri-design/DESIGN.md y enlazá
-~/Code/kiri-design/tokens.css — no escribas CSS nuevo de colores ni de
+~/Code/kiri-design/kiri-todo.css — no escribas CSS nuevo de colores ni de
 tipografía, usá solo tokens var(--kiri-*) y clases .kiri-*.
 
 Las cinco reglas que no se negocian:
@@ -197,5 +207,5 @@ Las cinco reglas que no se negocian:
 5. Nada que se toque mide menos de 46px de alto.
 
 Si te falta un color o un componente, NO inventes un hex: decime qué token
-habría que agregar a tokens.css y por qué.
+habría que agregar a tokens/colors.css y por qué.
 ```

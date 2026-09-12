@@ -1,0 +1,68 @@
+/* ═══ Kiri · colores ═══════════════════════════════════════════════
+   Oscuro es el origen; claro es la traducción. El azul tiene DOS valores:
+   --kiri-marca para áreas grandes, --kiri-marca-texto para letra chica.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  color-scheme: dark light;
+
+  --kiri-fondo:        #0F1417;
+  --kiri-panel:        #161D21;
+  --kiri-panel-alto:   #1C2429;
+  --kiri-linea:        #273238;
+  --kiri-linea-suave:  #1E272B;
+  --kiri-tinta:        #E6ECEF;  /* texto principal Y fondo del botón primario */
+  --kiri-tinta-suave:  #8A989E;  /* texto secundario, metadatos */
+  --kiri-marca:        #2D93D2;  /* azul en ÁREAS GRANDES: barras, logo, rellenos */
+  --kiri-marca-texto:  #60B6EB;  /* azul en LETRA CHICA: links, etiquetas */
+  --kiri-marca-tinte:  #0D2332;  /* fondo teñido de marca */
+  --kiri-marca-linea:  #1B4A66;
+  --kiri-sobre-marca:  #08151C;  /* texto encima del azul grande */
+  --kiri-bien:  #5FD39B;  --kiri-bien-tinte: #0F2A20;
+  --kiri-mal:   #FF7A6B;  --kiri-mal-tinte:  #2E1613;
+  --kiri-ojo:   #E8B951;  --kiri-ojo-tinte:  #2C2310;
+  --kiri-sombra: none;           /* en oscuro la elevación es color, no sombra */
+  --kiri-foco:   var(--kiri-marca-texto);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-kiri="oscuro"]) {
+    --kiri-fondo:        #F8FAFB;
+    --kiri-panel:        #FFFFFF;
+    --kiri-panel-alto:   #FFFFFF;
+    --kiri-linea:        #DBE3E7;
+    --kiri-linea-suave:  #EBF0F2;
+    --kiri-tinta:        #141C20;
+    --kiri-tinta-suave:  #5C6A70;
+    --kiri-marca:        #1483C8;
+    --kiri-marca-texto:  #106AA2;
+    --kiri-marca-tinte:  #E9F3FA;
+    --kiri-marca-linea:  #A9D0E9;
+    --kiri-sobre-marca:  #FFFFFF;
+    --kiri-bien:  #12795A;  --kiri-bien-tinte: #E3F3ED;
+    --kiri-mal:   #C8402F;  --kiri-mal-tinte:  #FBE8E5;
+    --kiri-ojo:   #8E6610;  --kiri-ojo-tinte:  #FBF1D8;
+    --kiri-sombra: 0 1px 2px rgba(20,28,32,.07);
+    --kiri-foco:   var(--kiri-marca-texto);
+  }
+}
+
+:root[data-kiri="claro"] {
+  --kiri-fondo:        #F8FAFB;
+  --kiri-panel:        #FFFFFF;
+  --kiri-panel-alto:   #FFFFFF;
+  --kiri-linea:        #DBE3E7;
+  --kiri-linea-suave:  #EBF0F2;
+  --kiri-tinta:        #141C20;
+  --kiri-tinta-suave:  #5C6A70;
+  --kiri-marca:        #1483C8;
+  --kiri-marca-texto:  #106AA2;
+  --kiri-marca-tinte:  #E9F3FA;
+  --kiri-marca-linea:  #A9D0E9;
+  --kiri-sobre-marca:  #FFFFFF;
+  --kiri-bien:  #12795A;  --kiri-bien-tinte: #E3F3ED;
+  --kiri-mal:   #C8402F;  --kiri-mal-tinte:  #FBE8E5;
+  --kiri-ojo:   #8E6610;  --kiri-ojo-tinte:  #FBF1D8;
+  --kiri-sombra: 0 1px 2px rgba(20,28,32,.07);
+  --kiri-foco:   var(--kiri-marca-texto);
+}
