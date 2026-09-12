@@ -1,0 +1,294 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Kiri · tokens.css — el contrato visual. Única fuente de verdad.
+   Oscuro manda (se define primero); claro es la traducción.
+   Nada en este archivo depende de un framework. Pegalo y funciona.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  color-scheme: dark light;
+
+  /* ── Letra ───────────────────────────────────────────────────────
+     --ui      apps, botones, listas, números de pantalla
+     --lectura textos largos: lecciones, docs, artículos
+     --mono    números que se alinean, código, códigos de cliente   */
+  --kiri-ui:      'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --kiri-lectura: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --kiri-mono:    'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  /* ── Escala de texto (móvil primero, base 16px) ─────────────────── */
+  --kiri-t-xs: 12px;  --kiri-t-sm: 13.5px;  --kiri-t-base: 16px;
+  --kiri-t-md: 17.5px;  --kiri-t-lg: 20px;  --kiri-t-xl: 26px;
+
+  /* ── Aire (escala de 4) ─────────────────────────────────────────── */
+  --kiri-e-1: 4px;  --kiri-e-2: 8px;  --kiri-e-3: 12px;
+  --kiri-e-4: 16px; --kiri-e-5: 24px; --kiri-e-6: 36px;
+
+  /* ── Esquinas y altura mínima de lo que se toca ─────────────────── */
+  --kiri-r-sm: 7px;  --kiri-r: 10px;  --kiri-r-lg: 14px;  --kiri-r-full: 999px;
+  --kiri-tocable: 46px;   /* dedo en un Pixel. Nunca menos. */
+
+  /* ═══ OSCURO — el modo de origen ═══ */
+  --kiri-fondo:        #0F1417;
+  --kiri-panel:        #161D21;
+  --kiri-panel-alto:   #1C2429;
+  --kiri-linea:        #273238;
+  --kiri-linea-suave:  #1E272B;
+
+  --kiri-tinta:        #E6ECEF;  /* texto principal Y fondo del botón primario */
+  --kiri-tinta-suave:  #8A989E;  /* texto secundario, metadatos */
+
+  --kiri-marca:        #2D93D2;  /* azul en ÁREAS GRANDES: barras, logo, rellenos */
+  --kiri-marca-texto:  #60B6EB;  /* azul en LETRA CHICA: links, etiquetas */
+  --kiri-marca-tinte:  #0D2332;  /* fondo teñido de marca */
+  --kiri-marca-linea:  #1B4A66;
+  --kiri-sobre-marca:  #08151C;  /* texto encima del azul grande */
+
+  --kiri-bien:  #5FD39B;  --kiri-bien-tinte: #0F2A20;
+  --kiri-mal:   #FF7A6B;  --kiri-mal-tinte:  #2E1613;
+  --kiri-ojo:   #E8B951;  --kiri-ojo-tinte:  #2C2310;
+
+  --kiri-sombra: none;           /* en oscuro la elevación es color, no sombra */
+  --kiri-foco:   var(--kiri-marca-texto);
+}
+
+/* ═══ CLARO — la traducción ═══════════════════════════════════════════
+   Se escribe dos veces a propósito:
+   · el @media responde al ajuste del teléfono
+   · el [data-kiri] deja forzarlo desde el HTML y gana sobre el @media
+   Forzar: <html data-kiri="claro">  ·  <html data-kiri="oscuro">      */
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-kiri="oscuro"]) {
+    --kiri-fondo:        #F8FAFB;
+    --kiri-panel:        #FFFFFF;
+    --kiri-panel-alto:   #FFFFFF;
+    --kiri-linea:        #DBE3E7;
+    --kiri-linea-suave:  #EBF0F2;
+
+    --kiri-tinta:        #141C20;
+    --kiri-tinta-suave:  #5C6A70;
+
+    --kiri-marca:        #1483C8;
+    --kiri-marca-texto:  #106AA2;
+    --kiri-marca-tinte:  #E9F3FA;
+    --kiri-marca-linea:  #A9D0E9;
+    --kiri-sobre-marca:  #FFFFFF;
+
+    --kiri-bien:  #12795A;  --kiri-bien-tinte: #E3F3ED;
+    --kiri-mal:   #C8402F;  --kiri-mal-tinte:  #FBE8E5;
+    --kiri-ojo:   #8E6610;  --kiri-ojo-tinte:  #FBF1D8;
+
+    --kiri-sombra: 0 1px 2px rgba(20,28,32,.07);
+    --kiri-foco:   var(--kiri-marca-texto);
+  }
+}
+
+:root[data-kiri="claro"] {
+    --kiri-fondo:        #F8FAFB;
+    --kiri-panel:        #FFFFFF;
+    --kiri-panel-alto:   #FFFFFF;
+    --kiri-linea:        #DBE3E7;
+    --kiri-linea-suave:  #EBF0F2;
+
+    --kiri-tinta:        #141C20;
+    --kiri-tinta-suave:  #5C6A70;
+
+    --kiri-marca:        #1483C8;
+    --kiri-marca-texto:  #106AA2;
+    --kiri-marca-tinte:  #E9F3FA;
+    --kiri-marca-linea:  #A9D0E9;
+    --kiri-sobre-marca:  #FFFFFF;
+
+    --kiri-bien:  #12795A;  --kiri-bien-tinte: #E3F3ED;
+    --kiri-mal:   #C8402F;  --kiri-mal-tinte:  #FBE8E5;
+    --kiri-ojo:   #8E6610;  --kiri-ojo-tinte:  #FBF1D8;
+
+    --kiri-sombra: 0 1px 2px rgba(20,28,32,.07);
+    --kiri-foco:   var(--kiri-marca-texto);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   CAPA BASE
+   ═══════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--kiri-fondo);
+  color: var(--kiri-tinta);
+  font: var(--kiri-t-base)/1.45 var(--kiri-ui);
+  padding-bottom: max(var(--kiri-e-5), env(safe-area-inset-bottom));
+}
+
+button, input, textarea, select { font: inherit; color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--kiri-foco);
+  outline-offset: 2px;
+}
+
+.kiri-mono { font-family: var(--kiri-mono); font-variant-numeric: tabular-nums; }
+
+/* Texto largo: la letra de libro, una columna angosta */
+.kiri-lectura {
+  font: var(--kiri-t-md)/1.62 var(--kiri-lectura);
+  max-width: 38rem;
+  margin-inline: auto;
+}
+.kiri-lectura h2 { font: 600 var(--kiri-t-lg)/1.25 var(--kiri-lectura); margin: var(--kiri-e-6) 0 var(--kiri-e-2); }
+.kiri-lectura p  { margin: 0 0 var(--kiri-e-3); }
+.kiri-lectura a  { color: var(--kiri-marca-texto); text-underline-offset: .18em; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   BARRA — la marca vive acá
+   ═══════════════════════════════════════════════════════════════════ */
+
+.kiri-barra {
+  position: sticky; top: 0; z-index: 3;
+  background: var(--kiri-fondo);
+  border-bottom: 1px solid var(--kiri-linea);
+  padding: calc(var(--kiri-e-4) + env(safe-area-inset-top)) var(--kiri-e-4) 0;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: var(--kiri-e-3);
+}
+.kiri-barra h1 {
+  margin: 0 0 var(--kiri-e-3);
+  font: 700 var(--kiri-t-xl)/1 var(--kiri-ui);
+  letter-spacing: -.03em;
+  display: flex; align-items: center; gap: var(--kiri-e-2);
+}
+/* El logo: un cuadrado de marca. Azul GRANDE → --kiri-marca. */
+.kiri-marca-punto {
+  width: .62em; height: .62em; border-radius: 4px;
+  background: var(--kiri-marca); flex: none;
+}
+
+.kiri-tabs { display: flex; gap: var(--kiri-e-5); }
+.kiri-tab {
+  background: none; border: 0; padding: var(--kiri-e-1) 0 var(--kiri-e-3);
+  font-weight: 500; color: var(--kiri-tinta-suave);
+  border-bottom: 2.5px solid transparent; margin-bottom: -1px;
+  display: inline-flex; align-items: center; gap: var(--kiri-e-2); cursor: pointer;
+}
+.kiri-tab[aria-selected="true"] { color: var(--kiri-tinta); border-bottom-color: var(--kiri-marca); }
+.kiri-cuenta {
+  min-width: 22px; padding: 1px 7px; border-radius: var(--kiri-r-full);
+  font: 700 var(--kiri-t-xs)/1.6 var(--kiri-mono); text-align: center;
+  background: var(--kiri-linea); color: var(--kiri-tinta-suave);
+}
+.kiri-tab[aria-selected="true"] .kiri-cuenta { background: var(--kiri-marca); color: var(--kiri-sobre-marca); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   BOTONES — un primario por pantalla. Primario = TINTA, no azul.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.kiri-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--kiri-e-2);
+  min-height: var(--kiri-tocable); padding: var(--kiri-e-2) var(--kiri-e-4);
+  border-radius: var(--kiri-r); border: 1.5px solid var(--kiri-linea);
+  background: var(--kiri-panel); color: var(--kiri-tinta);
+  font-weight: 600; cursor: pointer; text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .12s cubic-bezier(.22,1,.36,1), background .15s;
+}
+.kiri-btn:active { transform: scale(.98); }
+.kiri-btn:disabled { opacity: .45; pointer-events: none; }
+
+/* El truco: tinta sobre fondo funciona en los DOS modos sin escribirlo dos veces. */
+.kiri-btn--primario { background: var(--kiri-tinta); color: var(--kiri-fondo); border-color: var(--kiri-tinta); }
+.kiri-btn--marca    { background: var(--kiri-marca); color: var(--kiri-sobre-marca); border-color: var(--kiri-marca); }
+.kiri-btn--texto    { background: transparent; border-color: transparent; font-weight: 500; color: var(--kiri-tinta-suave); }
+.kiri-btn--peligro  { background: transparent; border-color: transparent; color: var(--kiri-mal); }
+.kiri-btn--ancho    { width: 100%; min-height: 54px; font-size: var(--kiri-t-md); }
+
+.kiri-acciones { display: flex; gap: var(--kiri-e-2); }
+.kiri-acciones .kiri-btn { flex: 1; }
+
+/* Link de texto: azul de LETRA CHICA */
+.kiri-link { color: var(--kiri-marca-texto); text-decoration: none; border-bottom: 1px solid currentColor; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   SUPERFICIES Y AVISOS
+   ═══════════════════════════════════════════════════════════════════ */
+
+.kiri-panel {
+  background: var(--kiri-panel); border: 1px solid var(--kiri-linea);
+  border-radius: var(--kiri-r-lg); padding: var(--kiri-e-4);
+  box-shadow: var(--kiri-sombra);
+}
+
+.kiri-aviso {
+  padding: var(--kiri-e-3) var(--kiri-e-4); border-radius: var(--kiri-r);
+  background: var(--kiri-panel); border: 1px solid var(--kiri-linea-suave);
+  color: var(--kiri-tinta-suave); font-size: var(--kiri-t-sm); line-height: 1.45;
+}
+.kiri-aviso--marca { background: var(--kiri-marca-tinte); border-color: var(--kiri-marca-linea); color: var(--kiri-marca-texto); }
+.kiri-aviso--bien  { background: var(--kiri-bien-tinte);  border-color: var(--kiri-bien); color: var(--kiri-bien); }
+.kiri-aviso--mal   { background: var(--kiri-mal-tinte);   border-color: var(--kiri-mal);  color: var(--kiri-mal); }
+.kiri-aviso--ojo   { background: var(--kiri-ojo-tinte);   border-color: var(--kiri-ojo);  color: var(--kiri-ojo); }
+
+/* Pantalla vacía: no es un error, es una invitación */
+.kiri-vacio { color: var(--kiri-tinta-suave); padding: var(--kiri-e-6) var(--kiri-e-2); max-width: 34ch; }
+.kiri-vacio strong { display: block; color: var(--kiri-tinta); font-size: var(--kiri-t-lg); letter-spacing: -.02em; margin-bottom: var(--kiri-e-1); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   LISTAS — reglas finas, no tarjetas. Una lista larga de tarjetas cansa.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.kiri-lista { list-style: none; margin: 0; padding: 0; }
+.kiri-lista > li { border-bottom: 1px solid var(--kiri-linea); padding: var(--kiri-e-3) 0; }
+.kiri-lista .nombre { font-weight: 600; font-size: var(--kiri-t-md); letter-spacing: -.01em; line-height: 1.3; }
+.kiri-lista .meta {
+  display: flex; flex-wrap: wrap; gap: var(--kiri-e-1) var(--kiri-e-3);
+  margin-top: var(--kiri-e-1); font-size: var(--kiri-t-sm); color: var(--kiri-tinta-suave);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FORMULARIOS — una columna, campos grandes, etiqueta arriba
+   ═══════════════════════════════════════════════════════════════════ */
+
+.kiri-campo { display: block; margin-bottom: var(--kiri-e-3); }
+.kiri-campo > span {
+  display: block; margin-bottom: var(--kiri-e-1);
+  font: 600 var(--kiri-t-xs)/1.4 var(--kiri-ui);
+  letter-spacing: .05em; text-transform: uppercase; color: var(--kiri-tinta-suave);
+}
+.kiri-campo input, .kiri-campo textarea, .kiri-campo select {
+  display: block; width: 100%; min-height: var(--kiri-tocable);
+  padding: var(--kiri-e-2) var(--kiri-e-3); border-radius: var(--kiri-r-sm);
+  border: 1.5px solid var(--kiri-linea); background: var(--kiri-panel);
+  font-size: var(--kiri-t-base);   /* 16px o Safari hace zoom al enfocar */
+}
+.kiri-campo input:focus-visible, .kiri-campo textarea:focus-visible { border-color: var(--kiri-marca); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   CHIP · MEDIDOR · TOAST
+   ═══════════════════════════════════════════════════════════════════ */
+
+.kiri-chip {
+  display: inline-flex; align-items: center; gap: var(--kiri-e-1);
+  padding: 4px 9px; border-radius: var(--kiri-r-full);
+  border: 1px solid var(--kiri-linea); background: var(--kiri-panel);
+  font-size: var(--kiri-t-xs); white-space: nowrap;
+}
+.kiri-chip--marca { border-color: var(--kiri-marca-linea); background: var(--kiri-marca-tinte); color: var(--kiri-marca-texto); }
+
+.kiri-medidor { height: 7px; border-radius: var(--kiri-r-full); background: var(--kiri-linea); overflow: hidden; }
+.kiri-medidor > i { display: block; height: 100%; background: var(--kiri-marca); }
+
+.kiri-toast {
+  position: fixed; left: 50%; bottom: var(--kiri-e-5); transform: translateX(-50%); z-index: 9;
+  max-width: 92vw; padding: var(--kiri-e-3) var(--kiri-e-4); border-radius: var(--kiri-r);
+  background: var(--kiri-tinta); color: var(--kiri-fondo); font-size: var(--kiri-t-sm);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ANCHO Y MOVIMIENTO
+   ═══════════════════════════════════════════════════════════════════ */
+
+.kiri-pantalla { max-width: 640px; margin-inline: auto; padding: var(--kiri-e-4) var(--kiri-e-4) var(--kiri-e-6); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

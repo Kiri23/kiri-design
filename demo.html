@@ -1,0 +1,107 @@
+<!doctype html><html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · design system</title>
+<link rel=preconnect href="https://fonts.googleapis.com"><link rel=preconnect href="https://fonts.gstatic.com" crossorigin>
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel=stylesheet href="tokens.css">
+<style>
+  .sec { margin-top: var(--kiri-e-6); }
+  .sec > h2 { font: 700 var(--kiri-t-xs)/1 var(--kiri-mono); letter-spacing:.14em;
+    text-transform:uppercase; color:var(--kiri-tinta-suave); margin:0 0 var(--kiri-e-3);
+    padding-bottom: var(--kiri-e-2); border-bottom:1px solid var(--kiri-linea); }
+  .swatches { display:grid; grid-template-columns:repeat(auto-fill,minmax(92px,1fr)); gap:var(--kiri-e-2); }
+  .sw { border:1px solid var(--kiri-linea); border-radius:var(--kiri-r-sm); overflow:hidden; }
+  .sw i { display:block; height:44px; }
+  .sw span { display:block; padding:5px 7px; font:500 10.5px/1.35 var(--kiri-mono); color:var(--kiri-tinta-suave); }
+  .modo { display:flex; gap:var(--kiri-e-2); margin-top:var(--kiri-e-3); }
+</style>
+
+<div class=kiri-barra>
+  <h1><span class=kiri-marca-punto></span>Kiri</h1>
+  <div class=kiri-tabs role=tablist>
+    <button class=kiri-tab role=tab aria-selected=true>Sistema</button>
+    <button class=kiri-tab role=tab aria-selected=false>Apps <span class="kiri-cuenta">5</span></button>
+  </div>
+</div>
+
+<main class=kiri-pantalla>
+
+  <div class=modo>
+    <button class="kiri-btn kiri-btn--texto" onclick="document.documentElement.dataset.kiri='oscuro'">Forzar oscuro</button>
+    <button class="kiri-btn kiri-btn--texto" onclick="document.documentElement.dataset.kiri='claro'">Forzar claro</button>
+    <button class="kiri-btn kiri-btn--texto" onclick="delete document.documentElement.dataset.kiri">Auto</button>
+  </div>
+
+  <section class=sec>
+    <h2>Color · el azul hace dos trabajos</h2>
+    <div class=swatches>
+      <div class=sw><i style="background:var(--kiri-marca)"></i><span>marca<br>área grande</span></div>
+      <div class=sw><i style="background:var(--kiri-marca-texto)"></i><span>marca-texto<br>letra chica</span></div>
+      <div class=sw><i style="background:var(--kiri-marca-tinte)"></i><span>marca-tinte</span></div>
+      <div class=sw><i style="background:var(--kiri-tinta)"></i><span>tinta<br>= acción</span></div>
+      <div class=sw><i style="background:var(--kiri-bien)"></i><span>bien</span></div>
+      <div class=sw><i style="background:var(--kiri-mal)"></i><span>mal</span></div>
+      <div class=sw><i style="background:var(--kiri-ojo)"></i><span>ojo</span></div>
+      <div class=sw><i style="background:var(--kiri-panel)"></i><span>panel</span></div>
+    </div>
+    <p class="kiri-aviso kiri-aviso--marca" style="margin-top:var(--kiri-e-3)">
+      Este aviso usa <b>marca-tinte</b> de fondo y <b>marca-texto</b> de letra —
+      por eso se lee. Con <b>marca</b> a secas, no.
+    </p>
+  </section>
+
+  <section class=sec>
+    <h2>Botones · primario = tinta, no azul</h2>
+    <div class=kiri-acciones>
+      <button class="kiri-btn kiri-btn--primario">Entregado</button>
+      <button class=kiri-btn>No pude</button>
+    </div>
+    <div class=kiri-acciones style="margin-top:var(--kiri-e-2)">
+      <button class="kiri-btn kiri-btn--marca">Marca</button>
+      <button class="kiri-btn kiri-btn--texto">Cancelar</button>
+      <button class="kiri-btn kiri-btn--peligro">Borrar</button>
+    </div>
+    <button class="kiri-btn kiri-btn--ancho kiri-btn--primario" style="margin-top:var(--kiri-e-3)">Empezar la ruta</button>
+  </section>
+
+  <section class=sec>
+    <h2>Rutero · lista</h2>
+    <ul class=kiri-lista>
+      <li><div class=nombre>Farmacia Del Pueblo</div>
+        <div class=meta><span class="municipio kiri-mono">BAYAMÓN</span><span>Calle Barbosa 145</span><a class=kiri-link href=#>Llamar</a></div></li>
+      <li><div class=nombre>Colmado Santa Rita</div>
+        <div class=meta><span class="municipio kiri-mono">TOA ALTA</span><span>PR-165 km 4.2</span><span class="kiri-chip kiri-chip--marca">Ruta 3</span></div></li>
+      <li><div class=nombre>Panadería Los Cidrines</div>
+        <div class=meta><span class="municipio kiri-mono">DORADO</span><span style="color:var(--kiri-bien)">Entregado 9:14</span></div></li>
+    </ul>
+    <div class=kiri-medidor style="margin-top:var(--kiri-e-4)"><i style="width:62%"></i></div>
+    <p class=meta style="margin-top:var(--kiri-e-2);font-size:var(--kiri-t-sm);color:var(--kiri-tinta-suave)">9 de 14 paradas</p>
+  </section>
+
+  <section class=sec>
+    <h2>Notif · avisos y vacío</h2>
+    <p class="kiri-aviso kiri-aviso--bien">3 notificaciones marcadas como leídas.</p>
+    <p class="kiri-aviso kiri-aviso--ojo" style="margin-top:var(--kiri-e-2)">El permiso de notificaciones expira en 2 días.</p>
+    <p class="kiri-aviso kiri-aviso--mal" style="margin-top:var(--kiri-e-2)">No pude leer la bandeja: falta el permiso de Android.</p>
+    <div class=kiri-vacio><strong>Nada nuevo.</strong>Cuando llegue una notificación al teléfono, aparece acá.</div>
+  </section>
+
+  <section class=sec>
+    <h2>Mail · formulario</h2>
+    <div class=kiri-panel>
+      <label class=kiri-campo><span>Buscar en el correo</span><input placeholder="from:banco after:2026/09/01"></label>
+      <label class=kiri-campo><span>Etiqueta</span><input value="Facturas"></label>
+      <div class=kiri-acciones><button class="kiri-btn kiri-btn--primario">Buscar</button><button class=kiri-btn>Limpiar</button></div>
+    </div>
+  </section>
+
+  <section class=sec>
+    <h2>Cursos · letra de libro</h2>
+    <div class=kiri-lectura>
+      <h2 style="border:0;font:600 var(--kiri-t-lg)/1.25 var(--kiri-lectura);text-transform:none;letter-spacing:0;color:var(--kiri-tinta);padding:0">Las seis casillas</h2>
+      <p>Una fila no es un registro de base de datos. Es una <em>afirmación</em>: alguien dijo algo sobre algo, en algún lugar, en algún momento.</p>
+      <p>Las seis casillas son el mínimo para que esa afirmación se pueda discutir sin volver a la fuente. <a href=#>Ver el glosario</a>.</p>
+    </div>
+  </section>
+
+</main>
+<div class=kiri-toast>Kiri · tokens cargados</div>
