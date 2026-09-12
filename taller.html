@@ -182,9 +182,28 @@ const PIEZAS = [
   ['navegacion', 'componentes/navegacion/hojas.card.html',    'componentes/navegacion/hoja.prompt.md'],
   ['estado',     'componentes/estado/avisos.card.html',       'componentes/estado/aviso.prompt.md'],
   ['estado',     'componentes/estado/senales.card.html',      'componentes/estado/senales.prompt.md'],
+  // Fundamentos: una DECISIÓN por ficha con su token al lado, no una pieza.
+  // Las dieciséis comparten criterio — el argumento vive en la ficha misma.
+  ['fundamentos', 'guidelines/principios.card.html',      'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/marca.card.html',           'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/superficies.card.html',     'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/estados.card.html',         'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/interaccion.card.html',     'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/toque.card.html',           'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/texto.card.html',           'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/mono.card.html',            'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/etiquetas.card.html',       'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/aire.card.html',            'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/radios.card.html',          'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/bordes.card.html',          'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/movimiento.card.html',      'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/contraste.card.html',       'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/voz.card.html',             'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/anti-referencia.card.html', 'guidelines/fundamentos.prompt.md'],
 ];
 const ROTULO = { estructura:'Estructura', acciones:'Acciones', datos:'Datos',
-                 formulario:'Formulario', navegacion:'Navegación', estado:'Estado' };
+                 formulario:'Formulario', navegacion:'Navegación', estado:'Estado',
+                 fundamentos:'Fundamentos' };
 
 const $ = s => document.querySelector(s);
 const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
@@ -257,7 +276,7 @@ async function arrancar() {
     $('.taller').style.gridTemplateColumns = '1fr';
     $('.taller').innerHTML = '<p class="kiri-aviso kiri-aviso--ojo aviso-http">'
       + 'El taller lee las fichas con <code>fetch</code>, y eso necesita HTTP — abierto como <code>file://</code> el navegador lo bloquea.<br><br>'
-      + 'Servilo así: <code>kiri-serve taller.html -d ~/Code/kiri-design -p 8792</code></p>';
+      + 'Servilo así: <code>kiri-serve taller.html -p 8792</code></p>';
     return;
   }
   pintarLado();

@@ -1,0 +1,56 @@
+<!-- @dsCard group="Fundamentos" viewport="760x669" name="Mono" subtitle="JetBrains Mono es para lo que se compara en columna: números, códigos, tokens. No para dar textura." -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Mono</title>
+<link rel=stylesheet href="../tokens.css">
+<link rel=stylesheet href="guia.css">
+<style>
+  .col { display:grid; gap:var(--kiri-e-1); text-align:right; font-size:var(--kiri-t-sm) }
+  .col.m { font-family:var(--kiri-mono); font-variant-numeric:tabular-nums }
+  .col.u { font-family:var(--kiri-ui) }
+  .dato { font:700 var(--kiri-t-xl)/1 var(--kiri-mono); font-variant-numeric:tabular-nums }
+</style>
+<body class=g>
+
+<p class=g-rot>Para qué existe: que el dígito caiga sobre el dígito</p>
+<div class=g-sino>
+  <div class=g-si>
+    <p class=g-rot>Sí · mono con tabular-nums</p>
+    <div class="col m"><span>1,240.00</span><span>98.50</span><span>7,003.25</span><span>112.00</span></div>
+  </div>
+  <div class=g-no>
+    <p class=g-rot>No · la de la interfaz</p>
+    <div class=g-mal>
+      <div class="col u"><span>1,240.00</span><span>98.50</span><span>7,003.25</span><span>112.00</span></div>
+      <p class=g-por>Los anchos bailan y la columna deja de servir para comparar,
+      que es la única razón por la que la tabla existe.</p>
+    </div>
+  </div>
+</div>
+
+<p class=g-rot>Dónde va</p>
+<div class=g-fila>
+  <div class=g-esp><span class=dato>11 / 14</span></div>
+  <span class=g-tok><b>--kiri-mono</b><br>el número que es el dato</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><span class=kiri-mono>787-555-0142</span> · <span class=kiri-mono>00949</span></div>
+  <span class=g-tok>teléfonos, ZIP, órdenes</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><code class=kiri-mono>--kiri-marca-texto</code></div>
+  <span class=g-tok>tokens y código</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><span class=kiri-mono>9:14</span></div>
+  <span class=g-tok>horas en una lista</span>
+</div>
+
+<p class=g-rot>Dónde no va</p>
+<div class=g-mal>
+  <p style="margin:0;font-family:var(--kiri-mono);font-size:var(--kiri-t-sm)">Sacale una foto a cada factura antes de salir del local.</p>
+  <p class=g-por>Una frase en mono se lee más lento y no gana nada: no hay nada que
+  alinear. Mono es una herramienta de columna, no un estilo.</p>
+</div>
+
+<p class=g-nota>Siempre con <code class=kiri-mono>font-variant-numeric: tabular-nums</code>
+— la clase <code class=kiri-mono>.kiri-mono</code> ya lo trae.</p>

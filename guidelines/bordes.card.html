@@ -1,0 +1,63 @@
+<!-- @dsCard group="Fundamentos" viewport="760x676" name="Bordes" subtitle="Tres grosores con un trabajo cada uno: separar, tocar, marcar. No un grosor por componente." -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Bordes</title>
+<link rel=stylesheet href="../tokens.css">
+<link rel=stylesheet href="guia.css">
+<style>
+  .caja { display:flex; align-items:center; padding:0 var(--kiri-e-3);
+          min-height:var(--kiri-tocable); border-radius:var(--kiri-r);
+          background:var(--kiri-panel); font:600 var(--kiri-t-sm)/1.3 var(--kiri-ui) }
+</style>
+<body class=g>
+
+<p class=g-rot>Tres grosores</p>
+
+<div class="g-fila g-fila--alta">
+  <div class=g-esp>
+    <ul class=kiri-lista style="margin:0">
+      <li><span class=nombre>Farmacia Del Pueblo</span></li>
+      <li><span class=nombre>Colmado Santa Rita</span></li>
+    </ul>
+  </div>
+  <span class=g-tok><b>--kiri-b-hilo</b> · 1px<br>separa filas</span>
+</div>
+<div class="g-fila g-fila--alta">
+  <div class=g-esp><div class=caja style="border:var(--kiri-b-marco) solid var(--kiri-linea)">Un campo · un botón</div></div>
+  <span class=g-tok><b>--kiri-b-marco</b> · 1.5px<br>lo que se toca</span>
+</div>
+<div class="g-fila g-fila--alta">
+  <div class=g-esp>
+    <div class=kiri-tabs role=tablist>
+      <button class=kiri-tab role=tab aria-selected=true>Ruta</button>
+      <button class=kiri-tab role=tab aria-selected=false>Revisión</button>
+    </div>
+  </div>
+  <span class=g-tok><b>--kiri-b-firma</b> · 2.5px<br>estado activo y foco</span>
+</div>
+
+<p class=g-nota>1px separa, 1.5px invita al dedo, 2.5px señala dónde estás. Si un
+componente pide un cuarto grosor, la pregunta es qué trabajo hace que no hagan estos tres.</p>
+
+<p class=g-rot>Reglas finas antes que tarjetas</p>
+<div class=g-sino>
+  <div class=g-si>
+    <p class=g-rot>Sí</p>
+    <ul class=kiri-lista style="margin:0">
+      <li><span class=nombre>Farmacia Del Pueblo</span><span class=meta><span>Bayamón</span></span></li>
+      <li><span class=nombre>Colmado Santa Rita</span><span class=meta><span>Toa Alta</span></span></li>
+      <li><span class=nombre>Panadería Los Cidrines</span><span class=meta><span>Dorado</span></span></li>
+    </ul>
+  </div>
+  <div class=g-no>
+    <p class=g-rot>No</p>
+    <div class=g-mal>
+      <div style="display:grid;gap:var(--kiri-e-2)">
+        <div class=caja style="border:var(--kiri-b-marco) solid var(--kiri-linea)">Farmacia Del Pueblo</div>
+        <div class=caja style="border:var(--kiri-b-marco) solid var(--kiri-linea)">Colmado Santa Rita</div>
+        <div class=caja style="border:var(--kiri-b-marco) solid var(--kiri-linea)">Panadería Los Cidrines</div>
+      </div>
+      <p class=g-por>Veinte tarjetas cansan: cada borde pide atención y ninguna la
+      merece más que la otra. Veinte filas con una línea de 1px se leen.</p>
+    </div>
+  </div>
+</div>

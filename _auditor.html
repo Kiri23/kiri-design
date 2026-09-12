@@ -1,0 +1,57 @@
+<html lang=es><meta charset=utf-8><title>Kiri · auditor de desborde</title>
+<style>body{font:13px ui-monospace,monospace;margin:0;padding:8px}
+iframe{border:0;height:3000px;display:block}</style>
+<pre id=out>corriendo…</pre>
+<iframe id=m></iframe>
+<script>
+// Auditor de desborde horizontal. Para cada ficha y cada ancho:
+//  a) el documento rueda de lado  (scrollWidth > clientWidth)
+//  b) un elemento desborda su propia caja (scrollWidth > clientWidth)
+//  c) el borde derecho de un elemento pasa el ancho del documento
+const ANCHOS = [412, 760];
+const FICHAS = (new URLSearchParams(location.search).get('f') || '').split(',').filter(Boolean);
+const m = document.getElementById('m'), out = document.getElementById('out');
+const cargar = url => new Promise(r => { m.onload = () => setTimeout(r, 260); m.src = url; });
+
+function mirar(doc, win, ancho) {
+  const de = doc.documentElement, hallazgos = [];
+  const w = de.clientWidth;
+  if (de.scrollWidth > w + 1)
+    hallazgos.push(`documento rueda de lado: scrollWidth ${de.scrollWidth} > ${w}`);
+  for (const el of doc.querySelectorAll('*')) {
+    const cs = win.getComputedStyle(el);
+    if (cs.overflowX === 'auto' || cs.overflowX === 'scroll') continue; // rodar es su trabajo
+    if (el.scrollWidth > el.clientWidth + 1 && el.clientWidth > 0)
+      hallazgos.push(`${sel(el)} desborda su caja: ${el.scrollWidth} > ${el.clientWidth}`);
+    const r = el.getBoundingClientRect();
+    if (r.width > 0 && r.right > w + 1)
+      hallazgos.push(`${sel(el)} pasa el borde: right ${Math.round(r.right)} > ${w}`);
+  }
+  return hallazgos;
+}
+// El iframe es mas alto que cualquier ficha, asi que el alto real es el
+// borde inferior del ultimo hijo del body mas el padding de abajo.
+const alto = doc => Math.ceil(Math.max(0, ...[...doc.body.children]
+  .map(e => e.getBoundingClientRect().bottom)) + 16);
+const sel = el => el.tagName.toLowerCase() +
+  (el.id ? '#' + el.id : '') +
+  (el.className && typeof el.className === 'string' ? '.' + el.className.trim().split(/\s+/).join('.') : '');
+
+(async () => {
+  const filas = [];
+  for (const f of FICHAS) for (const a of ANCHOS) {
+    m.style.width = a + 'px';
+    await cargar(f + '?cb=' + Math.random());
+    let h;
+    try { h = mirar(m.contentDocument, m.contentWindow, a); }
+    catch (e) { h = ['NO SE PUDO LEER: ' + e.message]; }
+    filas.push({ ficha: f, ancho: a, n: h.length, hallazgos: h.slice(0, 6), alto: alto(m.contentDocument) });
+    out.textContent = filas.map(x => `${x.n ? '✗' : '·'} ${x.ancho} ${x.ficha} ${x.n || ''}`).join('\n');
+  }
+  window.__audit = filas;
+  window.__auditListo = true;
+  // Se guarda para poder leerlo desde otra pestaña sin relanzar la corrida.
+  try { localStorage.setItem('kiriAudit', JSON.stringify(filas)); } catch (e) {}
+  out.textContent += '\n\nLISTO · ' + filas.filter(x => x.n).length + ' combinaciones con desborde';
+})();
+</script>

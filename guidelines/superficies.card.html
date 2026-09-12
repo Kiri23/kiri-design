@@ -1,0 +1,55 @@
+<!-- @dsCard group="Fundamentos" viewport="760x632" name="Superficies" subtitle="Tres niveles y nunca un cuarto. En oscuro la elevación es color; en claro, una sombra mínima." -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Superficies</title>
+<link rel=stylesheet href="../tokens.css">
+<link rel=stylesheet href="guia.css">
+<style>
+  .nivel { padding:var(--kiri-e-3); border-radius:var(--kiri-r);
+           border:var(--kiri-b-hilo) solid var(--kiri-linea);
+           font:600 var(--kiri-t-sm)/1.3 var(--kiri-ui) }
+  .n1 { background:var(--kiri-fondo) }
+  .n2 { background:var(--kiri-panel); box-shadow:var(--kiri-sombra) }
+  .n3 { background:var(--kiri-panel-alto); box-shadow:var(--kiri-sombra) }
+  .t  { display:block; margin-top:var(--kiri-e-1); font:500 var(--kiri-t-xs)/1.4 var(--kiri-mono);
+        color:var(--kiri-tinta-suave) }
+</style>
+<body class=g>
+
+<p class=g-rot>Los dos modos, uno al lado del otro</p>
+<div class=g-modos>
+  <div class=g-modo>
+    <p class=g-rot>Claro · color-scheme: light</p>
+    <div class="nivel n1">La pantalla<span class=t>--kiri-fondo</span>
+      <div class="nivel n2" style="margin-top:var(--kiri-e-2)">Un panel<span class=t>--kiri-panel</span>
+        <div class="nivel n3" style="margin-top:var(--kiri-e-2)">Lo que flota encima<span class=t>--kiri-panel-alto</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="g-modo g-modo--oscuro">
+    <p class=g-rot>Oscuro · color-scheme: dark</p>
+    <div class="nivel n1">La pantalla<span class=t>--kiri-fondo</span>
+      <div class="nivel n2" style="margin-top:var(--kiri-e-2)">Un panel<span class=t>--kiri-panel</span>
+        <div class="nivel n3" style="margin-top:var(--kiri-e-2)">Lo que flota encima<span class=t>--kiri-panel-alto</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p class=g-nota>Una sola ficha para los dos modos: cada token se declara con
+<code class=kiri-mono>light-dark(claro, oscuro)</code>, así que basta cambiar
+<code class=kiri-mono>color-scheme</code> en el div y todo lo de adentro se resuelve solo.</p>
+
+<p class=g-rot>Las tres reglas, de fina a fuerte</p>
+<div class=g-fila>
+  <div class=g-esp><div style="height:var(--kiri-b-hilo);background:var(--kiri-linea-suave)"></div></div>
+  <span class=g-tok><b>--kiri-linea-suave</b><br>dentro de un bloque</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><div style="height:var(--kiri-b-hilo);background:var(--kiri-linea)"></div></div>
+  <span class=g-tok><b>--kiri-linea</b><br>separa filas</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><div style="height:var(--kiri-b-hilo);background:var(--kiri-linea-fuerte)"></div></div>
+  <span class=g-tok><b>--kiri-linea-fuerte</b><br>separa bloques</span>
+</div>
+<p class=g-nota>Nunca más de dos niveles de elevación en una pantalla. Sin sombras de
+color, sin blur de fondo, sin un cuarto gris inventado en el medio.</p>

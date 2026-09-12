@@ -1,0 +1,60 @@
+<!-- @dsCard group="Fundamentos" viewport="760x722" name="Aire" subtitle="Una escala de 4, seis escalones, y ningún valor intermedio inventado" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Aire</title>
+<link rel=stylesheet href="../tokens.css">
+<link rel=stylesheet href="guia.css">
+<style>
+  .barra { background:var(--kiri-marca); border-radius:var(--kiri-r-sm); height:var(--kiri-e-5) }
+</style>
+<body class=g>
+
+<p class=g-rot>Los seis escalones</p>
+
+<div class=g-fila>
+  <div class=g-esp><div class=barra style="width:var(--kiri-e-1)"></div></div>
+  <span class=g-tok><b>--kiri-e-1</b> · 4<br>entre dos líneas de una fila</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><div class=barra style="width:var(--kiri-e-2)"></div></div>
+  <span class=g-tok><b>--kiri-e-2</b> · 8<br>entre dos blancos vecinos</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><div class=barra style="width:var(--kiri-e-3)"></div></div>
+  <span class=g-tok><b>--kiri-e-3</b> · 12<br>dentro de un panel</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><div class=barra style="width:var(--kiri-e-4)"></div></div>
+  <span class=g-tok><b>--kiri-e-4</b> · 16<br>margen de la pantalla</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><div class=barra style="width:var(--kiri-e-5)"></div></div>
+  <span class=g-tok><b>--kiri-e-5</b> · 24<br>entre dos bloques</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><div class=barra style="width:var(--kiri-e-6)"></div></div>
+  <span class=g-tok><b>--kiri-e-6</b> · 36<br>antes de un título de sección</span>
+</div>
+
+<p class=g-rot>El aire separa lo distinto; no decora</p>
+<div class=g-sino>
+  <div class=g-si>
+    <p class=g-rot>Sí</p>
+    <ul class=kiri-lista style="margin:0">
+      <li><span class=nombre>Farmacia Del Pueblo</span><span class=meta><span>Bayamón</span></span></li>
+      <li><span class=nombre>Colmado Santa Rita</span><span class=meta><span>Toa Alta</span></span></li>
+      <li><span class=nombre>Panadería Los Cidrines</span><span class=meta><span>Dorado</span></span></li>
+    </ul>
+    <p class=g-nota>Densidad media-alta: catorce paradas entran en una pantalla.</p>
+  </div>
+  <div class=g-no>
+    <p class=g-rot>No</p>
+    <div class=g-mal>
+      <div style="display:grid;gap:var(--kiri-e-5)">
+        <div class=kiri-panel style="margin:0">Farmacia Del Pueblo</div>
+        <div class=kiri-panel style="margin:0">Colmado Santa Rita</div>
+      </div>
+      <p class=g-por>Aire repartido para que "respire": tres paradas por pantalla
+      y catorce se vuelven un scroll. Esto era una lista.</p>
+    </div>
+  </div>
+</div>

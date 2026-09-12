@@ -1,0 +1,93 @@
+/* ═══ Kiri · guidelines/guia.css ═════════════════════════════════════
+   El armazón compartido de las fichas de fundamento.
+
+   Una ficha de fundamento no muestra una PIEZA: muestra UNA DECISIÓN,
+   con el token que la sostiene al lado, en mono. Si la decisión no tiene
+   token, es un gusto y no entra.
+
+   Las dieciséis fichas no repiten este CSS: lo enlazan. Todo lo que
+   necesite una ficha en particular va en su propio <style>, corto.
+   Ni un hex acá adentro: solo var(--kiri-*).
+   ═══════════════════════════════════════════════════════════════════ */
+
+body.g { padding: var(--kiri-e-4); }
+
+/* ── Rótulo de sección: la pregunta que contesta el bloque de abajo ── */
+.g-rot {
+  font: 600 var(--kiri-t-xs)/1.4 var(--kiri-ui);
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--kiri-tinta-suave);
+  margin: var(--kiri-e-5) 0 var(--kiri-e-2);
+}
+.g-rot:first-child { margin-top: 0; }
+
+/* ── La fila: el espécimen a la izquierda, su token a la derecha.
+      Envuelve en pantalla angosta en vez de desbordar. ─────────────── */
+.g-fila {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: var(--kiri-e-2) var(--kiri-e-3);
+  padding: var(--kiri-e-2) 0;
+  border-bottom: var(--kiri-b-hilo) solid var(--kiri-linea-suave);
+}
+.g-fila:last-child { border-bottom: 0; }
+.g-fila--alta { align-items: flex-start; }
+
+.g-esp { flex: 1 1 12rem; min-width: 0; }   /* el espécimen */
+
+/* El token, siempre en mono: es lo que se copia y se pega. */
+.g-tok {
+  flex: 0 1 auto; margin-left: auto; text-align: right;
+  font: 500 var(--kiri-t-xs)/1.5 var(--kiri-mono);
+  color: var(--kiri-tinta-suave);
+  overflow-wrap: anywhere;
+}
+.g-tok b { color: var(--kiri-tinta); font-weight: 700; }
+
+/* ── Prosa numerada: la otra forma de ficha. Una afirmación por fila. ─ */
+.g-num {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 0 var(--kiri-e-3);
+  padding: var(--kiri-e-3) 0;
+  border-bottom: var(--kiri-b-hilo) solid var(--kiri-linea-suave);
+}
+.g-num:last-child { border-bottom: 0; }
+.g-num > .n { font: 700 var(--kiri-t-base)/var(--kiri-i-normal) var(--kiri-mono); color: var(--kiri-marca-texto); }
+.g-num > div { min-width: 0; }
+.g-num .q { font-weight: 700; }                         /* la afirmación */
+.g-num .p { color: var(--kiri-tinta-suave); }           /* el porqué */
+
+/* ── Los dos modos, lado a lado, en UNA ficha.
+      Kiri declara cada token con light-dark(claro, oscuro), así que
+      alcanza con cambiar color-scheme en el div: todo lo de adentro se
+      resuelve en ese modo. Verificado en Chrome 152. ────────────────── */
+.g-modos { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: var(--kiri-e-3); }
+.g-modo {
+  color-scheme: light; min-width: 0;
+  background: var(--kiri-fondo); color: var(--kiri-tinta);
+  border: var(--kiri-b-hilo) solid var(--kiri-linea);
+  border-radius: var(--kiri-r); padding: var(--kiri-e-3);
+}
+.g-modo--oscuro { color-scheme: dark; }
+.g-modo > .g-rot:first-child { margin-top: 0; }
+
+/* ── Muestra de color: un bloque lo bastante grande para juzgarlo. ─── */
+.g-muestra {
+  display: flex; align-items: flex-end;
+  min-height: var(--kiri-tocable); padding: var(--kiri-e-2);
+  border-radius: var(--kiri-r-sm);
+  font: 600 var(--kiri-t-xs)/1.3 var(--kiri-ui);
+}
+.g-tira { display: grid; grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr)); gap: var(--kiri-e-2); }
+
+/* ── Sí y no, en dos columnas. ──────────────────────────────────────── */
+.g-sino { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: var(--kiri-e-4); }
+.g-sino > div { min-width: 0; }
+.g-si  > .g-rot { color: var(--kiri-bien); }
+.g-no  > .g-rot { color: var(--kiri-mal); }
+.g-lista-seca { margin: 0; padding: 0; list-style: none; font-size: var(--kiri-t-sm); color: var(--kiri-tinta-suave); }
+.g-lista-seca li { padding: var(--kiri-e-1) 0; text-wrap: pretty; }
+
+/* ── Lo que está mal, enmarcado, con el motivo debajo. ───────────────── */
+.g-mal { border: var(--kiri-b-hilo) dashed var(--kiri-mal); border-radius: var(--kiri-r); padding: var(--kiri-e-3); }
+.g-por { margin: var(--kiri-e-2) 0 0; font-size: var(--kiri-t-sm); color: var(--kiri-mal); text-wrap: pretty; }
+.g-nota { margin: var(--kiri-e-2) 0 0; font-size: var(--kiri-t-sm); color: var(--kiri-tinta-suave); text-wrap: pretty; }

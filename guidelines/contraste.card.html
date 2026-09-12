@@ -1,0 +1,78 @@
+<!-- @dsCard group="Fundamentos" viewport="760x844" name="Contraste" subtitle="4.5:1 en todo lo que es texto, en los dos modos, y el color nunca es la única señal" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Contraste</title>
+<link rel=stylesheet href="../tokens.css">
+<link rel=stylesheet href="guia.css">
+<style>
+  .par { padding:var(--kiri-e-2) 0; font-size:var(--kiri-t-sm) }
+  .par + .par { border-top:var(--kiri-b-hilo) solid var(--kiri-linea-suave) }
+  .r { float:right; font:500 var(--kiri-t-xs)/1.4 var(--kiri-mono); color:var(--kiri-tinta-suave) }
+</style>
+<body class=g>
+
+<p class=g-rot>Los pares que pasan, en los dos modos</p>
+<div class=g-modos>
+  <div class=g-modo>
+    <p class=g-rot>Claro</p>
+    <div class=par><span class=r>16.5:1</span><span style="color:var(--kiri-tinta)">Texto principal sobre fondo</span></div>
+    <div class=par><span class=r>5.3:1</span><span style="color:var(--kiri-tinta-suave)">Texto secundario sobre fondo</span></div>
+    <div class=par><span class=r>5.6:1</span><span style="color:var(--kiri-marca-texto)">Un link en azul de letra</span></div>
+    <div class=par style="background:var(--kiri-marca);margin:0 calc(var(--kiri-e-2) * -1);padding-inline:var(--kiri-e-2)"><span class=r style="color:var(--kiri-sobre-marca)">4.1:1 ⚠</span><span style="color:var(--kiri-sobre-marca)">Texto sobre el relleno azul</span></div>
+  </div>
+  <div class="g-modo g-modo--oscuro">
+    <p class=g-rot>Oscuro</p>
+    <div class=par><span class=r>15.5:1</span><span style="color:var(--kiri-tinta)">Texto principal sobre fondo</span></div>
+    <div class=par><span class=r>6.2:1</span><span style="color:var(--kiri-tinta-suave)">Texto secundario sobre fondo</span></div>
+    <div class=par><span class=r>8.3:1</span><span style="color:var(--kiri-marca-texto)">Un link en azul de letra</span></div>
+    <div class=par style="background:var(--kiri-marca);margin:0 calc(var(--kiri-e-2) * -1);padding-inline:var(--kiri-e-2)"><span class=r style="color:var(--kiri-sobre-marca)">5.5:1</span><span style="color:var(--kiri-sobre-marca)">Texto sobre el relleno azul</span></div>
+  </div>
+</div>
+<p class=g-nota><b>⚠ El único par que no llega a 4.5:1 es blanco sobre el azul de
+marca en modo claro: 4.11:1.</b> Pasa el piso de texto grande y de componente
+(3:1), así que la barra y el tab activo están bien, pero un
+<code class=kiri-mono>.kiri-btn--marca</code> a 16px no. Oscurecer
+<code class=kiri-mono>--kiri-marca</code> claro un 5% lo lleva a 4.51:1, sin
+mover el tono. Sin decidir: el valor exacto y el porqué están en
+<code class=kiri-mono>tareas.md</code>.</p>
+<p class=g-nota>Los números salen de <code class=kiri-mono>css/color.css</code> con la
+fórmula de luminancia relativa de WCAG 2.1.
+<code class=kiri-mono>--kiri-tinta-suave</code> es el piso: es lo más
+apagado que Kiri permite para texto. Si algo tiene que ser más tenue que eso, no es
+texto — es una línea.</p>
+
+<p class=g-rot>El error que más pasa</p>
+<div class=g-modos>
+  <div class="g-modo g-modo--oscuro">
+    <div class=g-mal>
+      <p style="margin:0;font-size:var(--kiri-t-sm);color:var(--kiri-marca)">Ver las catorce paradas</p>
+      <p class=g-por>Azul de área grande usado como letra chica sobre fondo oscuro.
+      Usá <code class=kiri-mono>--kiri-marca-texto</code>, que existe justamente para esto.</p>
+    </div>
+  </div>
+  <div class="g-modo g-modo--oscuro">
+    <div class=g-mal>
+      <p style="margin:0;font-size:var(--kiri-t-sm);color:var(--kiri-linea-fuerte)">Última sincronización: hace 4 minutos</p>
+      <p class=g-por>Un token de línea usado como color de texto. Las líneas se ven
+      a 1px de alto; una frase entera en ese gris no se lee.</p>
+    </div>
+  </div>
+</div>
+
+<p class=g-rot>El color nunca es la única señal</p>
+<div class=g-sino>
+  <div class=g-si>
+    <p class=g-rot>Sí</p>
+    <label class="kiri-campo kiri-campo--mal"><span>Teléfono</span>
+      <input type=text value="787-555" aria-describedby=e1 readonly>
+      <span class=ayuda id=e1>Faltan cuatro dígitos.</span></label>
+  </div>
+  <div class=g-no>
+    <p class=g-rot>No</p>
+    <div class=g-mal>
+      <label class=kiri-campo><span>Teléfono</span>
+        <input type=text value="787-555" style="border-color:var(--kiri-mal)" readonly></label>
+      <p class=g-por>Solo el borde en rojo. Quien no distingue el rojo no ve nada, y
+      quien sí lo ve tampoco sabe qué corregir.</p>
+    </div>
+  </div>
+</div>

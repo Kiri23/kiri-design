@@ -9,6 +9,54 @@ Design en cada sincronización, así que lo que se anote ahí se pierde.
 
 ## Decidido
 
+### Los pares de `light-dark()` estaban al revés — 2026-09-12
+
+Encontrado al verificar en Chrome si `color-scheme` en un div alcanzaba para
+mostrar los dos modos en una ficha. **Alcanza** (Chrome 152, medido en el
+Pixel), pero la medición salió invertida y el motivo no era la premisa: era
+`css/color.css`.
+
+`light-dark(A, B)` usa **A cuando el modo es claro**. Kiri había escrito los 26
+pares como `light-dark(oscuro, claro)`, con un comentario que documentaba el
+error como si fuera la regla. Consecuencia: `<html>` en un teléfono en modo
+oscuro renderizaba la paleta **clara**, y `data-kiri="claro"` renderizaba la
+**oscura**. Todo el sistema estaba dado vuelta, incluido `thumbnail.html`.
+
+Arreglado: los 26 pares invertidos, y el comentario de `color.css`, `DESIGN.md`
+§2 y el `README.md` ahora dicen el orden de la especificación. Verificado
+después del cambio: `color-scheme: light` → `#F8FAFB` de fondo con tinta
+`#141C20`; `color-scheme: dark` → `#0F1417` con `#E6ECEF`.
+
+**Lo que queda por mirar:** las once fichas de componente y `demo.html` se
+diseñaron mirándolas invertidas. Ninguna define un hex propio, así que ninguna
+se rompe — pero nadie las vio todavía en el modo que de verdad les toca.
+
+### `guidelines/` existe — 2026-09-12
+
+Dieciséis fichas de fundamento en `guidelines/`, con `guia.css` compartida y un
+solo criterio (`fundamentos.prompt.md`), porque el argumento de cada fundamento
+está escrito en la ficha misma. Grupo **Fundamentos** en el taller y en la
+galería.
+
+Dos cubren huecos que el sistema no documentaba en ningún lado: **voz** (cómo se
+escribe un mensaje) e **interacción** (`toque`, `toque-fuerte`, `velo`,
+`apagado`, `apagado-fondo`).
+
+Los dos modos van en **una** ficha, no dos: `color-scheme` en un div hermano.
+
+Verificado, no supuesto: `node _verificar.mjs` da limpio sobre las 27 fichas y
+**agarra las diez mutaciones** que se le tiraron. El desborde horizontal se
+auditó en el Chrome del Pixel a 412 y 760px — 32 combinaciones, **cero**; y el
+auditor mordió cuando se le inyectó un div de 900px en una ficha que daba
+limpia.
+
+### `DESIGN.md` §9 ya no tiene rutas de un teléfono — 2026-09-12
+
+El prompt habla de rutas relativas a la raíz del repo `kiri-design` y explica
+cómo ajustar el `href` de `tokens.css` según dónde esté el archivo. De paso, los
+`kiri-serve` de `README.md`, `DESIGN.md` y `taller.html` perdieron el
+`-d ~/Code/kiri-design`: sin `-d`, `kiri-serve` ya sirve la raíz del repo git.
+
 ### `.kiri-btn--marca` se queda — 2026-09-12
 
 Estaba anotado como "decidir si se borra, contradice la regla central". No la
@@ -27,6 +75,39 @@ una dé *sí* el azul está mal.
 Está en `DESIGN.md` §4 y en `componentes/acciones/boton.prompt.md`.
 
 ---
+
+## Blanco sobre el azul de marca no llega a 4.5:1 en claro
+
+Medido el 2026-09-12 con la fórmula de luminancia de WCAG 2.1 sobre los valores
+de `css/color.css`:
+
+| Par | Claro | Oscuro |
+|---|---|---|
+| `--kiri-tinta` / `--kiri-fondo` | 16.5:1 | 15.5:1 |
+| `--kiri-tinta-suave` / `--kiri-fondo` | 5.3:1 | 6.2:1 |
+| `--kiri-marca-texto` / `--kiri-fondo` | 5.6:1 | 8.3:1 |
+| **`--kiri-sobre-marca` / `--kiri-marca`** | **4.11:1** | 5.5:1 |
+
+Todos pasan salvo uno: **blanco sobre `#1483C8`, el azul de marca del modo
+claro, da 4.11:1.** Pasa el piso de texto grande y de componente de interfaz
+(3:1) — la barra, el logo y el tab activo están bien — pero no el de texto
+normal (4.5:1), y `.kiri-btn--marca` es texto normal.
+
+`DESIGN.md` §7 dice "nada de texto gris sobre gris por debajo de 4.5:1". La regla
+existe; este par no la cumple y nadie lo había medido.
+
+Las salidas, sin decidir:
+
+- **Oscurecer `--kiri-marca` en claro un 5%,** a `#137CBE` → 4.51:1. Mismo tono,
+  misma familia, y arregla todos los usos de una. El azul oscuro no se toca (ya
+  da 5.5:1).
+- **Dejar el azul y prohibir `.kiri-btn--marca` a tamaño normal** — subirlo a
+  `--kiri-t-md` en negrita, que es texto grande. Contradice que el botón de
+  continuar se vea como los otros botones.
+- **Dejarlo como está** y escribir en `DESIGN.md` que el relleno azul es para
+  texto grande y nada más.
+
+No lo decido yo: el azul es la marca.
 
 ## Piezas que faltan
 
@@ -94,8 +175,4 @@ salvo el `git log`. Importa porque los tokens ya se renombraron una vez
 
 ## Deuda chica
 
-- `DESIGN.md` §9 (el prompt para pegarle a un agente) tiene rutas absolutas de un
-  teléfono: `~/Code/kiri-design`. Un agente en la nube no lo puede seguir.
-- Falta `guidelines/`: fichas de fundamento — una decisión por ficha con su token
-  al lado, no un componente. El patrón está en el proyecto de Claude Design
-  `f1ec5e5a-1dfb-49aa-a326-f543a9e23ea9`, que tiene 16.
+Las dos que había quedaron hechas el 2026-09-12 — están arriba, en *Decidido*.
