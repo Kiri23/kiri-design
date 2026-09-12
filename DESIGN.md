@@ -126,7 +126,7 @@ Cargar:
 
 ## 4 · Componentes
 
-Las clases viven en `tokens.css`. Todas llevan prefijo `kiri-`.
+Las clases viven en `css/componentes.css` (`tokens.css` lo importa). Todas llevan prefijo `kiri-`.
 
 | Clase | Notas |
 |---|---|
