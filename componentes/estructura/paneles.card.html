@@ -1,0 +1,51 @@
+<!-- @dsCard group="Componentes" viewport="420x760" name="Panel" subtitle="Una cosa con varios datos. Dos paneles iguales apilados eran una lista" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Panel</title>
+<link rel=stylesheet href="../../tokens.css">
+<style>
+  body { padding:var(--kiri-e-4) }
+  .rot { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.08em; text-transform:uppercase; color:var(--kiri-tinta-suave); margin:var(--kiri-e-5) 0 var(--kiri-e-2) }
+  .rot:first-child { margin-top:0 }
+  .et { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.05em; text-transform:uppercase; color:var(--kiri-tinta-suave); margin:0 0 var(--kiri-e-2) }
+  .cifra { font:700 32px/1 var(--kiri-mono); letter-spacing:-.02em; margin:0 }
+  .mal { border:1px dashed var(--kiri-mal); border-radius:var(--kiri-r); padding:var(--kiri-e-3) }
+  .por { font-size:var(--kiri-t-sm); color:var(--kiri-mal); margin:var(--kiri-e-2) 0 0 }
+</style>
+
+<p class=rot>Resumen · una cosa, varios datos</p>
+<div class=kiri-panel>
+  <p class=et>Ruta de hoy</p>
+  <p class=cifra>11 / 14</p>
+  <div class=kiri-medidor style="margin:var(--kiri-e-3) 0"><i style="width:78%"></i></div>
+  <ul class=kiri-lista style="margin-top:var(--kiri-e-2)">
+    <li style="border-bottom:0;padding-bottom:0"><span class=meta style="margin-top:0"><span>3 paradas pendientes</span><span class=kiri-mono>$562.15 cobrado</span></span></li>
+  </ul>
+</div>
+
+<p class=rot>Formulario corto que es una unidad</p>
+<form class=kiri-panel onsubmit="return false">
+  <label class=kiri-campo><span>Pueblo</span><select><option>Toa Alta</option><option>Dorado</option></select></label>
+  <label class=kiri-campo><span>Paradas</span><input type=number inputmode=numeric value="4"></label>
+  <button class="kiri-btn kiri-btn--primario kiri-btn--ancho">Crear la tanda</button>
+</form>
+
+<p class=rot>Dos niveles y se terminó · fondo → panel</p>
+<div class=kiri-panel>
+  <p class=et>Sin sincronizar</p>
+  <ul class=kiri-lista>
+    <li><span class=nombre>Colmado Santa Rita</span><span class=meta><span>hace 2 h</span><span class=kiri-mono>$128.40</span></span></li>
+    <li style="border-bottom:0"><span class=nombre>Farmacia Del Pueblo</span><span class=meta><span>hace 3 h</span><span class=kiri-mono>$31.00</span></span></li>
+  </ul>
+</div>
+<p style="font-size:var(--kiri-t-sm);color:var(--kiri-tinta-suave);margin:var(--kiri-e-2) 0 0">La lista de adentro no lleva panel propio: la regla fina ya separa las filas.</p>
+
+<p class=rot>Mal</p>
+<div class=mal>
+  <div class=kiri-panel style="margin-bottom:var(--kiri-e-2)">
+    <div class=kiri-panel style="background:var(--kiri-panel-alto);box-shadow:0 6px 18px rgba(45,147,210,.35);border-left:4px solid var(--kiri-marca)">
+      <span class=nombre>Colmado Santa Rita</span>
+    </div>
+  </div>
+  <div class=kiri-panel><span class=nombre>Farmacia Del Pueblo</span></div>
+</div>
+<p class=por>Panel dentro de panel (tres niveles de elevación), sombra azul de color, borde de acento a la izquierda, y dos paneles iguales apilados: eso era una lista.</p>

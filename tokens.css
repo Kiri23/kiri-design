@@ -1,0 +1,11 @@
+/* ═══ Kiri · tokens.css ══════════════════════════════════════════════
+   La entrada pública. Un solo <link> y funciona, sin build.
+   Las partes están en css/ para que una app pueda tomar solo las que
+   necesita (una lección no necesita la tabla).
+   ═══════════════════════════════════════════════════════════════════ */
+
+@import url("css/fuentes.css");
+@import url("css/color.css");
+@import url("css/escala.css");
+@import url("css/base.css");
+@import url("css/componentes.css");

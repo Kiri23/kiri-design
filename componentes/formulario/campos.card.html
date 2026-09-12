@@ -1,0 +1,59 @@
+<!-- @dsCard group="Componentes" viewport="420x820" name="Campo" subtitle="Etiqueta arriba, 16px o Safari hace zoom, error y ayuda en el mismo hueco" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Campo</title>
+<link rel=stylesheet href="../../tokens.css">
+<style>
+  body { padding:var(--kiri-e-4) }
+  .rot { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.08em; text-transform:uppercase; color:var(--kiri-tinta-suave); margin:var(--kiri-e-5) 0 var(--kiri-e-2) }
+  .rot:first-child { margin-top:0 }
+  .mal { border:1px dashed var(--kiri-mal); border-radius:var(--kiri-r); padding:var(--kiri-e-3) }
+  .por { font-size:var(--kiri-t-sm); color:var(--kiri-mal); margin:var(--kiri-e-2) 0 0 }
+</style>
+
+<p class=rot>Reposo · con ayuda</p>
+<label class=kiri-campo>
+  <span>Monto cobrado</span>
+  <input type=number inputmode=decimal placeholder="0.00">
+  <span class=ayuda>Lo que te dieron hoy, sin contar el balance viejo.</span>
+</label>
+
+<p class=rot>Con valor · el teclado correcto para cada dato</p>
+<label class=kiri-campo><span>Cajas entregadas</span><input type=number inputmode=numeric value="4"></label>
+<label class=kiri-campo><span>Teléfono del negocio</span><input type=tel inputmode=tel value="787-555-0142"></label>
+
+<p class=rot>Error · mismo hueco que la ayuda, así el formulario no salta</p>
+<label class="kiri-campo kiri-campo--mal">
+  <span>Monto cobrado</span>
+  <input type=number inputmode=decimal value="-5" aria-invalid=true aria-describedby=e-monto>
+  <span class=ayuda id=e-monto>El monto no puede ser negativo.</span>
+</label>
+
+<p class=rot>Select y textarea</p>
+<label class=kiri-campo><span>Pueblo</span><select><option>Toa Alta</option><option>Bayamón</option><option>Dorado</option></select></label>
+<label class=kiri-campo><span>Nota de la parada</span><textarea rows=3 placeholder="Opcional"></textarea></label>
+
+<p class=rot>Deshabilitado · color, no opacidad</p>
+<label class=kiri-campo>
+  <span>Balance anterior</span>
+  <input value="42.10" disabled>
+  <span class=ayuda>Lo calcula la tanda. No se edita a mano.</span>
+</label>
+
+<p class=rot>Un formulario entero · el orden de la conversación</p>
+<form class=kiri-panel onsubmit="return false">
+  <label class=kiri-campo><span>Negocio</span><select><option>Colmado Santa Rita</option></select></label>
+  <label class=kiri-campo><span>Cajas entregadas</span><input type=number inputmode=numeric value="4"></label>
+  <label class=kiri-campo><span>Monto cobrado</span><input type=number inputmode=decimal value="128.40"></label>
+  <label class=kiri-opcion><span class=cuerpo>Fue en efectivo</span><input type=checkbox class=kiri-interruptor checked></label>
+  <button class="kiri-btn kiri-btn--primario kiri-btn--ancho" style="margin-top:var(--kiri-e-3)">Guardar la parada</button>
+</form>
+
+<p class=rot>Mal</p>
+<div class=mal>
+  <div style="display:flex;gap:var(--kiri-e-2);align-items:center">
+    <span style="font-size:var(--kiri-t-sm);color:var(--kiri-tinta-suave);flex:none">Monto:</span>
+    <input placeholder="Monto cobrado" style="flex:1;min-height:34px;font-size:13px;padding:4px 8px;border:1px solid var(--kiri-linea);border-radius:var(--kiri-r-sm);background:var(--kiri-panel)">
+  </div>
+  <p style="font-size:var(--kiri-t-xs);color:var(--kiri-mal);margin:var(--kiri-e-2) 0 0">Inválido</p>
+</div>
+<p class=por>Etiqueta al lado y repetida como placeholder (se va justo cuando la necesitás), 13px que hace zoom al enfocar en Safari, 34px de alto para un dedo, y un error que no dice qué arreglar ni está atado al input con <code class=kiri-mono>aria-describedby</code>.</p>

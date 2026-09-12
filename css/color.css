@@ -1,0 +1,56 @@
+/* ═══ Kiri · color.css ═══════════════════════════════════════════════
+   Un token = UNA declaración. light-dark(oscuro, claro).
+   Oscuro sigue siendo el modo de origen: va primero en cada par.
+   Cambiar de modo = cambiar color-scheme, no redeclarar 20 tokens.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root            { color-scheme: dark light; }  /* sigue al teléfono */
+:root[data-kiri="oscuro"] { color-scheme: dark; }
+:root[data-kiri="claro"]  { color-scheme: light; }
+
+:root {
+  /* ── Superficie: fondo → panel → panel-alto. Nunca un cuarto nivel. */
+  --kiri-fondo:       light-dark(#0F1417, #F8FAFB); /* @kind color */
+  --kiri-panel:       light-dark(#161D21, #FFFFFF); /* @kind color */
+  --kiri-panel-alto:  light-dark(#1C2429, #FFFFFF); /* @kind color */
+
+  /* ── Reglas. La fina separa filas; la fuerte separa bloques. */
+  --kiri-linea-suave: light-dark(#1E272B, #EBF0F2); /* @kind color */
+  --kiri-linea:       light-dark(#273238, #DBE3E7); /* @kind color */
+  --kiri-linea-fuerte:light-dark(#3A484F, #B6C2C8); /* @kind color */
+
+  /* ── Tinta: texto principal Y fondo del botón primario. */
+  --kiri-tinta:       light-dark(#E6ECEF, #141C20); /* @kind color */
+  --kiri-tinta-suave: light-dark(#8A989E, #5C6A70); /* @kind color */
+
+  /* ── Marca. Área grande → marca. Letra → marca-texto. */
+  --kiri-marca:       light-dark(#2D93D2, #1483C8); /* @kind color */
+  --kiri-marca-texto: light-dark(#60B6EB, #106AA2); /* @kind color */
+  --kiri-marca-tinte: light-dark(#0D2332, #E9F3FA); /* @kind color */
+  --kiri-marca-linea: light-dark(#1B4A66, #A9D0E9); /* @kind color */
+  --kiri-sobre-marca: light-dark(#08151C, #FFFFFF); /* @kind color */
+
+  /* ── Estado: verdes y cálidos, lejos del azul en el círculo. */
+  --kiri-bien:        light-dark(#5FD39B, #12795A); /* @kind color */
+  --kiri-bien-tinte:  light-dark(#0F2A20, #E3F3ED); /* @kind color */
+  --kiri-mal:         light-dark(#FF7A6B, #C8402F); /* @kind color */
+  --kiri-mal-tinte:   light-dark(#2E1613, #FBE8E5); /* @kind color */
+  --kiri-ojo:         light-dark(#E8B951, #8E6610); /* @kind color */
+  --kiri-ojo-tinte:   light-dark(#2C2310, #FBF1D8); /* @kind color */
+
+  /* ── Interacción. Antes había que inventar un hex acá. Ya no.
+     toque  = fila o botón bajo el dedo / el cursor
+     fuerte = el instante del :active
+     velo   = lo que oscurece la pantalla detrás de una hoja o un diálogo */
+  --kiri-toque:        light-dark(#222C31, #EFF3F5); /* @kind color */
+  --kiri-toque-fuerte: light-dark(#2B373D, #E4EAEE); /* @kind color */
+  --kiri-velo:         light-dark(rgba(4,8,10,.66), rgba(20,28,32,.42)); /* @kind color */
+
+  /* ── Apagado. Color real, no opacidad: bajar la opacidad de un
+     contenedor arrastra el texto de adentro por debajo de 4.5:1. */
+  --kiri-apagado:       light-dark(#5A676C, #9AA6AC); /* @kind color */
+  --kiri-apagado-fondo: light-dark(#191F23, #F1F4F5); /* @kind color */
+
+  --kiri-sombra: light-dark(none, 0 1px 2px rgba(20,28,32,.07)); /* @kind shadow */
+  --kiri-foco:   var(--kiri-marca-texto); /* @kind color */
+}

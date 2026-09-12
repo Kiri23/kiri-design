@@ -1,0 +1,51 @@
+/* ═══ Kiri · escala.css ══════════════════════════════════════════════
+   Todo lo que no es color y se repite: letra, aire, esquinas, bordes,
+   movimiento, capas. Si un número aparece dos veces, vive acá.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Familias ─────────────────────────────────────────────────── */
+  --kiri-ui:      'Space Grotesk', system-ui, -apple-system, sans-serif; /* @kind font */
+  --kiri-lectura: 'Newsreader', Georgia, 'Times New Roman', serif;       /* @kind font */
+  --kiri-mono:    'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; /* @kind font */
+
+  /* ── Tamaño (móvil primero, base 16) ──────────────────────────── */
+  --kiri-t-xs: 12px;  --kiri-t-sm: 13.5px;  --kiri-t-base: 16px;
+  --kiri-t-md: 17.5px;  --kiri-t-lg: 20px;  --kiri-t-xl: 26px;
+
+  /* ── Interlineado. Tres, no uno por componente.
+     apretado = títulos · normal = UI · largo = lectura */
+  --kiri-i-apretado: 1.2;  /* @kind other */
+  --kiri-i-normal:   1.45; /* @kind other */
+  --kiri-i-largo:    1.62; /* @kind other */
+
+  /* ── Aire (escala de 4) ───────────────────────────────────────── */
+  --kiri-e-1: 4px;  --kiri-e-2: 8px;  --kiri-e-3: 12px;
+  --kiri-e-4: 16px; --kiri-e-5: 24px; --kiri-e-6: 36px;
+
+  /* ── Esquinas ─────────────────────────────────────────────────── */
+  --kiri-r-sm: 7px;  --kiri-r: 10px;  --kiri-r-lg: 14px;  --kiri-r-full: 999px;
+
+  /* ── Bordes: tres grosores con un trabajo cada uno.
+     hilo = separar filas · marco = lo que se toca · firma = estado activo */
+  --kiri-b-hilo:  1px;   /* @kind other */
+  --kiri-b-marco: 1.5px; /* @kind other */
+  --kiri-b-firma: 2.5px; /* @kind other */
+
+  /* ── Dedo. 46px de alto Y 8px entre dos blancos vecinos:
+     dos botones pegados de 46px se tocan mal igual. */
+  --kiri-tocable: 46px;
+  --kiri-tocable-ancho: 54px;
+  --kiri-separacion: 8px; /* @kind spacing */
+
+  /* ── Movimiento. Solo acuse de recibo. Nada decorativo. */
+  --kiri-mov-rapido: .12s; /* @kind other */
+  --kiri-mov:        .2s;  /* @kind other */
+  --kiri-curva:      cubic-bezier(.22,1,.36,1); /* @kind other */
+
+  /* ── Capas. Sin z-index sueltos en los componentes. */
+  --kiri-z-barra: 3;  /* @kind other */
+  --kiri-z-velo:  8;  /* @kind other */
+  --kiri-z-hoja:  9;  /* @kind other */
+  --kiri-z-toast: 10; /* @kind other */
+}

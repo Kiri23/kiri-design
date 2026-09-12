@@ -1,0 +1,56 @@
+<!-- @dsCard group="Componentes" viewport="420x820" name="Lista" subtitle="Reglas finas, no tarjetas. En --tocable el blanco es el <a>, no el <li>" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Lista</title>
+<link rel=stylesheet href="../../tokens.css">
+<style>
+  body { padding:var(--kiri-e-4) }
+  .rot { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.08em; text-transform:uppercase; color:var(--kiri-tinta-suave); margin:var(--kiri-e-5) 0 var(--kiri-e-2) }
+  .rot:first-child { margin-top:0 }
+  .mal { border:1px dashed var(--kiri-mal); border-radius:var(--kiri-r); padding:var(--kiri-e-3) }
+  .por { font-size:var(--kiri-t-sm); color:var(--kiri-mal); margin:var(--kiri-e-2) 0 0 }
+</style>
+
+<p class=rot>Solo lectura</p>
+<ul class=kiri-lista>
+  <li><span class=nombre>Colmado Santa Rita</span><span class=meta><span>Toa Alta</span><span>4 cajas</span><span class=kiri-mono>$128.40</span></span></li>
+  <li><span class=nombre>Farmacia Del Pueblo</span><span class=meta><span>Bayamón</span><span>1 caja</span><span class=kiri-mono>$31.00</span></span></li>
+  <li><span class=nombre>Panadería Los Cidrines</span><span class=meta><span>Dorado</span><span>6 cajas</span><span class=kiri-mono>$402.75</span></span></li>
+</ul>
+
+<p class=rot>Tocable · cada fila abre algo</p>
+<ul class="kiri-lista kiri-lista--tocable">
+  <li><a href=#><span class=cuerpo><span class=nombre>Colmado Santa Rita</span><span class=meta><span>Toa Alta</span><span>4 cajas</span></span></span><span class=flecha aria-hidden=true>›</span></a></li>
+  <li><a href=#><span class=cuerpo><span class=nombre>Farmacia Del Pueblo</span><span class=meta><span>Bayamón</span><span>1 caja</span></span></span><span class=flecha aria-hidden=true>›</span></a></li>
+  <li><a href=#><span class=cuerpo><span class=nombre>Panadería Los Cidrines</span><span class=meta><span>Dorado</span><span>6 cajas</span><span class=kiri-mono>$402.75</span></span></span><span class=flecha aria-hidden=true>›</span></a></li>
+</ul>
+
+<p class=rot>Tocable · dispara algo ahí mismo, con chip de estado</p>
+<ul class="kiri-lista kiri-lista--tocable">
+  <li><button type=button><span class=cuerpo><span class=nombre>Estaba cerrado</span><span class=meta><span>Se reintenta mañana</span></span></span><span class="kiri-chip kiri-chip--ojo">Pendiente</span></button></li>
+  <li><button type=button><span class=cuerpo><span class=nombre>Entregado completo</span></span><span class="kiri-chip kiri-chip--bien">Hecho</span></button></li>
+  <li><button type=button><span class=cuerpo><span class=nombre>Rechazó la mercancía</span></span><span class="kiri-chip kiri-chip--mal">Sin cobrar</span></button></li>
+</ul>
+
+<p class=rot>Esperando · esqueleto del tamaño de lo que viene</p>
+<ul class=kiri-lista>
+  <li><span class="kiri-esqueleto kiri-esqueleto--titulo"></span><span class="kiri-esqueleto kiri-esqueleto--linea kiri-esqueleto--corta"></span></li>
+  <li><span class="kiri-esqueleto kiri-esqueleto--titulo"></span><span class="kiri-esqueleto kiri-esqueleto--linea kiri-esqueleto--corta"></span></li>
+</ul>
+
+<p class=rot>Vacía · nunca una lista de cero filas</p>
+<div class=kiri-vacio><strong>Ninguna parada hecha todavía</strong>Las que marques como entregadas aparecen acá.</div>
+
+<p class=rot>Mal</p>
+<div class=mal>
+  <ul class=kiri-lista style="list-style:none">
+    <li style="border:1px solid var(--kiri-linea);border-radius:var(--kiri-r);padding:var(--kiri-e-3);margin-bottom:var(--kiri-e-2)">
+      <span class=nombre>Colmado Santa Rita</span>
+      <span class=meta><span>Queda en Toa Alta y hay que entregar cuatro cajas antes del mediodía</span></span>
+    </li>
+    <li style="border:1px solid var(--kiri-linea);border-radius:var(--kiri-r);padding:var(--kiri-e-3)">
+      <span class=nombre>Farmacia Del Pueblo</span>
+      <span class=meta><span>Queda en Bayamón y hay que entregar una caja</span></span>
+    </li>
+  </ul>
+</div>
+<p class=por>Cada fila envuelta en su propia tarjeta (a veinte filas eso es una pared), y la meta escrita como oración en vez de dos o tres datos cortos que el ojo levanta de golpe.</p>

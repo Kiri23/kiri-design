@@ -1,0 +1,306 @@
+/* ═══ Kiri · componentes.css ═════════════════════════════════════════
+   Clases .kiri-*. Ni un hex acá: si falta un color, se agrega un token.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── BARRA — la marca vive acá ─────────────────────────────────────── */
+
+.kiri-barra {
+  position: sticky; top: 0; z-index: var(--kiri-z-barra);
+  background: var(--kiri-fondo);
+  border-bottom: var(--kiri-b-hilo) solid var(--kiri-linea);
+  padding: calc(var(--kiri-e-4) + env(safe-area-inset-top)) var(--kiri-e-4) 0;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: var(--kiri-e-3);
+}
+.kiri-barra h1 {
+  margin: 0 0 var(--kiri-e-3);
+  font: 700 var(--kiri-t-xl)/1 var(--kiri-ui);
+  letter-spacing: -.03em;
+  display: flex; align-items: center; gap: var(--kiri-e-2);
+}
+/* El logo: un cuadrado de marca. Azul GRANDE → --kiri-marca. */
+.kiri-marca-punto { width: .62em; height: .62em; border-radius: var(--kiri-e-1); background: var(--kiri-marca); flex: none; }
+
+.kiri-tabs { display: flex; gap: var(--kiri-e-5); }
+.kiri-tab {
+  background: none; border: 0; padding: var(--kiri-e-2) 0 var(--kiri-e-3);
+  min-height: var(--kiri-tocable);   /* el piso de 46px vale también para el tab */
+  font-weight: 500; color: var(--kiri-tinta-suave);
+  border-bottom: var(--kiri-b-firma) solid transparent; margin-bottom: -1px;
+  display: inline-flex; align-items: center; gap: var(--kiri-e-2); cursor: pointer;
+}
+.kiri-tab[aria-selected="true"] { color: var(--kiri-tinta); border-bottom-color: var(--kiri-marca); }
+.kiri-cuenta {
+  min-width: 22px; padding: 1px 7px; border-radius: var(--kiri-r-full);
+  font: 700 var(--kiri-t-xs)/1.6 var(--kiri-mono); text-align: center;
+  background: var(--kiri-linea); color: var(--kiri-tinta-suave);
+}
+.kiri-tab[aria-selected="true"] .kiri-cuenta { background: var(--kiri-marca); color: var(--kiri-sobre-marca); }
+
+/* ── BOTONES — un primario por pantalla. Primario = TINTA, no azul. ── */
+
+.kiri-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--kiri-e-2);
+  min-height: var(--kiri-tocable); padding: var(--kiri-e-2) var(--kiri-e-4);
+  border-radius: var(--kiri-r); border: var(--kiri-b-marco) solid var(--kiri-linea);
+  background: var(--kiri-panel); color: var(--kiri-tinta);
+  font-weight: 600; cursor: pointer; text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--kiri-mov-rapido) var(--kiri-curva), background var(--kiri-mov);
+}
+.kiri-btn:hover { background: var(--kiri-toque); }
+.kiri-btn:active { transform: scale(.98); background: var(--kiri-toque-fuerte); }
+.kiri-btn:disabled, .kiri-btn[aria-disabled="true"] {
+  background: var(--kiri-apagado-fondo); color: var(--kiri-apagado);
+  border-color: var(--kiri-linea-suave); pointer-events: none;
+}
+
+/* El truco: tinta sobre fondo funciona en los DOS modos con una regla. */
+.kiri-btn--primario { background: var(--kiri-tinta); color: var(--kiri-fondo); border-color: var(--kiri-tinta); }
+.kiri-btn--primario:hover, .kiri-btn--primario:active { background: var(--kiri-tinta); }
+/* --marca: SOLO donde no hay otra acción compitiendo (bienvenida,
+   onboarding, pantalla de un paso). En una pantalla con lista o
+   formulario el primario es --primario. */
+.kiri-btn--marca { background: var(--kiri-marca); color: var(--kiri-sobre-marca); border-color: var(--kiri-marca); }
+.kiri-btn--marca:hover, .kiri-btn--marca:active { background: var(--kiri-marca); }
+.kiri-btn--texto   { background: transparent; border-color: transparent; font-weight: 500; color: var(--kiri-tinta-suave); }
+.kiri-btn--peligro { background: transparent; border-color: transparent; color: var(--kiri-mal); }
+.kiri-btn--ancho   { width: 100%; min-height: var(--kiri-tocable-ancho); font-size: var(--kiri-t-md); }
+
+.kiri-acciones { display: flex; gap: var(--kiri-separacion); }
+.kiri-acciones .kiri-btn { flex: 1; }
+
+.kiri-link { color: var(--kiri-marca-texto); text-decoration: none; border-bottom: var(--kiri-b-hilo) solid currentColor; }
+.kiri-link:hover { color: var(--kiri-marca); }
+
+/* ── SUPERFICIES Y AVISOS ──────────────────────────────────────────── */
+
+.kiri-panel {
+  background: var(--kiri-panel); border: var(--kiri-b-hilo) solid var(--kiri-linea);
+  border-radius: var(--kiri-r-lg); padding: var(--kiri-e-4);
+  box-shadow: var(--kiri-sombra);
+}
+
+.kiri-aviso {
+  padding: var(--kiri-e-3) var(--kiri-e-4); border-radius: var(--kiri-r);
+  background: var(--kiri-panel); border: var(--kiri-b-hilo) solid var(--kiri-linea-suave);
+  color: var(--kiri-tinta-suave); font-size: var(--kiri-t-sm); line-height: var(--kiri-i-normal);
+}
+.kiri-aviso--marca { background: var(--kiri-marca-tinte); border-color: var(--kiri-marca-linea); color: var(--kiri-marca-texto); }
+.kiri-aviso--bien  { background: var(--kiri-bien-tinte);  border-color: var(--kiri-bien); color: var(--kiri-bien); }
+.kiri-aviso--mal   { background: var(--kiri-mal-tinte);   border-color: var(--kiri-mal);  color: var(--kiri-mal); }
+.kiri-aviso--ojo   { background: var(--kiri-ojo-tinte);   border-color: var(--kiri-ojo);  color: var(--kiri-ojo); }
+
+/* Pantalla vacía: no es un error, es una invitación */
+.kiri-vacio { color: var(--kiri-tinta-suave); padding: var(--kiri-e-6) var(--kiri-e-2); max-width: 34ch; }
+.kiri-vacio strong { display: block; color: var(--kiri-tinta); font-size: var(--kiri-t-lg); letter-spacing: -.02em; margin-bottom: var(--kiri-e-1); }
+
+/* ── LISTAS — reglas finas, no tarjetas ───────────────────────────── */
+
+.kiri-lista { list-style: none; margin: 0; padding: 0; }
+.kiri-lista > li { border-bottom: var(--kiri-b-hilo) solid var(--kiri-linea); padding: var(--kiri-e-3) 0; }
+.kiri-lista .nombre { font-weight: 600; font-size: var(--kiri-t-md); letter-spacing: -.01em; line-height: 1.3; }
+.kiri-lista .meta {
+  display: flex; flex-wrap: wrap; gap: var(--kiri-e-1) var(--kiri-e-3);
+  margin-top: var(--kiri-e-1); font-size: var(--kiri-t-sm); color: var(--kiri-tinta-suave);
+}
+/* Fila que se toca: el blanco es la fila entera, con aire lateral para
+   que el tinte del :active no muera contra el borde del texto. */
+.kiri-lista--tocable > li { padding: 0; }
+.kiri-lista--tocable > li > a, .kiri-lista--tocable > li > button {
+  display: flex; align-items: center; gap: var(--kiri-e-3); width: 100%;
+  min-height: var(--kiri-tocable); padding: var(--kiri-e-3) var(--kiri-e-2);
+  margin-inline: calc(var(--kiri-e-2) * -1);
+  background: none; border: 0; text-align: left; color: inherit;
+  text-decoration: none; cursor: pointer; border-radius: var(--kiri-r-sm);
+  -webkit-tap-highlight-color: transparent;
+}
+.kiri-lista--tocable > li > :hover { background: var(--kiri-toque); }
+.kiri-lista--tocable > li > :active { background: var(--kiri-toque-fuerte); }
+.kiri-lista--tocable .cuerpo { flex: 1; min-width: 0; }
+.kiri-lista--tocable .flecha { color: var(--kiri-tinta-suave); flex: none; }
+
+/* ── FORMULARIOS — una columna, campos grandes, etiqueta arriba ───── */
+
+.kiri-campo { display: block; margin-bottom: var(--kiri-e-3); }
+.kiri-campo > span {
+  display: block; margin-bottom: var(--kiri-e-1);
+  font: 600 var(--kiri-t-xs)/1.4 var(--kiri-ui);
+  letter-spacing: .05em; text-transform: uppercase; color: var(--kiri-tinta-suave);
+}
+.kiri-campo input, .kiri-campo textarea, .kiri-campo select {
+  display: block; width: 100%; min-height: var(--kiri-tocable);
+  padding: var(--kiri-e-2) var(--kiri-e-3); border-radius: var(--kiri-r-sm);
+  border: var(--kiri-b-marco) solid var(--kiri-linea); background: var(--kiri-panel);
+  font-size: var(--kiri-t-base);   /* 16px o Safari hace zoom al enfocar */
+}
+.kiri-campo input:focus-visible, .kiri-campo textarea:focus-visible { border-color: var(--kiri-marca); }
+.kiri-campo input:disabled, .kiri-campo textarea:disabled, .kiri-campo select:disabled {
+  background: var(--kiri-apagado-fondo); color: var(--kiri-apagado); border-color: var(--kiri-linea-suave);
+}
+/* Ayuda y error: el mismo hueco, así el formulario no salta al validar.
+   El error se anuncia con aria-describedby, no solo con color. */
+.kiri-campo .ayuda { display: block; margin-top: var(--kiri-e-1); font-size: var(--kiri-t-sm); color: var(--kiri-tinta-suave); }
+.kiri-campo--mal input, .kiri-campo--mal textarea, .kiri-campo--mal select { border-color: var(--kiri-mal); }
+.kiri-campo--mal .ayuda { color: var(--kiri-mal); font-weight: 500; }
+
+/* ── CHIP · MEDIDOR · TOAST ───────────────────────────────────────── */
+
+.kiri-chip {
+  display: inline-flex; align-items: center; gap: var(--kiri-e-1);
+  padding: var(--kiri-e-1) 9px; border-radius: var(--kiri-r-full);
+  border: var(--kiri-b-hilo) solid var(--kiri-linea); background: var(--kiri-panel);
+  font-size: var(--kiri-t-xs); white-space: nowrap;
+}
+.kiri-chip--marca { border-color: var(--kiri-marca-linea); background: var(--kiri-marca-tinte); color: var(--kiri-marca-texto); }
+.kiri-chip--bien  { border-color: var(--kiri-bien); background: var(--kiri-bien-tinte); color: var(--kiri-bien); }
+.kiri-chip--mal   { border-color: var(--kiri-mal);  background: var(--kiri-mal-tinte);  color: var(--kiri-mal); }
+.kiri-chip--ojo   { border-color: var(--kiri-ojo);  background: var(--kiri-ojo-tinte);  color: var(--kiri-ojo); }
+
+.kiri-medidor { height: 7px; border-radius: var(--kiri-r-full); background: var(--kiri-linea); overflow: hidden; }
+.kiri-medidor > i { display: block; height: 100%; background: var(--kiri-marca); }
+
+.kiri-toast {
+  position: fixed; left: 50%; bottom: var(--kiri-e-5); transform: translateX(-50%); z-index: var(--kiri-z-toast);
+  max-width: 92vw; padding: var(--kiri-e-3) var(--kiri-e-4); border-radius: var(--kiri-r);
+  background: var(--kiri-tinta); color: var(--kiri-fondo); font-size: var(--kiri-t-sm);
+}
+
+/* ── TABLA — para datos que se comparan. Si no se comparan, es lista. */
+
+.kiri-tabla-marco {
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  border: var(--kiri-b-hilo) solid var(--kiri-linea);
+  border-radius: var(--kiri-r); background: var(--kiri-panel);
+}
+.kiri-tabla { width: 100%; border-collapse: collapse; font-size: var(--kiri-t-sm); }
+.kiri-tabla th {
+  position: sticky; top: 0; z-index: 1;
+  background: var(--kiri-panel); text-align: left; white-space: nowrap;
+  padding: var(--kiri-e-2) var(--kiri-e-3);
+  font: 600 var(--kiri-t-xs)/1.4 var(--kiri-ui);
+  letter-spacing: .05em; text-transform: uppercase; color: var(--kiri-tinta-suave);
+  border-bottom: var(--kiri-b-hilo) solid var(--kiri-linea);
+}
+.kiri-tabla td { padding: var(--kiri-e-3); border-bottom: var(--kiri-b-hilo) solid var(--kiri-linea-suave); vertical-align: top; }
+.kiri-tabla tbody tr:last-child td { border-bottom: 0; }
+/* La primera columna es el nombre: es la que buscás con el ojo. */
+.kiri-tabla td:first-child { font-weight: 600; color: var(--kiri-tinta); }
+/* Números: a la derecha y en mono, o no se comparan de un vistazo. */
+.kiri-tabla .num, .kiri-tabla th.num { text-align: right; font-family: var(--kiri-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* Total: se separa con una regla gruesa, no con negrita sola. */
+.kiri-tabla tfoot td { border-top: var(--kiri-b-firma) solid var(--kiri-linea); border-bottom: 0; font-weight: 700; color: var(--kiri-tinta); }
+/* Fila marcada: tinte, nunca un borde de color que mueva el layout. */
+.kiri-tabla tr.marcada td { background: var(--kiri-marca-tinte); }
+.kiri-tabla--compacta { font-size: var(--kiri-t-xs); }
+.kiri-tabla--compacta td { padding: var(--kiri-e-2) var(--kiri-e-3); }
+.kiri-tabla--tocable td { height: var(--kiri-tocable); }
+.kiri-tabla--tocable tbody tr { cursor: pointer; }
+.kiri-tabla--tocable tbody tr:hover td { background: var(--kiri-toque); }
+.kiri-tabla--tocable tbody tr:active td { background: var(--kiri-toque-fuerte); }
+/* Celda vacía: un guion. El blanco se lee como error. */
+.kiri-tabla .vacia { color: var(--kiri-tinta-suave); }
+
+/* ── NAV INFERIOR — el pulgar llega abajo, no arriba ───────────────
+   Dos a cinco destinos. Seis ya es un menú, y un menú no va acá.
+   Es <nav> con <a aria-current="page">, no botones con una clase.   */
+
+.kiri-nav {
+  position: fixed; inset: auto 0 0 0; z-index: var(--kiri-z-barra);
+  display: flex; background: var(--kiri-panel);
+  border-top: var(--kiri-b-hilo) solid var(--kiri-linea);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.kiri-nav > a {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  min-height: var(--kiri-tocable); padding: var(--kiri-e-2) var(--kiri-e-1);
+  color: var(--kiri-tinta-suave); text-decoration: none;
+  font: 500 var(--kiri-t-xs)/1.2 var(--kiri-ui);
+  border-top: var(--kiri-b-firma) solid transparent; margin-top: calc(var(--kiri-b-firma) * -1);
+  -webkit-tap-highlight-color: transparent;
+}
+.kiri-nav > a > .icono { font-size: var(--kiri-t-lg); line-height: 1; }
+.kiri-nav > a:active { background: var(--kiri-toque-fuerte); }
+/* Activo: la firma azul arriba, igual que el tab. Misma gramática. */
+.kiri-nav > a[aria-current="page"] { color: var(--kiri-tinta); border-top-color: var(--kiri-marca); }
+/* Con nav abajo el contenido necesita piso o la última fila queda tapada. */
+.kiri-pantalla--con-nav { padding-bottom: calc(var(--kiri-tocable) + var(--kiri-e-6)); }
+
+/* ── HOJA — <dialog> nativo que sube desde abajo ───────────────────
+   Es el diálogo del teléfono: el pulgar está abajo, así que las
+   acciones están abajo. Nativo = Esc, foco atrapado y scroll-lock
+   gratis. Abrir con .showModal(), nunca con una clase.              */
+
+.kiri-hoja {
+  width: 100%; max-width: 640px; max-height: 88dvh;
+  margin: auto auto 0; padding: 0; border: 0;
+  border-radius: var(--kiri-r-lg) var(--kiri-r-lg) 0 0;
+  background: var(--kiri-panel-alto); color: var(--kiri-tinta);
+  overflow: hidden;
+}
+/* El layout va en [open]: display:flex suelto le gana a la regla del navegador
+   que esconde un <dialog> cerrado, y la hoja aparece sola en la página. */
+.kiri-hoja[open] { display: flex; flex-direction: column; }
+dialog.kiri-hoja:not([open]) { display: none; }
+.kiri-hoja::backdrop { background: var(--kiri-velo); }
+.kiri-hoja[open] { animation: kiri-subir var(--kiri-mov) var(--kiri-curva); }
+@keyframes kiri-subir { from { transform: translateY(8%); } }
+/* El tirador: dice "esto se arrastra" sin una palabra. */
+.kiri-hoja .tirador { width: 36px; height: var(--kiri-e-1); border-radius: var(--kiri-r-full); background: var(--kiri-linea-fuerte); margin: var(--kiri-e-3) auto var(--kiri-e-1); flex: none; }
+.kiri-hoja h2 { margin: 0; padding: var(--kiri-e-3) var(--kiri-e-4) var(--kiri-e-2); font: 700 var(--kiri-t-lg)/var(--kiri-i-apretado) var(--kiri-ui); letter-spacing: -.02em; }
+.kiri-hoja .cuerpo { padding: 0 var(--kiri-e-4) var(--kiri-e-4); overflow-y: auto; -webkit-overflow-scrolling: touch; }
+/* Pie pegado: las acciones no se van con el scroll. */
+.kiri-hoja .pie {
+  flex: none; display: flex; gap: var(--kiri-separacion);
+  padding: var(--kiri-e-3) var(--kiri-e-4) max(var(--kiri-e-4), env(safe-area-inset-bottom));
+  border-top: var(--kiri-b-hilo) solid var(--kiri-linea);
+  background: var(--kiri-panel-alto);
+}
+.kiri-hoja .pie .kiri-btn { flex: 1; }
+
+/* ── INTERRUPTOR · CASILLA · RADIO ─────────────────────────────────
+   Un ajuste se toca en toda la fila, no en el cuadradito de 20px.
+   La etiqueta ES el blanco: 46px de alto, texto a la izquierda.     */
+
+.kiri-opcion {
+  display: flex; align-items: center; gap: var(--kiri-e-3);
+  min-height: var(--kiri-tocable); padding: var(--kiri-e-2) 0;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.kiri-opcion > .cuerpo { flex: 1; min-width: 0; }
+.kiri-opcion .meta { display: block; font-size: var(--kiri-t-sm); color: var(--kiri-tinta-suave); }
+/* Casilla y radio: nativos. accent-color hace el trabajo en los dos modos.
+   :not(.kiri-interruptor) o esta regla le gana en especificidad al switch. */
+.kiri-opcion input[type="checkbox"]:not(.kiri-interruptor), .kiri-opcion input[type="radio"] {
+  flex: none; width: 21px; height: 21px; margin: 0; accent-color: var(--kiri-marca);
+}
+/* Interruptor: el switch del sistema, pintado con tokens.
+   Encendido = marca (es estado, no acción: el azul corresponde). */
+.kiri-interruptor {
+  appearance: none; flex: none; position: relative; cursor: pointer;
+  width: 46px; height: 28px; border-radius: var(--kiri-r-full);
+  background: var(--kiri-linea); border: var(--kiri-b-hilo) solid var(--kiri-linea-fuerte);
+  transition: background var(--kiri-mov-rapido) var(--kiri-curva);
+}
+.kiri-interruptor::after {
+  content: ""; position: absolute; top: 2px; left: 2px;
+  width: 22px; height: 22px; border-radius: var(--kiri-r-full);
+  background: var(--kiri-panel-alto); box-shadow: 0 1px 2px rgba(0,0,0,.3);
+  transition: transform var(--kiri-mov-rapido) var(--kiri-curva);
+}
+.kiri-interruptor:checked { background: var(--kiri-marca); border-color: var(--kiri-marca); }
+.kiri-interruptor:checked::after { transform: translateX(18px); }
+.kiri-interruptor:disabled { background: var(--kiri-apagado-fondo); border-color: var(--kiri-linea-suave); cursor: default; }
+
+/* ── ESQUELETO — esperar sin mentir ────────────────────────────────
+   Del tamaño de lo que viene, nunca un spinner centrado: el spinner
+   no dice cuánto ni qué. Sin animación si el sistema la apagó.      */
+
+.kiri-esqueleto {
+  display: block;
+  background: var(--kiri-linea-suave); border-radius: var(--kiri-r-sm);
+  height: 1em; animation: kiri-latir 1.4s ease-in-out infinite;
+}
+.kiri-esqueleto--titulo { height: var(--kiri-t-md); width: 62%; }
+.kiri-esqueleto--linea  { height: var(--kiri-t-sm); width: 100%; margin-top: var(--kiri-e-2); }
+.kiri-esqueleto--corta  { width: 38%; }
+@keyframes kiri-latir { 50% { background: var(--kiri-linea); } }

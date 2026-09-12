@@ -1,7 +1,7 @@
 <html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
 <title>Kiri · galería</title>
 <link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:ital,wght@0,400;0,600&family=JetBrains+Mono:wght@500;700&display=swap">
-<link rel=stylesheet href="kiri-todo.css">
+<link rel=stylesheet href="tokens.css">
 <style>
   .ficha { margin-top: var(--kiri-e-5); }
   .ficha h2 { font:700 var(--kiri-t-md)/1.2 var(--kiri-ui); letter-spacing:-.02em; margin:0 0 2px;
@@ -14,11 +14,19 @@
 <div class=kiri-barra>
   <h1><span class=kiri-marca-punto></span>Kiri</h1>
   <div class=kiri-tabs role=tablist>
-    <button class=kiri-tab role=tab aria-selected=true>Galería <span class=kiri-cuenta>2</span></button>
+    <button class=kiri-tab role=tab aria-selected=true>Galería <span class=kiri-cuenta>11</span></button>
   </div>
 </div>
 <main class=kiri-pantalla style="max-width:860px">
   <p class="kiri-aviso kiri-aviso--marca">Cada ficha muestra <b>todos</b> los estados de una pieza, incluido lo que está mal. Si algo no está acá, no existe en Kiri.</p>
+
+  <section class=ficha style="--alto:700px">
+    <h2>Barra</h2>
+    <p class=sub>El punto azul es el logo. Tabs con <code class=kiri-mono>aria-selected</code>, cuenta solo si el número decide algo.</p>
+    <iframe src="componentes/estructura/barras.card.html" title="Ficha de barra" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/estructura/barra.prompt.md">El criterio (barra.prompt.md)</a>
+       <a class=kiri-link href="componentes/estructura/barras.card.html">Abrir sola</a></p>
+  </section>
 
   <section class=ficha style="--alto:520px">
     <h2>Botones</h2>
@@ -28,12 +36,76 @@
        <a class=kiri-link href="componentes/acciones/botones.card.html">Abrir sola</a></p>
   </section>
 
+  <section class=ficha style="--alto:830px">
+    <h2>Lista</h2>
+    <p class=sub>Reglas finas, no tarjetas. En <code class=kiri-mono>--tocable</code> el blanco es el <code class=kiri-mono>&lt;a&gt;</code>, no el <code class=kiri-mono>&lt;li&gt;</code>.</p>
+    <iframe src="componentes/datos/listas.card.html" title="Ficha de lista" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/datos/lista.prompt.md">El criterio (lista.prompt.md)</a>
+       <a class=kiri-link href="componentes/datos/listas.card.html">Abrir sola</a></p>
+  </section>
+
   <section class=ficha style="--alto:900px">
     <h2>Tabla</h2>
     <p class=sub>Números a la derecha en mono, marco que rueda de lado, total en tfoot.</p>
     <iframe src="componentes/datos/tabla.card.html" title="Ficha de tabla" loading=lazy></iframe>
     <p class=vinculos><a class=kiri-link href="componentes/datos/tabla.prompt.md">El criterio (tabla.prompt.md)</a>
        <a class=kiri-link href="componentes/datos/tabla.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:780px">
+    <h2>Nav inferior</h2>
+    <p class=sub>Dos a cinco destinos, etiqueta siempre, firma azul arriba del activo.</p>
+    <iframe src="componentes/navegacion/navs.card.html" title="Ficha de nav inferior" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/navegacion/nav.prompt.md">El criterio (nav.prompt.md)</a>
+       <a class=kiri-link href="componentes/navegacion/navs.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:1240px">
+    <h2>Hoja</h2>
+    <p class=sub><code class=kiri-mono>&lt;dialog&gt;</code> que sube desde abajo: cuerpo que rueda, pie pegado, velo sin blur.</p>
+    <iframe src="componentes/navegacion/hojas.card.html" title="Ficha de hoja" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/navegacion/hoja.prompt.md">El criterio (hoja.prompt.md)</a>
+       <a class=kiri-link href="componentes/navegacion/hojas.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:830px">
+    <h2>Campo</h2>
+    <p class=sub>Etiqueta arriba, 16px o Safari hace zoom, error y ayuda en el mismo hueco.</p>
+    <iframe src="componentes/formulario/campos.card.html" title="Ficha de campo" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/formulario/campo.prompt.md">El criterio (campo.prompt.md)</a>
+       <a class=kiri-link href="componentes/formulario/campos.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:900px">
+    <h2>Opción</h2>
+    <p class=sub>Interruptor a la derecha (estado del sistema), casilla y radio a la izquierda (elección mía).</p>
+    <iframe src="componentes/formulario/opciones.card.html" title="Ficha de opción" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/formulario/opcion.prompt.md">El criterio (opcion.prompt.md)</a>
+       <a class=kiri-link href="componentes/formulario/opciones.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:770px">
+    <h2>Panel</h2>
+    <p class=sub>Una cosa con varios datos. Dos paneles iguales apilados eran una lista.</p>
+    <iframe src="componentes/estructura/paneles.card.html" title="Ficha de panel" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/estructura/panel.prompt.md">El criterio (panel.prompt.md)</a>
+       <a class=kiri-link href="componentes/estructura/paneles.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:770px">
+    <h2>Aviso y vacío</h2>
+    <p class=sub>Cinco tonos que dicen qué hacer, y una pantalla vacía que invita en vez de disculparse.</p>
+    <iframe src="componentes/estado/avisos.card.html" title="Ficha de aviso y vacío" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/estado/aviso.prompt.md">El criterio (aviso.prompt.md)</a>
+       <a class=kiri-link href="componentes/estado/avisos.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:780px">
+    <h2>Señales</h2>
+    <p class=sub>Chip, medidor, toast y esqueleto: informan sin ocupar una fila y no se tocan.</p>
+    <iframe src="componentes/estado/senales.card.html" title="Ficha de señales" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/estado/senales.prompt.md">El criterio (senales.prompt.md)</a>
+       <a class=kiri-link href="componentes/estado/senales.card.html">Abrir sola</a></p>
   </section>
 
   <section class=ficha style="--alto:1100px">

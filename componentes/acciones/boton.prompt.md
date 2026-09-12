@@ -29,7 +29,7 @@ El botón de Kiri: **un solo verbo dominante por pantalla, el resto cede.**
 |---|---|
 | `--primario` | **La** acción de la pantalla. Tinta llena. Una sola, nunca dos. |
 | *(base, sin modificador)* | Acción secundaria, o dos acciones que pesan igual. |
-| `--marca` | Azul llena. **Solo** para navegar hacia algo que es la app en sí (ver la ruta, abrir el panel). No para confirmar. |
+| `--marca` | Azul llena. **Solo** en pantallas de un paso donde no hay otra acción compitiendo: bienvenida, onboarding, "ver la ruta" como único verbo. En una pantalla con lista o formulario, el primario es `--primario`. |
 | `--texto` | Terciario. Lo que no se toca manejando: "cancelar", "editar a mano". |
 | `--peligro` | Destruye algo. Sin caja, solo texto coral. Nunca lleno. |
 | `--ancho` | Ocupa la fila completa y mide 54px. Para el verbo grande al final de la pantalla. |
@@ -41,6 +41,7 @@ El botón de Kiri: **un solo verbo dominante por pantalla, el resto cede.**
   "Entregado", está mal.
 - `:active` hace `scale(.98)` y ninguna otra animación.
 - Alto mínimo 46px (`--kiri-tocable`); `--ancho` va a 54px.
-- `disabled` baja a 45% de opacidad y corta los eventos. **No se esconde** — el usuario
-  tiene que ver que la acción existe pero todavía no se puede.
+- `disabled` usa `--kiri-apagado-fondo` y `--kiri-apagado`, **no `opacity`**: bajar la
+  opacidad del botón arrastra su texto por debajo de 4.5:1. **No se esconde** — el
+  usuario tiene que ver que la acción existe pero todavía no se puede.
 - Nunca `hover` como única señal: en un teléfono no hay cursor.

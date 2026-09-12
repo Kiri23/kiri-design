@@ -1,0 +1,71 @@
+<!-- @dsCard group="Componentes" viewport="420x760" name="Hoja" subtitle="dialog nativo que sube desde abajo: cuerpo que rueda, pie pegado, velo sin blur" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Hoja</title>
+<link rel=stylesheet href="../../tokens.css">
+<style>
+  body { padding:var(--kiri-e-4) }
+  .rot { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.08em; text-transform:uppercase; color:var(--kiri-tinta-suave); margin:var(--kiri-e-5) 0 var(--kiri-e-2) }
+  .rot:first-child { margin-top:0 }
+  /* La ficha muestra las hojas abiertas en su sitio, sin modal, para verlas
+     todas juntas. En una app de verdad siempre van con .showModal(). */
+  .marco { position:relative; height:330px; border:1px solid var(--kiri-linea); border-radius:var(--kiri-r); overflow:hidden; background:var(--kiri-velo) }
+  .marco .kiri-hoja { position:absolute; inset:auto 0 0 0; display:flex }
+  .por { font-size:var(--kiri-t-sm); color:var(--kiri-tinta-suave); margin:var(--kiri-e-2) 0 0 }
+</style>
+
+<p class=rot>Un dato · cuerpo que rueda, pie pegado</p>
+<div class=marco>
+  <dialog class=kiri-hoja open>
+    <div class=tirador aria-hidden=true></div>
+    <h2>Cobro de Colmado Santa Rita</h2>
+    <div class=cuerpo>
+      <label class=kiri-campo><span>Monto</span><input type=number inputmode=decimal value="128.40"></label>
+      <p class=kiri-aviso>Quedaba un balance de $42.10 de la tanda anterior.</p>
+    </div>
+    <div class=pie>
+      <button class=kiri-btn>Cancelar</button>
+      <button class="kiri-btn kiri-btn--primario">Guardar</button>
+    </div>
+  </dialog>
+</div>
+
+<p class=rot>Elegir de una lista corta</p>
+<div class=marco style="height:400px">
+  <dialog class=kiri-hoja open>
+    <div class=tirador aria-hidden=true></div>
+    <h2>¿Por qué no se pudo?</h2>
+    <div class=cuerpo>
+      <ul class="kiri-lista kiri-lista--tocable">
+        <li><button type=button><span class=cuerpo><span class=nombre>Estaba cerrado</span></span><span class=flecha aria-hidden=true>›</span></button></li>
+        <li><button type=button><span class=cuerpo><span class=nombre>No había quien reciba</span></span><span class=flecha aria-hidden=true>›</span></button></li>
+        <li><button type=button><span class=cuerpo><span class=nombre>Rechazó la mercancía</span></span><span class=flecha aria-hidden=true>›</span></button></li>
+        <li><button type=button><span class=cuerpo><span class=nombre>Otra razón</span><span class=meta>La escribo yo</span></span><span class=flecha aria-hidden=true>›</span></button></li>
+      </ul>
+    </div>
+  </dialog>
+</div>
+
+<p class=rot>Confirmar algo destructivo · el verbo real en el botón</p>
+<div class=marco style="height:240px">
+  <dialog class=kiri-hoja open>
+    <div class=tirador aria-hidden=true></div>
+    <h2>Borrar la tanda del martes</h2>
+    <div class=cuerpo>
+      <p class="kiri-aviso kiri-aviso--mal">Se van 14 paradas y 3 cobros sin sincronizar. No se puede deshacer.</p>
+    </div>
+    <div class=pie>
+      <button class=kiri-btn autofocus>Dejarla</button>
+      <button class="kiri-btn kiri-btn--peligro">Borrar la tanda</button>
+    </div>
+  </dialog>
+</div>
+<p class=por>El foco arranca en la salida, no en el botón que destruye. El botón destructivo dice qué destruye, nunca “OK”.</p>
+
+<p class=rot>Abrir y cerrar, de verdad</p>
+<button class="kiri-btn kiri-btn--ancho" onclick="hojaReal.showModal()">Abrir la hoja como modal</button>
+<dialog class=kiri-hoja id=hojaReal>
+  <div class=tirador aria-hidden=true></div>
+  <h2>Así se comporta</h2>
+  <div class=cuerpo><p>Esc la cierra. El foco queda adentro. El fondo no rueda. Todo eso lo da <code class=kiri-mono>showModal()</code>: no hay una línea de JS propia.</p></div>
+  <div class=pie><button class="kiri-btn kiri-btn--primario" onclick="hojaReal.close()">Listo</button></div>
+</dialog>

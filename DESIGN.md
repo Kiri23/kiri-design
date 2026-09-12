@@ -4,18 +4,8 @@ El lenguaje visual de las aplicaciones de Christian Nogueras.
 Un agente que lea este archivo debe poder construir una pantalla nueva sin
 preguntar nada, y que esa pantalla se vea hermana de las demás.
 
-**La fuente de verdad es el CSS.** Este archivo explica *por qué*; si los dos se
-contradicen, manda el CSS.
-
-| Archivo | Qué tiene |
-|---|---|
-| `tokens/colors.css` | los colores, en sus dos modos |
-| `tokens/typography.css` | las letras y la escala |
-| `tokens/spacing.css` | el aire, las esquinas, el mínimo tocable |
-| `kiri.css` | los componentes |
-| **`kiri-todo.css`** | **lo único que una app enlaza** — junta los cuatro |
-
-Un token nuevo va en el archivo de `tokens/` que le toca, nunca en `kiri.css`.
+**La fuente de verdad del color es [`tokens.css`](./tokens.css).** Este archivo
+explica *por qué*. Si los dos se contradicen, manda `tokens.css`.
 
 ---
 
@@ -76,6 +66,35 @@ dos modos con una sola regla.
 cálidos o verdes a propósito: están lejos del azul en el círculo, así que un
 error nunca se confunde con la marca.
 
+### Interacción y apagado
+
+Antes había que inventar un hex para el dedo y para lo deshabilitado. Ya no:
+
+| Token | Para qué |
+|---|---|
+| `--kiri-toque` | fila o botón bajo el dedo / el cursor (`:hover`) |
+| `--kiri-toque-fuerte` | el instante del `:active` |
+| `--kiri-velo` | lo que oscurece la pantalla detrás de una hoja o un diálogo |
+| `--kiri-apagado` / `--kiri-apagado-fondo` | deshabilitado |
+| `--kiri-linea-fuerte` | separar bloques (la fina separa filas) |
+
+**Deshabilitado es color, no opacidad.** Bajar la opacidad de un contenedor
+arrastra el texto de adentro por debajo de 4.5:1.
+
+### Cómo se cambia de modo
+
+Cada token se declara **una sola vez** con `light-dark(oscuro, claro)`. El modo
+lo decide `color-scheme`:
+
+```html
+<html>                      <!-- sigue al teléfono -->
+<html data-kiri="claro">    <!-- forzado -->
+<html data-kiri="oscuro">
+```
+
+Nunca redeclares una paleta entera dentro de un `@media`: si un token existe,
+existe en los dos modos por construcción.
+
 ## 3 · Tipografía
 
 | Token | Fuente | Para qué |
@@ -89,6 +108,8 @@ lección de ontología no deberían verse igual. La paleta los hermana; la letra
 los distingue.
 
 Escala: `--kiri-t-xs` 12 · `sm` 13.5 · `base` 16 · `md` 17.5 · `lg` 20 · `xl` 26.
+Interlineado: `--kiri-i-apretado` 1.2 (títulos) · `i-normal` 1.45 (UI) ·
+`i-largo` 1.62 (lectura). No hay un cuarto.
 
 - Títulos con `letter-spacing: -.02em` a `-.03em`. Space Grotesk se abre sola.
 - **Los inputs van en 16px.** Menos y Safari/Chrome hacen zoom al enfocar.
@@ -105,21 +126,25 @@ Cargar:
 
 ## 4 · Componentes
 
-Las clases viven en `kiri.css`. Todas llevan prefijo `kiri-`.
+Las clases viven en `tokens.css`. Todas llevan prefijo `kiri-`.
 
 | Clase | Notas |
 |---|---|
 | `.kiri-barra` + `h1` + `.kiri-marca-punto` | El punto azul junto al título ES el logo. |
 | `.kiri-tab` + `.kiri-cuenta` | Estado activo con `aria-selected="true"`, no con una clase. |
-| `.kiri-btn` | Base. `--primario` (tinta), `--marca` (azul), `--texto`, `--peligro`, `--ancho`. |
+| `.kiri-btn` | Base. `--primario` (tinta), `--marca` (azul, **solo** en pantallas de un paso sin otra acción: bienvenida, onboarding), `--texto`, `--peligro`, `--ancho`. |
 | `.kiri-link` | Azul de letra + subrayado. |
 | `.kiri-panel` | Superficie elevada. |
 | `.kiri-aviso` | `--marca`, `--bien`, `--mal`, `--ojo`. |
 | `.kiri-vacio` | Pantalla sin datos. `<strong>` = la frase grande. |
-| `.kiri-lista` | `li` con `.nombre` y `.meta`. |
+| `.kiri-lista` | `li` con `.nombre` y `.meta`. `--tocable`: la fila entera es el blanco (`a`/`button` con `.cuerpo` + `.flecha`). |
 | `.kiri-tabla` + `.kiri-tabla-marco` | **Siempre** dentro del marco: es el que rueda de lado. Números con `.num` (derecha + mono). `--compacta`, `--tocable`. |
-| `.kiri-campo` | `label.kiri-campo > span` + input. |
+| `.kiri-campo` | `label.kiri-campo > span` + input + `.ayuda`. Error: `--mal` en el label y el mensaje en `.ayuda` con `aria-describedby` — nunca color solo. |
 | `.kiri-chip`, `.kiri-medidor`, `.kiri-toast` | |
+| `.kiri-nav` | Nav inferior: 2–5 destinos, `<a aria-current="page">`. La pantalla lleva `.kiri-pantalla--con-nav`. |
+| `.kiri-hoja` | `<dialog>` que sube desde abajo. Se abre con `.showModal()`. `.tirador` + `h2` + `.cuerpo` (rueda) + `.pie` (pegado). |
+| `.kiri-opcion` | Fila de ajuste. `.kiri-interruptor` a la derecha (estado); casilla y radio nativos a la izquierda (elección). |
+| `.kiri-esqueleto` | Espera del tamaño de lo que viene. Nunca un spinner centrado. |
 | `.kiri-lectura` | Envoltura de texto largo: serif, 38rem de ancho. |
 
 Cada pieza tiene **dos archivos** en `componentes/<grupo>/`:
@@ -132,11 +157,19 @@ Cada pieza tiene **dos archivos** en `componentes/<grupo>/`:
 Las fichas son HTML y CSS puro — sin React, sin build, sin CDN de scripts. Verlas todas:
 `kiri-serve galeria.html -d ~/Code/kiri-design -p 8792`.
 
+Los grupos: `estructura` (barra, panel) · `acciones` (botón) · `datos` (lista,
+tabla) · `formulario` (campo, opción) · `navegacion` (nav, hoja) · `estado`
+(aviso y vacío, señales). Cuando varias clases son **una sola decisión** comparten
+ficha: chip, medidor, toast y esqueleto viven juntos en `senales` porque la
+pregunta es siempre la misma — *¿qué señal uso para decir en qué estado está esto?*
+
 **Un solo botón primario por pantalla.** Si hay dos acciones del mismo peso,
 ninguna es primaria: las dos van `.kiri-btn` base.
 
-Estados obligatorios en todo lo que se toca: reposo, `:active` (hundir 2%),
-`:focus-visible` (anillo de 2px en azul de letra), `:disabled` (45% opacidad).
+Estados obligatorios en todo lo que se toca: reposo, `:hover`
+(`--kiri-toque`), `:active` (hundir 2% + `--kiri-toque-fuerte`), `:focus-visible`
+(anillo de 2.5px en azul de letra), deshabilitado (`--kiri-apagado-fondo`, nunca
+`opacity`).
 
 ## 5 · Layout
 
@@ -144,8 +177,14 @@ Estados obligatorios en todo lo que se toca: reposo, `:active` (hundir 2%),
   lectura. Nunca dos columnas en móvil.
 - Aire en escala de 4: `--kiri-e-1` 4 · `e-2` 8 · `e-3` 12 · `e-4` 16 · `e-5` 24
   · `e-6` 36. No inventes valores intermedios.
-- `--kiri-tocable: 46px` es el mínimo de cualquier cosa que se toque. El botón
-  ancho va 54px.
+- `--kiri-tocable: 46px` es el mínimo de cualquier cosa que se toque;
+  `--kiri-tocable-ancho: 54px` para el botón ancho. Y `--kiri-separacion: 8px`
+  **entre dos blancos vecinos**: dos botones de 46px pegados se tocan mal igual.
+- Bordes: `--kiri-b-hilo` 1px separa filas · `b-marco` 1.5px es lo que se toca ·
+  `b-firma` 2.5px es estado activo. Tres, no un grosor por componente.
+- Movimiento: `--kiri-mov-rapido` .12s · `--kiri-mov` .2s · `--kiri-curva`.
+  Capas: `--kiri-z-barra` · `z-velo` · `z-hoja` · `z-toast`. Sin `z-index`
+  sueltos en un componente.
 - Respetar `env(safe-area-inset-top/bottom)` en barras y en el fondo del body.
 
 ## 6 · Profundidad
@@ -177,8 +216,10 @@ sin `blur` de fondo.
 - ❌ Tocables por debajo de 46px.
 - ❌ Una `<table>` sin `.kiri-tabla-marco`: hace rodar la página entera de lado.
 - ❌ Números de tabla a la izquierda o sin mono: la tabla existe para comparar.
-- ❌ Definir un color SOLO dentro del `@media` de claro: todo token existe en
-  `:root` (oscuro) primero.
+- ❌ Definir un color SOLO dentro del `@media` de claro: los tokens se declaran
+  una vez con `light-dark()`, y el modo lo decide `color-scheme`.
+- ❌ `opacity` para deshabilitar: usá `--kiri-apagado` / `--kiri-apagado-fondo`.
+- ❌ Un hex de `:hover`/`:active` inventado: `--kiri-toque` / `--kiri-toque-fuerte`.
 
 ## 8 · Responsive
 
@@ -195,7 +236,7 @@ Pegá esto al pedirle una pantalla a cualquier agente:
 
 ```
 Usá el design system Kiri. Leé ~/Code/kiri-design/DESIGN.md y enlazá
-~/Code/kiri-design/kiri-todo.css — no escribas CSS nuevo de colores ni de
+~/Code/kiri-design/tokens.css — no escribas CSS nuevo de colores ni de
 tipografía, usá solo tokens var(--kiri-*) y clases .kiri-*.
 
 Las cinco reglas que no se negocian:
@@ -207,5 +248,5 @@ Las cinco reglas que no se negocian:
 5. Nada que se toque mide menos de 46px de alto.
 
 Si te falta un color o un componente, NO inventes un hex: decime qué token
-habría que agregar a tokens/colors.css y por qué.
+habría que agregar a tokens.css y por qué.
 ```

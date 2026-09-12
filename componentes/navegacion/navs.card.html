@@ -1,0 +1,61 @@
+<!-- @dsCard group="Componentes" viewport="420x760" name="Nav inferior" subtitle="Dos a cinco destinos, etiqueta siempre, firma azul arriba del activo" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Nav inferior</title>
+<link rel=stylesheet href="../../tokens.css">
+<style>
+  body { padding:0 }
+  .rot { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.08em; text-transform:uppercase; color:var(--kiri-tinta-suave); margin:var(--kiri-e-5) var(--kiri-e-4) var(--kiri-e-2) }
+  .rot:first-child { margin-top:var(--kiri-e-4) }
+  .demo { position:relative; border:1px solid var(--kiri-linea); border-radius:var(--kiri-r); margin:0 var(--kiri-e-4); overflow:hidden }
+  .demo .kiri-nav { position:static }
+  .mal { border:1px dashed var(--kiri-mal) }
+  .por { font-size:var(--kiri-t-sm); color:var(--kiri-mal); margin:var(--kiri-e-2) var(--kiri-e-4) 0 }
+</style>
+
+<p class=rot>Cuatro destinos · el activo lleva aria-current</p>
+<div class=demo>
+  <nav class=kiri-nav aria-label=Secciones>
+    <a href=# aria-current=page><span class=icono aria-hidden=true>▤</span>Ruta</a>
+    <a href=#><span class=icono aria-hidden=true>◫</span>Tandas</a>
+    <a href=#><span class=icono aria-hidden=true>◍</span>Cobros</a>
+    <a href=#><span class=icono aria-hidden=true>≡</span>Ajustes</a>
+  </nav>
+</div>
+
+<p class=rot>Dos destinos · el mínimo</p>
+<div class=demo>
+  <nav class=kiri-nav aria-label=Secciones>
+    <a href=# aria-current=page><span class=icono aria-hidden=true>▤</span>Hoy</a>
+    <a href=#><span class=icono aria-hidden=true>≡</span>Ajustes</a>
+  </nav>
+</div>
+
+<p class=rot>Con la pantalla · el piso que evita que el nav tape la última fila</p>
+<div class=demo style="height:300px;display:flex;flex-direction:column">
+  <div class="kiri-barra" style="position:static"><h1><i class=kiri-marca-punto></i>Ruta</h1></div>
+  <main class="kiri-pantalla kiri-pantalla--con-nav" style="flex:1;overflow:auto;padding-bottom:var(--kiri-e-4)">
+    <ul class="kiri-lista kiri-lista--tocable">
+      <li><a href=#><span class=cuerpo><span class=nombre>Colmado Santa Rita</span><span class=meta><span>Toa Alta</span><span>4 cajas</span></span></span><span class=flecha aria-hidden=true>›</span></a></li>
+      <li><a href=#><span class=cuerpo><span class=nombre>Farmacia Del Pueblo</span><span class=meta><span>Bayamón</span><span>1 caja</span></span></span><span class=flecha aria-hidden=true>›</span></a></li>
+      <li><a href=#><span class=cuerpo><span class=nombre>Panadería Los Cidrines</span><span class=meta><span>Dorado</span><span>6 cajas</span></span></span><span class=flecha aria-hidden=true>›</span></a></li>
+    </ul>
+  </main>
+  <nav class=kiri-nav aria-label=Secciones>
+    <a href=# aria-current=page><span class=icono aria-hidden=true>▤</span>Ruta</a>
+    <a href=#><span class=icono aria-hidden=true>◫</span>Tandas</a>
+    <a href=#><span class=icono aria-hidden=true>◍</span>Cobros</a>
+  </nav>
+</div>
+
+<p class=rot>Mal</p>
+<div class="demo mal">
+  <nav class=kiri-nav aria-label=Secciones>
+    <a href=# aria-current=page><span class=icono aria-hidden=true>▤</span></a>
+    <a href=#><span class=icono aria-hidden=true>◫</span></a>
+    <a href=#><span class=icono aria-hidden=true>◍</span></a>
+    <a href=#><span class=icono aria-hidden=true>≡</span></a>
+    <a href=#><span class=icono aria-hidden=true>◷</span></a>
+    <a href=#><span class=icono aria-hidden=true>⊙</span></a>
+  </nav>
+</div>
+<p class=por>Seis destinos y sin etiquetas: eso es un menú disfrazado de nav, y sin texto cada ícono es una adivinanza.</p>

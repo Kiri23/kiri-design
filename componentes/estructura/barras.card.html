@@ -1,0 +1,67 @@
+<!-- @dsCard group="Componentes" viewport="420x700" name="Barra" subtitle="El punto azul es el logo. Tabs con aria-selected, cuenta solo si el número decide algo" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Barra</title>
+<link rel=stylesheet href="../../tokens.css">
+<style>
+  body { padding:0 }
+  .rot { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.08em; text-transform:uppercase; color:var(--kiri-tinta-suave); margin:var(--kiri-e-5) var(--kiri-e-4) var(--kiri-e-2) }
+  .rot:first-child { margin-top:var(--kiri-e-4) }
+  .demo { border:1px solid var(--kiri-linea); border-radius:var(--kiri-r); margin:0 var(--kiri-e-4); overflow:hidden }
+  .demo .kiri-barra { position:static; padding-top:var(--kiri-e-4) }
+  .mal { border-style:dashed; border-color:var(--kiri-mal) }
+  .por { font-size:var(--kiri-t-sm); color:var(--kiri-mal); margin:var(--kiri-e-2) var(--kiri-e-4) 0 }
+</style>
+
+<p class=rot>Con tabs · dos vistas de la misma pantalla</p>
+<div class=demo>
+  <div class=kiri-barra>
+    <h1><span class=kiri-marca-punto></span>Ruta</h1>
+    <div class=kiri-tabs role=tablist>
+      <button class=kiri-tab role=tab aria-selected=true>Pendientes <span class=kiri-cuenta>3</span></button>
+      <button class=kiri-tab role=tab aria-selected=false>Hechas <span class=kiri-cuenta>7</span></button>
+    </div>
+  </div>
+</div>
+
+<p class=rot>Sin tabs · detalle, formulario, lección</p>
+<div class=demo><div class=kiri-barra><h1><span class=kiri-marca-punto></span>Cobros</h1></div></div>
+
+<p class=rot>Con una acción terciaria a la derecha</p>
+<div class=demo>
+  <div class=kiri-barra>
+    <h1><span class=kiri-marca-punto></span>Tandas</h1>
+    <button class="kiri-btn kiri-btn--texto" style="margin-bottom:var(--kiri-e-2)">Nueva</button>
+  </div>
+</div>
+
+<p class=rot>Tabs sin cuenta · cuando el número no decide nada</p>
+<div class=demo>
+  <div class=kiri-barra>
+    <h1><span class=kiri-marca-punto></span>Lección</h1>
+    <div class=kiri-tabs role=tablist>
+      <button class=kiri-tab role=tab aria-selected=true>Leer</button>
+      <button class=kiri-tab role=tab aria-selected=false>Practicar</button>
+      <button class=kiri-tab role=tab aria-selected=false>Notas</button>
+    </div>
+  </div>
+</div>
+
+<p class=rot>Título largo · corta con ellipsis, nunca en dos líneas</p>
+<div class=demo>
+  <div class=kiri-barra>
+    <h1 style="min-width:0"><span class=kiri-marca-punto></span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Panadería Los Cidrines</span></h1>
+    <button class="kiri-btn kiri-btn--texto" style="margin-bottom:var(--kiri-e-2);flex:none">Editar</button>
+  </div>
+</div>
+
+<p class=rot>Mal</p>
+<div class="demo mal">
+  <div class=kiri-barra style="background:var(--kiri-panel)">
+    <h1><span class=kiri-marca-punto style="background:var(--kiri-marca-texto)"></span>Ruta</h1>
+    <div class=kiri-tabs role=tablist>
+      <button class=kiri-tab style="color:var(--kiri-tinta);border-bottom-color:var(--kiri-marca)">Pendientes <span class=kiri-cuenta>0</span></button>
+      <button class=kiri-tab>Hechas</button>
+    </div>
+  </div>
+</div>
+<p class=por>Cuatro cosas: fondo de panel (se lee como tarjeta), el punto en azul de letra, el tab activo pintado con estilo en vez de <code class=kiri-mono>aria-selected</code> (el lector de pantalla no se entera) y una cuenta en 0 que no aporta nada.</p>

@@ -1,0 +1,8 @@
+/* ═══ Kiri · fuentes.css ═════════════════════════════════════════════
+   Las tres familias, servidas por Google Fonts. Se importan acá para
+   que una app no tenga que recordar el <link>: alcanza con tokens.css.
+   Si algún día las fuentes se sirven locales, se reemplaza este import
+   por @font-face propios sin tocar ningún otro archivo.
+   ═══════════════════════════════════════════════════════════════════ */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@500;700&display=swap");

@@ -1,0 +1,47 @@
+<!-- @dsCard group="Componentes" viewport="420x760" name="Aviso y vacío" subtitle="Cinco tonos que dicen qué hacer, y una pantalla vacía que invita en vez de disculparse" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Aviso y vacío</title>
+<link rel=stylesheet href="../../tokens.css">
+<style>
+  body { padding:var(--kiri-e-4) }
+  .rot { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.08em; text-transform:uppercase; color:var(--kiri-tinta-suave); margin:var(--kiri-e-5) 0 var(--kiri-e-2) }
+  .rot:first-child { margin-top:0 }
+  .kiri-aviso + .kiri-aviso { margin-top:var(--kiri-e-2) }
+  .mal { border:1px dashed var(--kiri-mal); border-radius:var(--kiri-r); padding:var(--kiri-e-3) }
+  .por { font-size:var(--kiri-t-sm); color:var(--kiri-mal); margin:var(--kiri-e-2) 0 0 }
+</style>
+
+<p class=rot>Los cinco tonos</p>
+<p class=kiri-aviso>La última sincronización fue hace 4 minutos.</p>
+<p class="kiri-aviso kiri-aviso--marca">Quedan 3 paradas en la ruta de hoy.</p>
+<p class="kiri-aviso kiri-aviso--bien">Se subieron las 14 entregas del martes.</p>
+<p class="kiri-aviso kiri-aviso--mal">No se pudo guardar: no hay señal. Se reintenta solo cuando vuelva.</p>
+<p class="kiri-aviso kiri-aviso--ojo">Hay 2 cobros sin sincronizar desde ayer.</p>
+
+<p class=rot>Vacío · primera vez, con la acción que lo llena</p>
+<div class=kiri-vacio>
+  <strong>No hay paradas todavía</strong>
+  Cargá una tanda y las paradas aparecen acá en el orden que las pongas.
+  <div style="margin-top:var(--kiri-e-4)"><button class="kiri-btn kiri-btn--primario">Cargar una tanda</button></div>
+</div>
+
+<p class=rot>Vacío · filtro sin resultados, la salida es quitar el filtro</p>
+<div class=kiri-vacio>
+  <strong>Ningún negocio en Dorado</strong>
+  Probá con otro pueblo, o mirá la ruta completa.
+  <div style="margin-top:var(--kiri-e-4)"><button class="kiri-btn">Ver la ruta completa</button></div>
+</div>
+
+<p class=rot>Vacío · buen final, sin botón</p>
+<div class=kiri-vacio>
+  <strong>Terminaste la ruta</strong>
+  Las 14 paradas están hechas y sincronizadas. Nada pendiente.
+</div>
+
+<p class=rot>Mal</p>
+<div class=mal>
+  <p class="kiri-aviso kiri-aviso--mal">⚠ Error</p>
+  <p class="kiri-aviso kiri-aviso--ojo">Atención</p>
+  <div class=kiri-vacio><strong>😞 Ups, no hay nada acá</strong></div>
+</div>
+<p class=por>“Error” y “Atención” no dicen qué pasó ni qué hacer; el ⚠ carga el significado que debería estar en el texto; dos avisos apilados delatan una pantalla que hace demasiado; y el vacío se disculpa en vez de decir cómo se llena.</p>
