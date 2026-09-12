@@ -105,7 +105,7 @@ Cargar:
 
 ## 4 · Componentes
 
-Las clases viven en `kiri-todo.css`. Todas llevan prefijo `kiri-`.
+Las clases viven en `kiri.css`. Todas llevan prefijo `kiri-`.
 
 | Clase | Notas |
 |---|---|
