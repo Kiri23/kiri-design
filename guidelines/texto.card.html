@@ -1,0 +1,59 @@
+<!-- @dsCard group="Fundamentos" viewport="760x776" name="Texto" subtitle="Seis tamaños, tres interlineados, dos familias: Space Grotesk para la app, Newsreader para leer" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Texto</title>
+<link rel=stylesheet href="../tokens.css">
+<link rel=stylesheet href="guia.css">
+<style>
+  .m { margin:0; font-family:var(--kiri-ui); line-height:var(--kiri-i-normal) }
+  .tit { letter-spacing:-.025em; line-height:var(--kiri-i-apretado); font-weight:700 }
+</style>
+<body class=g>
+
+<p class=g-rot>La escala · móvil primero, base 16</p>
+
+<div class=g-fila>
+  <div class=g-esp><p class="m tit" style="font-size:var(--kiri-t-xl)">Ruta de hoy</p></div>
+  <span class=g-tok><b>--kiri-t-xl</b><br>26 · el número grande</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><p class="m tit" style="font-size:var(--kiri-t-lg)">Catorce paradas</p></div>
+  <span class=g-tok><b>--kiri-t-lg</b><br>20 · título de hoja</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><p class="m" style="font-size:var(--kiri-t-md)">El texto largo se lee a este tamaño.</p></div>
+  <span class=g-tok><b>--kiri-t-md</b><br>17.5 · lectura</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><p class="m" style="font-size:var(--kiri-t-base)">Lo que dice la app.</p></div>
+  <span class=g-tok><b>--kiri-t-base</b><br>16 · <b>y todo input</b></span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><p class="m" style="font-size:var(--kiri-t-sm);color:var(--kiri-tinta-suave)">La segunda línea de una fila.</p></div>
+  <span class=g-tok><b>--kiri-t-sm</b><br>13.5 · meta</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><p class="m" style="font-size:var(--kiri-t-xs);letter-spacing:.05em;text-transform:uppercase;color:var(--kiri-tinta-suave)">Bayamón</p></div>
+  <span class=g-tok><b>--kiri-t-xs</b><br>12 · etiquetas</span>
+</div>
+
+<p class=g-nota><b>Los inputs van en 16px.</b> Con menos, Safari y Chrome hacen zoom al
+enfocar y la pantalla salta. No es estética, es que el formulario se rompe.</p>
+
+<p class=g-rot>Dos familias porque hay dos productos</p>
+<div class=g-modos>
+  <div class=g-modo style="color-scheme:inherit">
+    <p class=g-rot>App</p>
+    <p class="m tit" style="font-size:var(--kiri-t-lg)">9 de 14 paradas</p>
+    <p class="m" style="font-size:var(--kiri-t-sm);color:var(--kiri-tinta-suave)">Space Grotesk · <code class=kiri-mono>--kiri-ui</code></p>
+  </div>
+  <div class=g-modo style="color-scheme:inherit">
+    <p class=g-rot>Lectura</p>
+    <p style="margin:0;font:var(--kiri-t-md)/var(--kiri-i-largo) var(--kiri-lectura)">Una clase es un conjunto de individuos que comparten un criterio.</p>
+    <p class="m" style="font-size:var(--kiri-t-sm);color:var(--kiri-tinta-suave);margin-top:var(--kiri-e-2)">Newsreader · <code class=kiri-mono>--kiri-lectura</code></p>
+  </div>
+</div>
+
+<p class=g-rot>Tres interlineados, no uno por componente</p>
+<div class=g-fila><div class=g-esp><span style="font-size:var(--kiri-t-sm)">Títulos</span></div><span class=g-tok><b>--kiri-i-apretado</b> · 1.2</span></div>
+<div class=g-fila><div class=g-esp><span style="font-size:var(--kiri-t-sm)">Todo lo demás de la app</span></div><span class=g-tok><b>--kiri-i-normal</b> · 1.45</span></div>
+<div class=g-fila><div class=g-esp><span style="font-size:var(--kiri-t-sm)">Párrafos largos</span></div><span class=g-tok><b>--kiri-i-largo</b> · 1.62</span></div>

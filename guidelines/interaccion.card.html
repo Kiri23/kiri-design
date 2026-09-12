@@ -1,0 +1,79 @@
+<!-- @dsCard group="Fundamentos" viewport="760x840" name="Interacción" subtitle="Toque, active, velo y apagado: los cinco tokens que existen para no inventar un hex bajo el dedo" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Interacción</title>
+<link rel=stylesheet href="../tokens.css">
+<link rel=stylesheet href="guia.css">
+<style>
+  .caja { display:flex; align-items:center; min-height:var(--kiri-tocable);
+          padding:0 var(--kiri-e-3); border-radius:var(--kiri-r);
+          border:var(--kiri-b-hilo) solid var(--kiri-linea);
+          font:600 var(--kiri-t-sm)/1.3 var(--kiri-ui) }
+  .reposo { background:var(--kiri-panel) }
+  .hover  { background:var(--kiri-toque) }
+  .activa { background:var(--kiri-toque-fuerte); transform:scale(.98) }
+  .foco   { background:var(--kiri-panel); outline:var(--kiri-b-firma) solid var(--kiri-foco); outline-offset:2px }
+  .off    { background:var(--kiri-apagado-fondo); color:var(--kiri-apagado); border-color:var(--kiri-apagado-fondo) }
+  /* El velo se muestra en su sitio: en una app es fixed sobre la pantalla. */
+  .escena { position:relative; border-radius:var(--kiri-r); overflow:hidden;
+            border:var(--kiri-b-hilo) solid var(--kiri-linea); background:var(--kiri-fondo);
+            padding:var(--kiri-e-3) }
+  .escena .velo { position:absolute; inset:0; background:var(--kiri-velo) }
+  .escena .hoja { position:relative; background:var(--kiri-panel-alto);
+                  border-radius:var(--kiri-r-lg); padding:var(--kiri-e-3);
+                  font:600 var(--kiri-t-sm)/1.3 var(--kiri-ui) }
+</style>
+<body class=g>
+
+<p class=g-rot>Los cinco estados de todo lo que se toca</p>
+
+<div class=g-fila>
+  <div class=g-esp><div class="caja reposo">Colmado Santa Rita</div></div>
+  <span class=g-tok><b>--kiri-panel</b><br>reposo</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><div class="caja hover">Colmado Santa Rita</div></div>
+  <span class=g-tok><b>--kiri-toque</b><br>:hover</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><div class="caja activa">Colmado Santa Rita</div></div>
+  <span class=g-tok><b>--kiri-toque-fuerte</b><br>:active + hundir 2%</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><div class="caja foco">Colmado Santa Rita</div></div>
+  <span class=g-tok><b>--kiri-foco</b><br>:focus-visible, 2.5px</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><div class="caja off">Colmado Santa Rita</div></div>
+  <span class=g-tok><b>--kiri-apagado-fondo</b><br>+ <b>--kiri-apagado</b></span>
+</div>
+
+<p class=g-rot>El velo · lo que oscurece la pantalla detrás de una hoja</p>
+<div class=escena>
+  <p style="margin:0 0 var(--kiri-e-3);font-size:var(--kiri-t-sm)">Ruta de hoy · 14 paradas</p>
+  <div class=velo></div>
+  <div class=hoja>¿Borrar la tanda?</div>
+</div>
+<p class=g-nota><code class=kiri-mono>--kiri-velo</code> ya es semitransparente y cambia
+con el modo. Sin <code class=kiri-mono>backdrop-filter</code>: el blur cuesta batería y
+en oscuro no aporta nada.</p>
+
+<p class=g-rot>Deshabilitado es color, no opacidad</p>
+<div class=g-sino>
+  <div class=g-si>
+    <p class=g-rot>Sí</p>
+    <button class=kiri-btn disabled>Calcular</button>
+    <p class=g-nota>Fondo y letra propios: el contraste sigue arriba de 4.5:1.</p>
+  </div>
+  <div class=g-no>
+    <p class=g-rot>No</p>
+    <div class=g-mal>
+      <button class=kiri-btn style="opacity:.4">Calcular</button>
+      <p class=g-por>Bajar la opacidad del contenedor arrastra el texto de adentro
+      por debajo de 4.5:1, y encima deja ver lo que haya atrás.</p>
+    </div>
+  </div>
+</div>
+
+<p class=g-nota>El teléfono no tiene cursor: <code class=kiri-mono>:hover</code> nunca
+puede ser la única señal. Y <code class=kiri-mono>-webkit-tap-highlight-color: transparent</code>
+para dar el acuse de recibo propio en vez del rectángulo del sistema.</p>

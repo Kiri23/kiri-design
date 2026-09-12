@@ -1,0 +1,396 @@
+<!doctype html><html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · taller</title>
+<link rel=stylesheet href="tokens.css">
+<style>
+  /* El taller es la única pantalla de Kiri que NO es de una columna: es una
+     herramienta de escritorio. En móvil el lado se vuelve un cajón. */
+  :root { --lado: 252px; --abajo: 264px; }
+  html, body { height:100%; overflow:hidden }
+  body { display:flex; flex-direction:column; padding-bottom:0 }
+
+  .kiri-barra { flex:none }
+  .barra-fin { display:flex; align-items:center; gap:var(--kiri-e-2); margin-bottom:var(--kiri-e-3) }
+  .grupo-btn { display:flex; border:var(--kiri-b-hilo) solid var(--kiri-linea); border-radius:var(--kiri-r-sm); overflow:hidden }
+  .grupo-btn button {
+    background:var(--kiri-panel); border:0; color:var(--kiri-tinta-suave); cursor:pointer;
+    min-height:34px; padding:0 var(--kiri-e-3); font:500 var(--kiri-t-xs)/1 var(--kiri-ui);
+  }
+  .grupo-btn button + button { border-left:var(--kiri-b-hilo) solid var(--kiri-linea) }
+  .grupo-btn button[aria-pressed=true] { background:var(--kiri-marca-tinte); color:var(--kiri-marca-texto) }
+  .cajon-btn { display:none }
+
+  .taller { flex:1; display:grid; grid-template-columns:var(--lado) 1fr; min-height:0 }
+
+  /* ── El lado ─────────────────────────────────────────────────────── */
+  .lado {
+    border-right:var(--kiri-b-hilo) solid var(--kiri-linea);
+    background:var(--kiri-panel); overflow-y:auto; -webkit-overflow-scrolling:touch;
+    padding-bottom:var(--kiri-e-5);
+  }
+  .grupo-rot {
+    margin:var(--kiri-e-4) var(--kiri-e-4) var(--kiri-e-1);
+    font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.08em;
+    text-transform:uppercase; color:var(--kiri-tinta-suave);
+  }
+  .pieza {
+    display:flex; align-items:center; gap:var(--kiri-e-2);
+    min-height:var(--kiri-tocable); padding:0 var(--kiri-e-4);
+    color:var(--kiri-tinta); text-decoration:none; cursor:pointer;
+    border-left:var(--kiri-b-firma) solid transparent;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .pieza:hover { background:var(--kiri-toque) }
+  .pieza:active { background:var(--kiri-toque-fuerte) }
+  /* Activo: la firma azul, la misma gramática que el tab y el nav. */
+  .pieza[aria-current=page] { background:var(--kiri-marca-tinte); border-left-color:var(--kiri-marca); font-weight:600 }
+  .pieza .n { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+
+  /* ── La obra: vista arriba, panel abajo ──────────────────────────── */
+  .obra { display:grid; grid-template-rows:1fr 7px var(--abajo); min-height:0 }
+
+  .vista { overflow:auto; -webkit-overflow-scrolling:touch; padding:var(--kiri-e-4); display:grid; justify-items:center; align-content:start }
+  .vista-cab { width:var(--ancho,100%); margin-bottom:var(--kiri-e-2); display:flex; align-items:baseline; gap:var(--kiri-e-3) }
+  .vista-cab h2 { margin:0; font:700 var(--kiri-t-md)/1.2 var(--kiri-ui); letter-spacing:-.02em }
+  .vista-cab p { margin:0; flex:1; min-width:0; font-size:var(--kiri-t-sm); color:var(--kiri-tinta-suave) }
+  .vista iframe {
+    /* ANCHO, no tope: la ficha se ve al ancho que declara y la vista rueda. */
+    width:var(--ancho,100%); height:var(--alto,700px);
+    border:var(--kiri-b-hilo) solid var(--kiri-linea); border-radius:var(--kiri-r);
+    background:var(--kiri-fondo); display:block;
+  }
+
+  .tiron { cursor:row-resize; background:var(--kiri-linea-suave); border:0; padding:0; touch-action:none }
+  .tiron:hover, .tiron:focus-visible { background:var(--kiri-marca) }
+
+  .solo-movil { display:none }
+  /* En ESCRITORIO la hoja se desarma y vuelve a ser una fila de la grilla:
+     abierta siempre, sin modal, sin velo, sin animación. */
+  @media (min-width:721px) {
+    .abajo.kiri-hoja {
+      position:static; width:auto; max-width:none; max-height:none; height:auto;
+      margin:0; border-radius:0; overflow:visible; animation:none;
+      background:var(--kiri-panel); border-top:var(--kiri-b-hilo) solid var(--kiri-linea);
+      min-height:0;
+    }
+  }
+  .abajo .kiri-tabs { padding:0 var(--kiri-e-4); border-bottom:var(--kiri-b-hilo) solid var(--kiri-linea); flex:none }
+  .abajo .kiri-tab { padding-top:var(--kiri-e-2); padding-bottom:var(--kiri-e-2); margin-bottom:-1px }
+  .hoja-panel { flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; padding:var(--kiri-e-4) }
+  .hoja-panel[hidden] { display:none }
+
+  /* Markdown del .prompt.md, con la letra de lectura de Kiri */
+  .md h1 { margin:0 0 var(--kiri-e-3); font:700 var(--kiri-t-lg)/var(--kiri-i-apretado) var(--kiri-ui); letter-spacing:-.02em }
+  .md h2 { margin:var(--kiri-e-5) 0 var(--kiri-e-2); font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.08em; text-transform:uppercase; color:var(--kiri-tinta-suave) }
+  .md p, .md li { font-size:var(--kiri-t-sm); line-height:var(--kiri-i-normal) }
+  .md p { margin:0 0 var(--kiri-e-3) }
+  .md ul { margin:0 0 var(--kiri-e-3); padding-left:var(--kiri-e-4) }
+  .md li { margin-bottom:var(--kiri-e-2) }
+  .md blockquote { margin:0 0 var(--kiri-e-3); padding-left:var(--kiri-e-3); border-left:var(--kiri-b-firma) solid var(--kiri-marca); color:var(--kiri-tinta-suave) }
+  .md code { font-family:var(--kiri-mono); font-size:.92em; background:var(--kiri-marca-tinte); color:var(--kiri-marca-texto); padding:1px 4px; border-radius:var(--kiri-r-sm) }
+  .cod { margin:0 0 var(--kiri-e-3); padding:var(--kiri-e-3); overflow-x:auto; background:var(--kiri-fondo); border:var(--kiri-b-hilo) solid var(--kiri-linea); border-radius:var(--kiri-r) }
+  .cod code { background:none; color:var(--kiri-tinta); padding:0; font-size:var(--kiri-t-xs); line-height:1.55; white-space:pre }
+  .md .kiri-tabla-marco { margin-bottom:var(--kiri-e-3) }
+
+  .aviso-http { margin:var(--kiri-e-4) }
+
+  @media (max-width:720px) {
+    .taller { grid-template-columns:1fr }
+    .cajon-btn { display:inline-flex }
+    .lado {
+      position:fixed; inset:0 auto 0 0; width:min(84vw,300px); z-index:var(--kiri-z-hoja);
+      transform:translateX(-100%); visibility:hidden;
+      /* visibility no se anima: salta al abrir, y al cerrar espera a que
+         termine el deslizamiento. Oculta de verdad = no se tabula adentro. */
+      transition:transform var(--kiri-mov) var(--kiri-curva), visibility 0s var(--kiri-mov);
+    }
+    /* El velo se pinta SOLO con el cajón abierto. Un box-shadow de 100vmax no
+       lo corre el transform: cerrado, seguía tapando la pantalla entera. */
+    .lado[data-abierto] {
+      transform:none; visibility:visible;
+      transition:transform var(--kiri-mov) var(--kiri-curva), visibility 0s;
+      box-shadow:0 0 0 100vmax var(--kiri-velo);
+    }
+    /* El preview NO se aplasta al ancho del teléfono: muestra la ficha al
+       ancho que declara en su @dsCard y la vista rueda de lado. Es el idioma
+       de .kiri-tabla-marco — rueda el marco, no la página. Con el botón
+       "Todo" se la fuerza a entrar, para ver cómo se porta angosta. */
+    .vista { justify-items:start }
+
+    /* El panel de abajo desaparece: la obra es solo la vista. Se pide con
+       el botón de la barra y sube como hoja, de abajo hacia arriba. */
+    .obra { grid-template-rows:1fr }
+    .tiron { display:none }
+    .solo-movil { display:inline-flex }
+    .abajo.kiri-hoja { height:100dvh; max-height:100dvh; border-radius:0 }
+    .abajo .kiri-tabs { display:flex; align-items:center; gap:var(--kiri-e-4); padding-top:var(--kiri-e-1) }
+    .abajo .cerrar-panel { margin-left:auto; min-height:var(--kiri-tocable) }
+  }
+  @media (prefers-reduced-motion:reduce) { .lado { transition:none } }
+</style>
+
+<div class=kiri-barra>
+  <h1><span class=kiri-marca-punto></span>Taller</h1>
+  <div class=barra-fin>
+    <button class="kiri-btn kiri-btn--texto cajon-btn" id=cajon aria-expanded=false>☰ Piezas</button>
+    <button class="kiri-btn kiri-btn--texto solo-movil" id=ver-panel>Criterio ↑</button>
+    <div class=grupo-btn role=group aria-label="Ancho de la vista">
+      <button data-ancho=412 aria-pressed=false>412</button>
+      <button data-ancho=760 aria-pressed=false>760</button>
+      <button data-ancho=-1  aria-pressed=false>Todo</button>
+    </div>
+    <div class=grupo-btn role=group aria-label="Modo de color">
+      <button data-tema=""       aria-pressed=true>Auto</button>
+      <button data-tema=claro    aria-pressed=false>Claro</button>
+      <button data-tema=oscuro   aria-pressed=false>Oscuro</button>
+    </div>
+  </div>
+</div>
+
+<div class=taller>
+  <nav class=lado id=lado aria-label="Piezas del sistema"></nav>
+  <div class=obra>
+    <div class=vista>
+      <div class=vista-cab><h2 id=titulo>…</h2><p id=sub></p><a class=kiri-link id=sola href="#" target=_blank>Abrir sola</a></div>
+      <iframe id=marco title="Vista de la pieza"></iframe>
+    </div>
+    <button class=tiron id=tiron aria-label="Cambiar el alto del panel"></button>
+    <dialog class="kiri-hoja abajo" id=abajo>
+      <div class="tirador solo-movil" aria-hidden=true></div>
+      <div class=kiri-tabs role=tablist>
+        <button class=kiri-tab role=tab aria-selected=true  data-hoja=criterio>Criterio</button>
+        <button class=kiri-tab role=tab aria-selected=false data-hoja=codigo>Código</button>
+        <button class="kiri-btn kiri-btn--texto solo-movil cerrar-panel" id=cerrar-panel>Cerrar</button>
+      </div>
+      <div class="hoja-panel md" id=hoja-criterio></div>
+      <div class="hoja-panel" id=hoja-codigo hidden></div>
+    </dialog>
+  </div>
+</div>
+
+<script>
+// ── Las once piezas. Solo las rutas: nombre, subtítulo y tamaño salen del
+//    comentario @dsCard de cada ficha, así esto no se desincroniza. ────────
+const PIEZAS = [
+  ['estructura', 'componentes/estructura/barras.card.html',   'componentes/estructura/barra.prompt.md'],
+  ['estructura', 'componentes/estructura/paneles.card.html',  'componentes/estructura/panel.prompt.md'],
+  ['acciones',   'componentes/acciones/botones.card.html',    'componentes/acciones/boton.prompt.md'],
+  ['datos',      'componentes/datos/listas.card.html',        'componentes/datos/lista.prompt.md'],
+  ['datos',      'componentes/datos/tabla.card.html',         'componentes/datos/tabla.prompt.md'],
+  ['formulario', 'componentes/formulario/campos.card.html',   'componentes/formulario/campo.prompt.md'],
+  ['formulario', 'componentes/formulario/opciones.card.html', 'componentes/formulario/opcion.prompt.md'],
+  ['navegacion', 'componentes/navegacion/navs.card.html',     'componentes/navegacion/nav.prompt.md'],
+  ['navegacion', 'componentes/navegacion/hojas.card.html',    'componentes/navegacion/hoja.prompt.md'],
+  ['estado',     'componentes/estado/avisos.card.html',       'componentes/estado/aviso.prompt.md'],
+  ['estado',     'componentes/estado/senales.card.html',      'componentes/estado/senales.prompt.md'],
+  // Fundamentos: una DECISIÓN por ficha con su token al lado, no una pieza.
+  // Las dieciséis comparten criterio — el argumento vive en la ficha misma.
+  ['fundamentos', 'guidelines/principios.card.html',      'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/marca.card.html',           'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/superficies.card.html',     'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/estados.card.html',         'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/interaccion.card.html',     'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/toque.card.html',           'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/texto.card.html',           'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/mono.card.html',            'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/etiquetas.card.html',       'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/aire.card.html',            'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/radios.card.html',          'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/bordes.card.html',          'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/movimiento.card.html',      'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/contraste.card.html',       'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/voz.card.html',             'guidelines/fundamentos.prompt.md'],
+  ['fundamentos', 'guidelines/anti-referencia.card.html', 'guidelines/fundamentos.prompt.md'],
+];
+const ROTULO = { estructura:'Estructura', acciones:'Acciones', datos:'Datos',
+                 formulario:'Formulario', navegacion:'Navegación', estado:'Estado',
+                 fundamentos:'Fundamentos' };
+
+const $ = s => document.querySelector(s);
+const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const slug = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+                   .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+
+// ── Markdown mínimo: justo lo que usan los .prompt.md ───────────────────
+function inline(t) {           // t ya viene escapado
+  return t.replace(/`([^`]+)`/g, '<code>$1</code>')
+          .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+          .replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>')
+          .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a class=kiri-link href="$2">$1</a>');
+}
+const celdas = l => l.replace(/^\||\|$/g,'').split('|').map(c => c.trim());
+
+function md(src) {
+  const L = src.split('\n'), out = [];
+  let i = 0, lista = null, parr = [];
+  const cerrarParr = () => { if (parr.length) { out.push('<p>' + inline(esc(parr.join(' '))) + '</p>'); parr = []; } };
+  const cerrarLista = () => { if (lista) { out.push('<ul>' + lista.map(x => '<li>' + inline(esc(x)) + '</li>').join('') + '</ul>'); lista = null; } };
+  const cerrar = () => { cerrarParr(); cerrarLista(); };
+
+  while (i < L.length) {
+    const l = L[i];
+    if (/^```/.test(l)) {                                    // bloque de código
+      cerrar(); i++; const buf = [];
+      while (i < L.length && !/^```/.test(L[i])) buf.push(L[i++]);
+      i++; out.push('<pre class=cod><code>' + esc(buf.join('\n')) + '</code></pre>');
+    } else if (/^\|/.test(l) && /^\|[\s:|-]+\|?\s*$/.test(L[i+1] || '')) {   // tabla
+      cerrar(); const cab = celdas(l); i += 2; const filas = [];
+      while (i < L.length && /^\|/.test(L[i])) filas.push(celdas(L[i++]));
+      out.push('<div class=kiri-tabla-marco><table class="kiri-tabla kiri-tabla--compacta"><thead><tr>'
+        + cab.map(c => '<th>' + inline(esc(c)) + '</th>').join('') + '</tr></thead><tbody>'
+        + filas.map(f => '<tr>' + f.map(c => '<td>' + inline(esc(c)) + '</td>').join('') + '</tr>').join('')
+        + '</tbody></table></div>');
+    } else if (/^(#{1,3})\s+/.test(l)) {                     // título
+      cerrar(); const m = l.match(/^(#{1,3})\s+(.*)$/);
+      const n = Math.min(m[1].length, 2);
+      out.push('<h' + n + '>' + inline(esc(m[2])) + '</h' + n + '>'); i++;
+    } else if (/^>\s?/.test(l)) {                            // cita
+      cerrar(); const buf = [];
+      while (i < L.length && /^>\s?/.test(L[i])) buf.push(L[i++].replace(/^>\s?/, ''));
+      out.push('<blockquote>' + inline(esc(buf.join(' '))) + '</blockquote>');
+    } else if (/^[-*]\s+/.test(l)) {                         // lista
+      cerrarParr(); lista = lista || [];
+      let t = l.replace(/^[-*]\s+/, ''); i++;
+      while (i < L.length && /^\s{2,}\S/.test(L[i])) t += ' ' + L[i++].trim();
+      lista.push(t);
+    } else if (!l.trim()) { cerrar(); i++; }
+    else { cerrarLista(); parr.push(l.trim()); i++; }
+  }
+  cerrar();
+  return out.join('\n');
+}
+
+// ── Estado ──────────────────────────────────────────────────────────────
+let piezas = [], actual = null, tema = '', ancho = 0;
+
+async function arrancar() {
+  try {
+    piezas = await Promise.all(PIEZAS.map(async ([grupo, card, prompt]) => {
+      const src = await (await fetch(card)).text();
+      const cab = src.slice(0, src.indexOf('-->') + 3);
+      const dato = a => (cab.match(new RegExp(a + '="([^"]*)"')) || [, ''])[1];
+      const [w, h] = (dato('viewport') || '420x700').split('x').map(Number);
+      const nombre = dato('name') || card;
+      return { grupo, card, prompt, src, nombre, sub: dato('subtitle'), w, h, id: slug(nombre) };
+    }));
+  } catch (e) {
+    $('.taller').style.gridTemplateColumns = '1fr';
+    $('.taller').innerHTML = '<p class="kiri-aviso kiri-aviso--ojo aviso-http">'
+      + 'El taller lee las fichas con <code>fetch</code>, y eso necesita HTTP — abierto como <code>file://</code> el navegador lo bloquea.<br><br>'
+      + 'Servilo así: <code>kiri-serve taller.html -p 8792</code></p>';
+    return;
+  }
+  pintarLado();
+  ir(location.hash.slice(1) || piezas[0].id, true);
+}
+
+function pintarLado() {
+  const lado = $('#lado'); let html = '', g = null;
+  for (const p of piezas) {
+    if (p.grupo !== g) { g = p.grupo; html += '<p class=grupo-rot>' + ROTULO[g] + '</p>'; }
+    html += '<a class=pieza href="#' + p.id + '" data-id="' + p.id + '"><span class=n>' + esc(p.nombre) + '</span></a>';
+  }
+  lado.innerHTML = html;
+}
+
+async function ir(id, inicial) {
+  const p = piezas.find(x => x.id === id) || piezas[0];
+  actual = p;
+  for (const a of document.querySelectorAll('.pieza')) {
+    if (a.dataset.id === p.id) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  }
+  $('#titulo').textContent = p.nombre;
+  $('#sub').textContent = p.sub || '';
+  $('#sola').href = p.card;
+  $('#marco').src = p.card;
+  document.documentElement.style.setProperty('--alto', p.h + 'px');
+  aplicarAncho();
+  $('#hoja-codigo').innerHTML = '<pre class=cod><code>' + esc(p.src) + '</code></pre>';
+  $('#hoja-criterio').innerHTML = '<p class=kiri-esqueleto></p>';
+  try { $('#hoja-criterio').innerHTML = md(await (await fetch(p.prompt)).text()); }
+  catch (e) { $('#hoja-criterio').innerHTML = '<p class="kiri-aviso kiri-aviso--mal">No se pudo leer ' + esc(p.prompt) + '</p>'; }
+  if (!inicial && location.hash.slice(1) !== p.id) location.hash = p.id;
+  $('#lado').removeAttribute('data-abierto');
+  $('#cajon').setAttribute('aria-expanded', 'false');
+  if (esMovil() && $('#abajo').open) $('#abajo').close();
+}
+
+function aplicarAncho() {
+  // 0 = el ancho que la ficha declara en su @dsCard · -1 = toda la pantalla
+  const v = ancho === -1 ? '100%'
+          : ancho        ? ancho + 'px'
+          : (actual ? actual.w + 'px' : '100%');
+  document.documentElement.style.setProperty('--ancho', v);
+}
+
+// El iframe es del mismo origen bajo kiri-serve, así que el modo se le
+// contagia sin postMessage. Si algún día no lo fuera, esto falla en silencio.
+function pintarMarco() {
+  try {
+    const d = $('#marco').contentDocument;
+    if (!d || !d.documentElement) return;
+    if (tema) d.documentElement.dataset.kiri = tema; else delete d.documentElement.dataset.kiri;
+  } catch (e) {}
+}
+
+// ── Eventos ─────────────────────────────────────────────────────────────
+addEventListener('hashchange', () => ir(location.hash.slice(1)));
+$('#marco').addEventListener('load', pintarMarco);
+
+for (const b of document.querySelectorAll('[data-tema]')) b.onclick = () => {
+  tema = b.dataset.tema;
+  if (tema) document.documentElement.dataset.kiri = tema; else delete document.documentElement.dataset.kiri;
+  for (const o of document.querySelectorAll('[data-tema]')) o.setAttribute('aria-pressed', String(o === b));
+  pintarMarco();
+};
+for (const b of document.querySelectorAll('[data-ancho]')) b.onclick = () => {
+  const v = Number(b.dataset.ancho);
+  ancho = (ancho === v) ? 0 : v;
+  for (const o of document.querySelectorAll('[data-ancho]'))
+    o.setAttribute('aria-pressed', String(Number(o.dataset.ancho) === ancho && ancho !== 0));
+  aplicarAncho();
+};
+for (const t of document.querySelectorAll('[data-hoja]')) t.onclick = () => {
+  for (const o of document.querySelectorAll('[data-hoja]')) {
+    const on = o === t;
+    o.setAttribute('aria-selected', String(on));
+    $('#hoja-' + o.dataset.hoja).hidden = !on;
+  }
+};
+// La hoja de abajo: en escritorio abierta y quieta; en móvil se pide.
+const esMovil = () => matchMedia('(max-width:720px)').matches;
+function sincronizarPanel() {
+  const d = $('#abajo');
+  if (esMovil()) { if (d.open) d.close(); }
+  else if (!d.open) d.show();          // show() = abierta pero NO modal
+}
+$('#ver-panel').onclick = () => { const d = $('#abajo'); if (!d.open) d.showModal(); };
+$('#cerrar-panel').onclick = () => $('#abajo').close();
+addEventListener('resize', sincronizarPanel);
+sincronizarPanel();
+
+$('#cajon').onclick = () => {
+  const l = $('#lado'), on = !l.hasAttribute('data-abierto');
+  l.toggleAttribute('data-abierto', on);
+  $('#cajon').setAttribute('aria-expanded', String(on));
+};
+
+// Tirón del panel de abajo: puntero y teclado.
+(() => {
+  const t = $('#tiron'); let y0 = 0, h0 = 0;
+  const alto = v => document.documentElement.style.setProperty('--abajo',
+    Math.max(80, Math.min(innerHeight - 200, v)) + 'px');
+  const mover = e => alto(h0 + (y0 - e.clientY));
+  const soltar = () => { removeEventListener('pointermove', mover); removeEventListener('pointerup', soltar); };
+  t.addEventListener('pointerdown', e => {
+    y0 = e.clientY; h0 = $('.abajo').offsetHeight; t.setPointerCapture(e.pointerId);
+    addEventListener('pointermove', mover); addEventListener('pointerup', soltar);
+  });
+  t.addEventListener('keydown', e => {
+    const d = { ArrowUp: 24, ArrowDown: -24 }[e.key];
+    if (d) { e.preventDefault(); alto($('.abajo').offsetHeight + d); }
+  });
+})();
+
+arrancar();
+</script>

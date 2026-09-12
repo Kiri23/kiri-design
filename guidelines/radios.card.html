@@ -1,0 +1,47 @@
+<!-- @dsCard group="Fundamentos" viewport="760x580" name="Radios" subtitle="Cuatro esquinas con un trabajo cada una. El radio dice qué tan blando es algo, no qué tan moderno." -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Radios</title>
+<link rel=stylesheet href="../tokens.css">
+<link rel=stylesheet href="guia.css">
+<style>
+  .caja { display:flex; align-items:center; padding:0 var(--kiri-e-3);
+          min-height:var(--kiri-tocable); background:var(--kiri-panel);
+          border:var(--kiri-b-marco) solid var(--kiri-linea);
+          font:600 var(--kiri-t-sm)/1.3 var(--kiri-ui) }
+</style>
+<body class=g>
+
+<p class=g-rot>Cuatro, y cada una tiene dueño</p>
+
+<div class="g-fila g-fila--alta">
+  <div class=g-esp><div class=caja style="border-radius:var(--kiri-r-sm)">Chip · muestra de color</div></div>
+  <span class=g-tok><b>--kiri-r-sm</b> · 7px<br>lo chico</span>
+</div>
+<div class="g-fila g-fila--alta">
+  <div class=g-esp><div class=caja style="border-radius:var(--kiri-r)">Botón · campo · panel</div></div>
+  <span class=g-tok><b>--kiri-r</b> · 10px<br>el valor por defecto</span>
+</div>
+<div class="g-fila g-fila--alta">
+  <div class=g-esp><div class=caja style="border-radius:var(--kiri-r-lg)">Hoja · diálogo</div></div>
+  <span class=g-tok><b>--kiri-r-lg</b> · 14px<br>lo que flota encima</span>
+</div>
+<div class="g-fila g-fila--alta">
+  <div class=g-esp>
+    <span class=kiri-chip>4 cajas</span>
+    <span style="display:inline-block;width:var(--kiri-e-3);height:var(--kiri-e-3);border-radius:var(--kiri-r-full);background:var(--kiri-marca);vertical-align:middle"></span>
+  </div>
+  <span class=g-tok><b>--kiri-r-full</b> · 999px<br>píldoras y puntos</span>
+</div>
+
+<p class=g-nota>Lo más grande lleva el radio más grande porque la esquina se lee en
+proporción: 10px en una hoja de pantalla completa parece recta, y 14px en un chip
+parece una píldora fallida.</p>
+
+<p class=g-rot>Mal</p>
+<div class=g-mal>
+  <div class=caja style="border-radius:var(--kiri-r-full);margin-bottom:var(--kiri-e-2)">Empezar la ruta</div>
+  <div class=caja style="border-radius:0">Empezar la ruta</div>
+  <p class=g-por>Arriba, un botón en píldora: Kiri no es un producto de consumo, y la
+  píldora está reservada para lo que no se toca. Abajo, esquina recta: se lee como un
+  error de render, no como una decisión.</p>
+</div>

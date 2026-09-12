@@ -1,0 +1,58 @@
+<!-- @dsCard group="Componentes" viewport="420x760" name="Opción" subtitle="Interruptor a la derecha (estado), casilla y radio a la izquierda (elección mía)" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Opción</title>
+<link rel=stylesheet href="../../tokens.css">
+<style>
+  body { padding:var(--kiri-e-4) }
+  .rot { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.08em; text-transform:uppercase; color:var(--kiri-tinta-suave); margin:var(--kiri-e-5) 0 var(--kiri-e-2) }
+  .rot:first-child { margin-top:0 }
+  .grupo > .kiri-opcion + .kiri-opcion { border-top:1px solid var(--kiri-linea-suave) }
+  fieldset { border:0; padding:0; margin:0 }
+  legend.kiri-campo { width:100%; margin-bottom:0 }
+  .mal { border:1px dashed var(--kiri-mal); border-radius:var(--kiri-r); padding:0 var(--kiri-e-3) }
+  .por { font-size:var(--kiri-t-sm); color:var(--kiri-mal); margin:var(--kiri-e-2) 0 0 }
+</style>
+
+<p class=rot>Interruptor · efecto inmediato, sin guardar</p>
+<div class=grupo>
+  <label class=kiri-opcion>
+    <span class=cuerpo>Avisar al llegar<span class=meta>Suena cuando entrás al radio del negocio</span></span>
+    <input type=checkbox class=kiri-interruptor checked>
+  </label>
+  <label class=kiri-opcion>
+    <span class=cuerpo>Guardar la foto de cada entrega</span>
+    <input type=checkbox class=kiri-interruptor>
+  </label>
+  <label class=kiri-opcion>
+    <span class=cuerpo>Sincronizar sin wifi<span class=meta>Necesita plan de datos activo</span></span>
+    <input type=checkbox class=kiri-interruptor disabled>
+  </label>
+</div>
+
+<p class=rot>Casilla · se confirma con un botón</p>
+<div class=grupo>
+  <label class=kiri-opcion><input type=checkbox checked><span class=cuerpo>Incluir los pueblos sin paradas</span></label>
+  <label class=kiri-opcion><input type=checkbox><span class=cuerpo>Solo los cobros pendientes</span></label>
+  <label class=kiri-opcion><input type=checkbox disabled><span class=cuerpo>Agrupar por cliente<span class=meta>Disponible cuando haya más de una tanda</span></span></label>
+</div>
+<div class=kiri-acciones style="margin-top:var(--kiri-e-3)">
+  <button class="kiri-btn kiri-btn--texto">Cancelar</button>
+  <button class="kiri-btn kiri-btn--primario">Aplicar</button>
+</div>
+
+<p class=rot>Radio · una de dos a cuatro, todas a la vista</p>
+<fieldset class=grupo>
+  <legend class=kiri-campo><span>Orden de la ruta</span></legend>
+  <label class=kiri-opcion><input type=radio name=orden checked><span class=cuerpo>Como la cargué</span></label>
+  <label class=kiri-opcion><input type=radio name=orden><span class=cuerpo>Más cerca primero<span class=meta>Usa la ubicación del teléfono</span></span></label>
+  <label class=kiri-opcion><input type=radio name=orden><span class=cuerpo>Por pueblo</span></label>
+</fieldset>
+
+<p class=rot>Mal</p>
+<div class="grupo mal">
+  <label class=kiri-opcion>
+    <input type=checkbox class=kiri-interruptor>
+    <span class=cuerpo>No avisar al llegar</span>
+  </label>
+</div>
+<p class=por>Interruptor a la izquierda y etiqueta en negativo: apagado ahora significa “sí avisar”, y hay que leerlo dos veces.</p>

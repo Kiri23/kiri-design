@@ -1,0 +1,179 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": []
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Space Grotesk|Newsreader|JetBrains Mono))/i]",
+        "message": "Font not provided by the design system. Available: Space Grotesk, Newsreader, JetBrains Mono."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {},
+    "tokens": [
+      "--kiri-apagado",
+      "--kiri-apagado-fondo",
+      "--kiri-b-firma",
+      "--kiri-b-hilo",
+      "--kiri-b-marco",
+      "--kiri-bien",
+      "--kiri-bien-tinte",
+      "--kiri-curva",
+      "--kiri-e-1",
+      "--kiri-e-2",
+      "--kiri-e-3",
+      "--kiri-e-4",
+      "--kiri-e-5",
+      "--kiri-e-6",
+      "--kiri-foco",
+      "--kiri-fondo",
+      "--kiri-i-apretado",
+      "--kiri-i-largo",
+      "--kiri-i-normal",
+      "--kiri-lectura",
+      "--kiri-linea",
+      "--kiri-linea-fuerte",
+      "--kiri-linea-suave",
+      "--kiri-mal",
+      "--kiri-mal-tinte",
+      "--kiri-marca",
+      "--kiri-marca-linea",
+      "--kiri-marca-texto",
+      "--kiri-marca-tinte",
+      "--kiri-mono",
+      "--kiri-mov",
+      "--kiri-mov-rapido",
+      "--kiri-ojo",
+      "--kiri-ojo-tinte",
+      "--kiri-panel",
+      "--kiri-panel-alto",
+      "--kiri-r",
+      "--kiri-r-full",
+      "--kiri-r-lg",
+      "--kiri-r-sm",
+      "--kiri-separacion",
+      "--kiri-sobre-marca",
+      "--kiri-sombra",
+      "--kiri-t-base",
+      "--kiri-t-lg",
+      "--kiri-t-md",
+      "--kiri-t-sm",
+      "--kiri-t-xl",
+      "--kiri-t-xs",
+      "--kiri-tinta",
+      "--kiri-tinta-suave",
+      "--kiri-tocable",
+      "--kiri-tocable-ancho",
+      "--kiri-toque",
+      "--kiri-toque-fuerte",
+      "--kiri-ui",
+      "--kiri-velo",
+      "--kiri-z-barra",
+      "--kiri-z-hoja",
+      "--kiri-z-toast",
+      "--kiri-z-velo"
+    ],
+    "tokenKinds": {
+      "--kiri-fondo": "color",
+      "--kiri-panel": "color",
+      "--kiri-panel-alto": "color",
+      "--kiri-linea-suave": "color",
+      "--kiri-linea": "color",
+      "--kiri-linea-fuerte": "color",
+      "--kiri-tinta": "color",
+      "--kiri-tinta-suave": "color",
+      "--kiri-marca": "color",
+      "--kiri-marca-texto": "color",
+      "--kiri-marca-tinte": "color",
+      "--kiri-marca-linea": "color",
+      "--kiri-sobre-marca": "color",
+      "--kiri-bien": "color",
+      "--kiri-bien-tinte": "color",
+      "--kiri-mal": "color",
+      "--kiri-mal-tinte": "color",
+      "--kiri-ojo": "color",
+      "--kiri-ojo-tinte": "color",
+      "--kiri-toque": "color",
+      "--kiri-toque-fuerte": "color",
+      "--kiri-velo": "color",
+      "--kiri-apagado": "color",
+      "--kiri-apagado-fondo": "color",
+      "--kiri-sombra": "shadow",
+      "--kiri-foco": "color",
+      "--kiri-ui": "font",
+      "--kiri-lectura": "font",
+      "--kiri-mono": "font",
+      "--kiri-t-xs": "spacing",
+      "--kiri-t-sm": "spacing",
+      "--kiri-t-base": "spacing",
+      "--kiri-t-md": "spacing",
+      "--kiri-t-lg": "spacing",
+      "--kiri-t-xl": "spacing",
+      "--kiri-i-apretado": "other",
+      "--kiri-i-normal": "other",
+      "--kiri-i-largo": "other",
+      "--kiri-e-1": "spacing",
+      "--kiri-e-2": "spacing",
+      "--kiri-e-3": "spacing",
+      "--kiri-e-4": "spacing",
+      "--kiri-e-5": "spacing",
+      "--kiri-e-6": "spacing",
+      "--kiri-r-sm": "spacing",
+      "--kiri-r": "spacing",
+      "--kiri-r-lg": "spacing",
+      "--kiri-r-full": "spacing",
+      "--kiri-b-hilo": "other",
+      "--kiri-b-marco": "other",
+      "--kiri-b-firma": "other",
+      "--kiri-tocable": "spacing",
+      "--kiri-tocable-ancho": "spacing",
+      "--kiri-separacion": "spacing",
+      "--kiri-mov-rapido": "other",
+      "--kiri-mov": "other",
+      "--kiri-curva": "other",
+      "--kiri-z-barra": "other",
+      "--kiri-z-velo": "other",
+      "--kiri-z-hoja": "other",
+      "--kiri-z-toast": "other"
+    },
+    "fontFamilies": [
+      "JetBrains Mono",
+      "Newsreader",
+      "Space Grotesk"
+    ]
+  }
+}

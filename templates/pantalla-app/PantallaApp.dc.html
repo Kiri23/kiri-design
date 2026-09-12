@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Pantalla de app" description="Barra con la marca, tabs, lista de filas tocables, hoja de acción y nav inferior — el esqueleto de una pantalla Kiri." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>body{padding-bottom:0}</style>
+</helmet>
+<div style="background:var(--kiri-fondo);min-height:100dvh">
+<div class="kiri-barra">
+<h1><span class="kiri-marca-punto"></span>Ruta</h1>
+<div class="kiri-tabs" role="tablist">
+<button class="kiri-tab" role="tab" aria-selected="true" onClick="{{ verPendientes }}">Pendientes <span class="kiri-cuenta">3</span></button>
+<button class="kiri-tab" role="tab" aria-selected="false" onClick="{{ verHechas }}">Hechas <span class="kiri-cuenta">7</span></button>
+</div>
+</div>
+<main class="kiri-pantalla kiri-pantalla--con-nav">
+<p class="kiri-aviso kiri-aviso--marca">Quedan 3 paradas. La última sincronización fue hace 4 minutos.</p>
+<ul class="kiri-lista kiri-lista--tocable" style="margin-top:16px">
+<sc-for list="{{ paradas }}" as="parada" hint-placeholder-count="3">
+<li><button type="button" onClick="{{ abrirHoja }}"><span class="cuerpo"><span class="nombre">{{ parada.nombre }}</span><span class="meta"><span>{{ parada.pueblo }}</span><span>{{ parada.cajas }}</span></span></span><span class="flecha" aria-hidden="true">›</span></button></li>
+</sc-for>
+</ul>
+<div style="margin-top:24px"><button class="kiri-btn kiri-btn--primario kiri-btn--ancho" onClick="{{ abrirHoja }}">Marcar la parada de ahora</button></div>
+</main>
+<nav class="kiri-nav" aria-label="Secciones">
+<a href="#" aria-current="page"><span class="icono" aria-hidden="true">▤</span>Ruta</a>
+<a href="#"><span class="icono" aria-hidden="true">◫</span>Tandas</a>
+<a href="#"><span class="icono" aria-hidden="true">◍</span>Cobros</a>
+<a href="#"><span class="icono" aria-hidden="true">≡</span>Ajustes</a>
+</nav>
+<dialog class="kiri-hoja" ref="{{ hoja }}">
+<div class="tirador" aria-hidden="true"></div>
+<h2>Colmado Santa Rita</h2>
+<div class="cuerpo">
+<label class="kiri-campo"><span>Cajas entregadas</span><input type="number" inputmode="numeric" value="4"></label>
+<label class="kiri-opcion"><span class="cuerpo">Cobré en efectivo<span class="meta">Se suma a la tanda del día</span></span><input type="checkbox" class="kiri-interruptor"></label>
+</div>
+<div class="pie">
+<button class="kiri-btn" onClick="{{ cerrarHoja }}">Cancelar</button>
+<button class="kiri-btn kiri-btn--primario" onClick="{{ cerrarHoja }}">Guardar</button>
+</div>
+</dialog>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  hoja = React.createRef();
+  renderVals() {
+    return {
+      hoja: this.hoja,
+      paradas: [
+        { nombre: 'Colmado Santa Rita', pueblo: 'Toa Alta', cajas: '4 cajas' },
+        { nombre: 'Farmacia Del Pueblo', pueblo: 'Bayamón', cajas: '1 caja' },
+        { nombre: 'Panadería Los Cidrines', pueblo: 'Dorado', cajas: '6 cajas' }
+      ],
+      abrirHoja: () => this.hoja.current && this.hoja.current.showModal(),
+      cerrarHoja: () => this.hoja.current && this.hoja.current.close(),
+      verPendientes: () => {},
+      verHechas: () => {}
+    };
+  }
+}
+
+</script>
+</body>
+</html>

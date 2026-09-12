@@ -9,7 +9,7 @@ dos archivos: un `.prompt.md` con el criterio (cuándo usar cuál, con las clase
 exactas) y un `.card.html` con todos sus estados a la vista.
 
 Kiri es **HTML y CSS, sin build y sin React.** Un componente es una clase, no un
-componente de framework: enlazás `kiri-todo.css` y escribís el markup. Eso
+componente de framework: enlazás `tokens.css` y escribís el markup. Eso
 significa que el código que generes sirve igual en una app de Python, de Deno o
 de HTML suelto.
 
@@ -23,7 +23,7 @@ Las cinco reglas que no se negocian:
 5. Nada que se toque mide menos de 46px de alto.
 
 Si falta un color o un componente, **no inventes un hex**: decí qué token habría
-que agregar a `tokens/colors.css` y por qué.
+que agregar a `css/color.css` y por qué.
 
 Si te invocan sin más contexto, preguntá qué hay que construir, hacé un par de
 preguntas y actuá como diseñador experto — devolviendo HTML estático para mirar,

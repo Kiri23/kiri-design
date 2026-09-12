@@ -1,0 +1,62 @@
+<!-- @dsCard group="Fundamentos" viewport="760x537" name="Estados" subtitle="Bien, mal y ojo: verdes y cálidos a propósito, para que un error nunca se confunda con la marca." -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Estados</title>
+<link rel=stylesheet href="../tokens.css">
+<link rel=stylesheet href="guia.css">
+<style>
+  .par { display:grid; grid-template-rows:auto auto; gap:var(--kiri-e-1) }
+  .lleno { min-height:var(--kiri-e-6); border-radius:var(--kiri-r-sm) var(--kiri-r-sm) 0 0 }
+  .tenido { min-height:var(--kiri-e-5); border-radius:0 0 var(--kiri-r-sm) var(--kiri-r-sm);
+            display:flex; align-items:center; padding:0 var(--kiri-e-2);
+            font:600 var(--kiri-t-xs)/1.3 var(--kiri-ui) }
+  .et { font:500 var(--kiri-t-xs)/1.4 var(--kiri-mono); color:var(--kiri-tinta-suave) }
+</style>
+<body class=g>
+
+<p class=g-rot>Los dos modos, uno al lado del otro</p>
+<div class=g-modos>
+  <div class=g-modo>
+    <p class=g-rot>Claro</p>
+    <div class=g-tira>
+      <div class=par><div class=lleno style="background:var(--kiri-bien)"></div>
+        <div class=tenido style="background:var(--kiri-bien-tinte);color:var(--kiri-bien)">Hecho</div></div>
+      <div class=par><div class=lleno style="background:var(--kiri-mal)"></div>
+        <div class=tenido style="background:var(--kiri-mal-tinte);color:var(--kiri-mal)">Falló</div></div>
+      <div class=par><div class=lleno style="background:var(--kiri-ojo)"></div>
+        <div class=tenido style="background:var(--kiri-ojo-tinte);color:var(--kiri-ojo)">Dudoso</div></div>
+    </div>
+  </div>
+  <div class="g-modo g-modo--oscuro">
+    <p class=g-rot>Oscuro</p>
+    <div class=g-tira>
+      <div class=par><div class=lleno style="background:var(--kiri-bien)"></div>
+        <div class=tenido style="background:var(--kiri-bien-tinte);color:var(--kiri-bien)">Hecho</div></div>
+      <div class=par><div class=lleno style="background:var(--kiri-mal)"></div>
+        <div class=tenido style="background:var(--kiri-mal-tinte);color:var(--kiri-mal)">Falló</div></div>
+      <div class=par><div class=lleno style="background:var(--kiri-ojo)"></div>
+        <div class=tenido style="background:var(--kiri-ojo-tinte);color:var(--kiri-ojo)">Dudoso</div></div>
+    </div>
+  </div>
+</div>
+
+<p class=g-rot>Qué dice cada uno</p>
+<div class=g-fila>
+  <div class=g-esp><span class="kiri-chip kiri-chip--bien">Entregado</span></div>
+  <span class=g-tok><b>--kiri-bien</b><br>terminó y salió bien</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><span class="kiri-chip kiri-chip--mal">Sin cobrar</span></div>
+  <span class=g-tok><b>--kiri-mal</b><br>falló, hay que hacer algo</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><span class="kiri-chip kiri-chip--ojo">Revisar</span></div>
+  <span class=g-tok><b>--kiri-ojo</b><br>dudoso, mirá vos</span>
+</div>
+
+<p class=g-rot>El color nunca va solo</p>
+<div class=g-mal>
+  <span class="kiri-chip kiri-chip--mal"></span>
+  <span class="kiri-chip kiri-chip--bien"></span>
+  <p class=g-por>Sin texto no comunica nada: quien no distingue rojo de verde
+  ve dos píldoras grises. El color repite lo que la palabra ya dijo.</p>
+</div>

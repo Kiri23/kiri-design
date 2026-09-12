@@ -1,0 +1,37 @@
+/* ═══ Kiri · base.css ════════════════════════════════════════════════
+   Reset mínimo, cuerpo, foco, y la envoltura de texto largo.
+   ═══════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--kiri-fondo);
+  color: var(--kiri-tinta);
+  font: var(--kiri-t-base)/var(--kiri-i-normal) var(--kiri-ui);
+  padding-bottom: max(var(--kiri-e-5), env(safe-area-inset-bottom));
+}
+
+button, input, textarea, select { font: inherit; color: inherit; }
+
+:focus-visible { outline: var(--kiri-b-firma) solid var(--kiri-foco); outline-offset: 2px; }
+
+.kiri-mono { font-family: var(--kiri-mono); font-variant-numeric: tabular-nums; }
+
+/* Texto largo: letra de libro, una columna angosta */
+.kiri-lectura {
+  font: var(--kiri-t-md)/var(--kiri-i-largo) var(--kiri-lectura);
+  max-width: 38rem;
+  margin-inline: auto;
+}
+.kiri-lectura h2 { font: 600 var(--kiri-t-lg)/var(--kiri-i-apretado) var(--kiri-lectura); margin: var(--kiri-e-6) 0 var(--kiri-e-2); }
+.kiri-lectura p  { margin: 0 0 var(--kiri-e-3); }
+.kiri-lectura a  { color: var(--kiri-marca-texto); text-underline-offset: .18em; }
+.kiri-lectura a:hover { color: var(--kiri-marca); }
+
+.kiri-pantalla { max-width: 640px; margin-inline: auto; padding: var(--kiri-e-4) var(--kiri-e-4) var(--kiri-e-6); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

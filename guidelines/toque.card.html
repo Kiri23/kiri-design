@@ -1,0 +1,52 @@
+<!-- @dsCard group="Fundamentos" viewport="760x578" name="Tamaños de toque" subtitle="46px de alto y 8px entre dos blancos vecinos: el pulgar manda, no la retícula" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Tamaños de toque</title>
+<link rel=stylesheet href="../tokens.css">
+<link rel=stylesheet href="guia.css">
+<style>
+  .blanco { display:flex; align-items:center; padding:0 var(--kiri-e-4);
+            border-radius:var(--kiri-r); border:var(--kiri-b-marco) solid var(--kiri-linea);
+            background:var(--kiri-panel); font:600 var(--kiri-t-sm)/1.3 var(--kiri-ui) }
+  .min   { min-height:var(--kiri-tocable) }
+  .ancho { min-height:var(--kiri-tocable-ancho) }
+  .chico { min-height:var(--kiri-e-6) }
+  .pegados { display:flex; gap:0 }
+  .separados { display:flex; gap:var(--kiri-separacion) }
+</style>
+<body class=g>
+
+<p class=g-rot>Dos medidas, no una escala</p>
+
+<div class="g-fila g-fila--alta">
+  <div class=g-esp><div class="blanco min">Fila de parada · botón · opción</div></div>
+  <span class=g-tok><b>--kiri-tocable</b><br>46px · el mínimo</span>
+</div>
+<div class="g-fila g-fila--alta">
+  <div class=g-esp><div class="blanco ancho">Empezar la ruta</div></div>
+  <span class=g-tok><b>--kiri-tocable-ancho</b><br>54px · el verbo de la pantalla</span>
+</div>
+
+<p class=g-rot>Y el aire entre dos blancos vecinos</p>
+<div class="g-fila g-fila--alta">
+  <div class=g-esp>
+    <div class=separados>
+      <div class="blanco min" style="flex:1">Entregado</div>
+      <div class="blanco min" style="flex:1">No pude</div>
+    </div>
+  </div>
+  <span class=g-tok><b>--kiri-separacion</b><br>8px</span>
+</div>
+
+<p class=g-rot>Mal</p>
+<div class=g-mal>
+  <div class=pegados>
+    <div class="blanco min" style="flex:1;border-radius:var(--kiri-r) 0 0 var(--kiri-r)">Entregado</div>
+    <div class="blanco min" style="flex:1;border-radius:0 var(--kiri-r) var(--kiri-r) 0">No pude</div>
+  </div>
+  <div class="blanco chico" style="margin-top:var(--kiri-e-3);width:60%">Escribir la dirección</div>
+  <p class=g-por>Arriba: dos blancos de 46px pegados se tocan mal igual — el pulgar no
+  tiene 1px de puntería. Abajo: 36px de alto, y manejando eso no se acierta.</p>
+</div>
+
+<p class=g-nota>46px es alto <b>y</b> ancho: un ícono de 24px dentro de un botón de
+46px está bien; un ícono de 24px suelto, no. Y el ícono nunca va solo, siempre con etiqueta.</p>

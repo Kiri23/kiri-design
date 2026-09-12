@@ -1,0 +1,65 @@
+<!-- @dsCard group="Fundamentos" viewport="760x679" name="La marca" subtitle="Un azul con dos luces: el del área grande y el de la letra chica. Elegir por tamaño, no por gusto." -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · La marca</title>
+<link rel=stylesheet href="../tokens.css">
+<link rel=stylesheet href="guia.css">
+<style>
+  .relleno { background:var(--kiri-marca); color:var(--kiri-sobre-marca) }
+  .tinte   { background:var(--kiri-marca-tinte); color:var(--kiri-marca-texto);
+             border:var(--kiri-b-hilo) solid var(--kiri-marca-linea) }
+  .punto   { display:inline-block; width:var(--kiri-e-3); height:var(--kiri-e-3);
+             border-radius:var(--kiri-r-full); background:var(--kiri-marca); vertical-align:baseline }
+</style>
+<body class=g>
+
+<p class=g-rot>El mismo azul, dos luces según el tamaño</p>
+
+<div class="g-fila g-fila--alta">
+  <div class=g-esp><div class="g-muestra relleno">Empezar la ruta</div></div>
+  <span class=g-tok><b>--kiri-marca</b><br>áreas &gt; 40×40</span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><span style="color:var(--kiri-marca-texto);font-weight:600">Ver las catorce paradas</span></div>
+  <span class=g-tok><b>--kiri-marca-texto</b><br>letra, links</span>
+</div>
+<div class="g-fila g-fila--alta">
+  <div class=g-esp><div class="g-muestra tinte">Se subieron 7 fotos.</div></div>
+  <span class=g-tok><b>--kiri-marca-tinte</b><br>+ <b>--kiri-marca-linea</b></span>
+</div>
+<div class=g-fila>
+  <div class=g-esp><span class=punto></span> <b>Kiri</b> <span style="color:var(--kiri-tinta-suave);font-size:var(--kiri-t-sm)">— el punto ES el logo</span></div>
+  <span class=g-tok><b>.kiri-marca-punto</b></span>
+</div>
+
+<p class=g-rot>Por qué el botón no es azul</p>
+<div class=g-sino>
+  <div class=g-si>
+    <p class=g-rot>Sí</p>
+    <div class=kiri-acciones>
+      <button class="kiri-btn kiri-btn--primario">Entregado</button>
+      <button class=kiri-btn>No pude</button>
+    </div>
+    <p class=g-nota>La acción es tinta. El azul queda libre para identificar.</p>
+  </div>
+  <div class=g-no>
+    <p class=g-rot>No</p>
+    <div class=g-mal>
+      <div class=kiri-acciones>
+        <button class="kiri-btn kiri-btn--marca">Entregado</button>
+        <button class=kiri-btn>No pude</button>
+      </div>
+      <p class=g-por>Si el azul también confirma, el logo compite con cada botón
+      de cada pantalla y la marca se vuelve invisible por repetición.</p>
+    </div>
+  </div>
+</div>
+
+<p class=g-rot>La única excepción: continuar</p>
+<div class=g-fila>
+  <div class=g-esp><button class="kiri-btn kiri-btn--marca">Seguir</button></div>
+  <span class=g-tok><b>.kiri-btn--marca</b></span>
+</div>
+<p class=g-nota>Continuar no es una acción con elección: en un onboarding no hay nada
+que decidir, solo seguir. Eso es navegar, no confirmar. La prueba son dos preguntas,
+y con que una dé <b>sí</b> el azul está mal: ¿hay otra acción en la pantalla?
+¿el botón escribe un dato?</p>

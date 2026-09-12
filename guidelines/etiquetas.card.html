@@ -1,0 +1,51 @@
+<!-- @dsCard group="Fundamentos" viewport="760x725" name="Etiquetas" subtitle="Mayúsculas a 12px con .05em de tracking, y solo en dos lugares. Nunca en una frase." -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Etiquetas</title>
+<link rel=stylesheet href="../tokens.css">
+<link rel=stylesheet href="guia.css">
+<style>
+  .eti { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.05em;
+         text-transform:uppercase; color:var(--kiri-tinta-suave) }
+</style>
+<body class=g>
+
+<p class=g-rot>Los dos únicos lugares donde Kiri usa mayúsculas</p>
+
+<div class="g-fila g-fila--alta">
+  <div class=g-esp>
+    <label class=kiri-campo><span>Dirección de entrega</span>
+      <input type=text value="Calle Barbosa 145" readonly></label>
+  </div>
+  <span class=g-tok><b>label del campo</b><br>12px · .05em</span>
+</div>
+
+<div class="g-fila g-fila--alta">
+  <div class=g-esp>
+    <p class=eti style="margin:0 0 var(--kiri-e-1)">Bayamón</p>
+    <ul class=kiri-lista style="margin:0">
+      <li><span class=nombre>Farmacia Del Pueblo</span><span class=meta><span>Calle Barbosa 145</span></span></li>
+      <li><span class=nombre>Colmado Santa Rita</span><span class=meta><span>PR-165 km 4.2</span></span></li>
+    </ul>
+  </div>
+  <span class=g-tok><b>nombre de pueblo</b><br>encabezado de grupo</span>
+</div>
+
+<p class=g-rot>Por qué solo ahí</p>
+<p class=g-nota>La mayúscula sostenida borra el perfil de la palabra — lo que el ojo
+reconoce de un vistazo — y obliga a leer letra por letra. Sirve para una etiqueta de
+dos palabras que uno <b>saltea</b>; no para algo que hay que leer.</p>
+
+<p class=g-rot>Mal</p>
+<div class=g-mal>
+  <p class=eti style="margin:0">Sacale una foto a cada factura antes de salir del local</p>
+  <p class=g-por>Una oración entera en mayúscula: se lee más lento, ocupa más ancho
+  y en un teléfono a 12px se vuelve una barra gris.</p>
+</div>
+<div class=g-mal style="margin-top:var(--kiri-e-3)">
+  <p style="margin:0;font:600 var(--kiri-t-base)/1.3 var(--kiri-ui);letter-spacing:.05em;text-transform:uppercase">Ruta de hoy</p>
+  <p class=g-por>Mayúscula a 16px. La etiqueta es chica <b>y</b> apagada a propósito:
+  si grita, deja de ser una etiqueta y compite con el título.</p>
+</div>
+
+<p class=g-nota>Sin tracking, la mayúscula se apelmaza: los <code class=kiri-mono>.05em</code>
+no son gusto, son lo que la hace legible al tamaño en que se usa.</p>

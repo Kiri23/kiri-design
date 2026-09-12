@@ -1,2 +1,7 @@
 node_modules/
 .DS_Store
+
+# Runtime generado por Claude Design (no editar, no versionar)
+_ds_bundle.js
+_ds_manifest.json
+templates/pantalla-app/support.js

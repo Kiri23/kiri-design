@@ -1,0 +1,66 @@
+<!-- @dsCard group="Componentes" viewport="420x760" name="Señales" subtitle="Chip, medidor, toast y esqueleto: informan sin ocupar una fila y no se tocan" -->
+<html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Kiri · Señales</title>
+<link rel=stylesheet href="../../tokens.css">
+<style>
+  body { padding:var(--kiri-e-4) }
+  .rot { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.08em; text-transform:uppercase; color:var(--kiri-tinta-suave); margin:var(--kiri-e-5) 0 var(--kiri-e-2) }
+  .rot:first-child { margin-top:0 }
+  .fila { display:flex; flex-wrap:wrap; gap:var(--kiri-e-2) }
+  .et { font:600 var(--kiri-t-xs)/1.4 var(--kiri-ui); letter-spacing:.05em; text-transform:uppercase; color:var(--kiri-tinta-suave); margin:0 0 var(--kiri-e-2) }
+  /* El toast se muestra en su sitio para poder verlo en la ficha; en una app es fixed. */
+  .marco-toast { position:relative; height:86px; border:1px solid var(--kiri-linea); border-radius:var(--kiri-r); overflow:hidden }
+  .marco-toast .kiri-toast { position:absolute; bottom:var(--kiri-e-3) }
+  .mal { border:1px dashed var(--kiri-mal); border-radius:var(--kiri-r); padding:var(--kiri-e-3) }
+  .por { font-size:var(--kiri-t-sm); color:var(--kiri-mal); margin:var(--kiri-e-2) 0 0 }
+</style>
+
+<p class=rot>Chip · dos palabras, el color repite lo que dice el texto</p>
+<div class=fila>
+  <span class=kiri-chip>4 cajas</span>
+  <span class="kiri-chip kiri-chip--marca">Hoy</span>
+  <span class="kiri-chip kiri-chip--bien">Hecho</span>
+  <span class="kiri-chip kiri-chip--mal">Sin cobrar</span>
+  <span class="kiri-chip kiri-chip--ojo">Pendiente</span>
+</div>
+
+<p class=rot>Chip en su sitio · uno por fila</p>
+<ul class="kiri-lista kiri-lista--tocable">
+  <li><a href=#><span class=cuerpo><span class=nombre>Colmado Santa Rita</span><span class=meta><span>Toa Alta</span></span></span><span class="kiri-chip kiri-chip--bien">Hecho</span></a></li>
+  <li><a href=#><span class=cuerpo><span class=nombre>Farmacia Del Pueblo</span><span class=meta><span>Bayamón</span></span></span><span class="kiri-chip kiri-chip--ojo">Pendiente</span></a></li>
+</ul>
+
+<p class=rot>Medidor · solo con final conocido, y siempre con el número</p>
+<div class=kiri-panel>
+  <p class=et>Ruta de hoy</p>
+  <p style="margin:0 0 var(--kiri-e-2);font:700 26px/1 var(--kiri-mono)">11 / 14</p>
+  <div class=kiri-medidor><i style="width:78%"></i></div>
+</div>
+<div style="margin-top:var(--kiri-e-3)" class=kiri-panel>
+  <p class=et>Recién empezada</p>
+  <p style="margin:0 0 var(--kiri-e-2);font:700 26px/1 var(--kiri-mono)">1 / 14</p>
+  <div class=kiri-medidor><i style="width:7%"></i></div>
+</div>
+
+<p class=rot>Toast · uno a la vez, se va solo, role=status</p>
+<div class=marco-toast><div class=kiri-toast role=status>Se guardó la parada.</div></div>
+<div class=marco-toast style="margin-top:var(--kiri-e-2)"><div class=kiri-toast role=status>Sin señal: se sube cuando vuelva.</div></div>
+
+<p class=rot>Esqueleto · del tamaño de lo que viene</p>
+<ul class=kiri-lista>
+  <li><span class="kiri-esqueleto kiri-esqueleto--titulo"></span><span class="kiri-esqueleto kiri-esqueleto--linea kiri-esqueleto--corta"></span></li>
+  <li><span class="kiri-esqueleto kiri-esqueleto--titulo"></span><span class="kiri-esqueleto kiri-esqueleto--linea kiri-esqueleto--corta"></span></li>
+  <li><span class="kiri-esqueleto kiri-esqueleto--titulo"></span><span class="kiri-esqueleto kiri-esqueleto--linea kiri-esqueleto--corta"></span></li>
+</ul>
+
+<p class=rot>Mal</p>
+<div class=mal>
+  <div class=fila style="margin-bottom:var(--kiri-e-3)">
+    <span class="kiri-chip kiri-chip--bien"></span>
+    <span class="kiri-chip kiri-chip--ojo">Esperando confirmación del cliente</span>
+    <button class="kiri-chip kiri-chip--marca" style="min-height:24px">Filtrar</button>
+  </div>
+  <div class=kiri-medidor><i style="width:40%"></i></div>
+  <p style="margin:var(--kiri-e-3) 0 0;text-align:center;color:var(--kiri-tinta-suave)">◌ Cargando…</p>
+</div>
+<p class=por>Un chip que solo es color (sin texto no comunica nada), otro con una oración entera, un chip que en realidad es un botón de 24px, un medidor sin número que lo respalde, y un spinner centrado que no dice ni qué carga ni cuánto falta.</p>

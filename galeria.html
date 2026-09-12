@@ -1,7 +1,7 @@
 <html lang=es><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
 <title>Kiri · galería</title>
 <link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:ital,wght@0,400;0,600&family=JetBrains+Mono:wght@500;700&display=swap">
-<link rel=stylesheet href="kiri-todo.css">
+<link rel=stylesheet href="tokens.css">
 <style>
   .ficha { margin-top: var(--kiri-e-5); }
   .ficha h2 { font:700 var(--kiri-t-md)/1.2 var(--kiri-ui); letter-spacing:-.02em; margin:0 0 2px;
@@ -9,16 +9,30 @@
   .ficha p.sub { margin:0 0 var(--kiri-e-2); font-size:var(--kiri-t-sm); color:var(--kiri-tinta-suave); }
   .ficha iframe { width:100%; height:var(--alto,440px); border:1px solid var(--kiri-linea);
                   border-radius:var(--kiri-r); background:var(--kiri-fondo); display:block; }
+  .grupo-titulo { margin:var(--kiri-e-6) 0 var(--kiri-e-3); font:700 var(--kiri-t-lg)/1.2 var(--kiri-ui);
+                  letter-spacing:-.02em; padding-bottom:var(--kiri-e-2);
+                  border-bottom:var(--kiri-b-firma) solid var(--kiri-marca); }
   .vinculos { display:flex; gap:var(--kiri-e-3); margin-top:var(--kiri-e-2); font-size:var(--kiri-t-sm); }
 </style>
 <div class=kiri-barra>
   <h1><span class=kiri-marca-punto></span>Kiri</h1>
   <div class=kiri-tabs role=tablist>
-    <button class=kiri-tab role=tab aria-selected=true>Galería <span class=kiri-cuenta>2</span></button>
+    <button class=kiri-tab role=tab aria-selected=true>Galería <span class=kiri-cuenta>27</span></button>
   </div>
 </div>
 <main class=kiri-pantalla style="max-width:860px">
-  <p class="kiri-aviso kiri-aviso--marca">Cada ficha muestra <b>todos</b> los estados de una pieza, incluido lo que está mal. Si algo no está acá, no existe en Kiri.</p>
+  <p class="kiri-aviso kiri-aviso--marca">¿Buscás una pieza sola, con su criterio al lado? Está en <a class=kiri-link href="taller.html">el taller</a>. Acá abajo están todas de corrido.</p>
+  <p class="kiri-aviso" style="margin-top:var(--kiri-e-2)">Cada ficha de <b>componente</b> muestra todos los estados de una pieza, incluido lo que está mal. Cada ficha de <b>fundamento</b> muestra una decisión con su token al lado. Si algo no está acá, no existe en Kiri.</p>
+
+  <h2 class=grupo-titulo>Componentes</h2>
+
+  <section class=ficha style="--alto:700px">
+    <h2>Barra</h2>
+    <p class=sub>El punto azul es el logo. Tabs con <code class=kiri-mono>aria-selected</code>, cuenta solo si el número decide algo.</p>
+    <iframe src="componentes/estructura/barras.card.html" title="Ficha de barra" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/estructura/barra.prompt.md">El criterio (barra.prompt.md)</a>
+       <a class=kiri-link href="componentes/estructura/barras.card.html">Abrir sola</a></p>
+  </section>
 
   <section class=ficha style="--alto:520px">
     <h2>Botones</h2>
@@ -26,6 +40,14 @@
     <iframe src="componentes/acciones/botones.card.html" title="Ficha de botones" loading=lazy></iframe>
     <p class=vinculos><a class=kiri-link href="componentes/acciones/boton.prompt.md">El criterio (boton.prompt.md)</a>
        <a class=kiri-link href="componentes/acciones/botones.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:830px">
+    <h2>Lista</h2>
+    <p class=sub>Reglas finas, no tarjetas. En <code class=kiri-mono>--tocable</code> el blanco es el <code class=kiri-mono>&lt;a&gt;</code>, no el <code class=kiri-mono>&lt;li&gt;</code>.</p>
+    <iframe src="componentes/datos/listas.card.html" title="Ficha de lista" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/datos/lista.prompt.md">El criterio (lista.prompt.md)</a>
+       <a class=kiri-link href="componentes/datos/listas.card.html">Abrir sola</a></p>
   </section>
 
   <section class=ficha style="--alto:900px">
@@ -36,6 +58,179 @@
        <a class=kiri-link href="componentes/datos/tabla.card.html">Abrir sola</a></p>
   </section>
 
+  <section class=ficha style="--alto:780px">
+    <h2>Nav inferior</h2>
+    <p class=sub>Dos a cinco destinos, etiqueta siempre, firma azul arriba del activo.</p>
+    <iframe src="componentes/navegacion/navs.card.html" title="Ficha de nav inferior" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/navegacion/nav.prompt.md">El criterio (nav.prompt.md)</a>
+       <a class=kiri-link href="componentes/navegacion/navs.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:1240px">
+    <h2>Hoja</h2>
+    <p class=sub><code class=kiri-mono>&lt;dialog&gt;</code> que sube desde abajo: cuerpo que rueda, pie pegado, velo sin blur.</p>
+    <iframe src="componentes/navegacion/hojas.card.html" title="Ficha de hoja" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/navegacion/hoja.prompt.md">El criterio (hoja.prompt.md)</a>
+       <a class=kiri-link href="componentes/navegacion/hojas.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:830px">
+    <h2>Campo</h2>
+    <p class=sub>Etiqueta arriba, 16px o Safari hace zoom, error y ayuda en el mismo hueco.</p>
+    <iframe src="componentes/formulario/campos.card.html" title="Ficha de campo" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/formulario/campo.prompt.md">El criterio (campo.prompt.md)</a>
+       <a class=kiri-link href="componentes/formulario/campos.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:900px">
+    <h2>Opción</h2>
+    <p class=sub>Interruptor a la derecha (estado del sistema), casilla y radio a la izquierda (elección mía).</p>
+    <iframe src="componentes/formulario/opciones.card.html" title="Ficha de opción" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/formulario/opcion.prompt.md">El criterio (opcion.prompt.md)</a>
+       <a class=kiri-link href="componentes/formulario/opciones.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:770px">
+    <h2>Panel</h2>
+    <p class=sub>Una cosa con varios datos. Dos paneles iguales apilados eran una lista.</p>
+    <iframe src="componentes/estructura/paneles.card.html" title="Ficha de panel" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/estructura/panel.prompt.md">El criterio (panel.prompt.md)</a>
+       <a class=kiri-link href="componentes/estructura/paneles.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:770px">
+    <h2>Aviso y vacío</h2>
+    <p class=sub>Cinco tonos que dicen qué hacer, y una pantalla vacía que invita en vez de disculparse.</p>
+    <iframe src="componentes/estado/avisos.card.html" title="Ficha de aviso y vacío" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/estado/aviso.prompt.md">El criterio (aviso.prompt.md)</a>
+       <a class=kiri-link href="componentes/estado/avisos.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:780px">
+    <h2>Señales</h2>
+    <p class=sub>Chip, medidor, toast y esqueleto: informan sin ocupar una fila y no se tocan.</p>
+    <iframe src="componentes/estado/senales.card.html" title="Ficha de señales" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="componentes/estado/senales.prompt.md">El criterio (senales.prompt.md)</a>
+       <a class=kiri-link href="componentes/estado/senales.card.html">Abrir sola</a></p>
+  </section>
+
+
+  <h2 class=grupo-titulo>Fundamentos</h2>
+  <p class="kiri-aviso kiri-aviso--marca">Estas dieciséis no muestran una <b>pieza</b>: muestran una <b>decisión</b>, con el token que la sostiene al lado en mono. El criterio de todas está en <a class=kiri-link href="guidelines/fundamentos.prompt.md">fundamentos.prompt.md</a>.</p>
+
+  <section class=ficha style="--alto:450px">
+    <h2>Los cinco principios</h2>
+    <p class=sub>Las reglas que no se negocian. Todo lo que salga de Kiri las respeta.</p>
+    <iframe src="guidelines/principios.card.html" title="Ficha de los cinco principios" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/principios.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:679px">
+    <h2>La marca</h2>
+    <p class=sub>Un azul con dos luces: el del área grande y el de la letra chica. Elegir por tamaño, no por gusto.</p>
+    <iframe src="guidelines/marca.card.html" title="Ficha de la marca" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/marca.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:632px">
+    <h2>Superficies</h2>
+    <p class=sub>Tres niveles y nunca un cuarto. En oscuro la elevación es color; en claro, una sombra mínima.</p>
+    <iframe src="guidelines/superficies.card.html" title="Ficha de superficies" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/superficies.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:537px">
+    <h2>Estados</h2>
+    <p class=sub>Bien, mal y ojo: verdes y cálidos a propósito, para que un error nunca se confunda con la marca.</p>
+    <iframe src="guidelines/estados.card.html" title="Ficha de estados" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/estados.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:840px">
+    <h2>Interacción</h2>
+    <p class=sub>Toque, active, velo y apagado: los cinco tokens que existen para no inventar un hex bajo el dedo</p>
+    <iframe src="guidelines/interaccion.card.html" title="Ficha de interacción" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/interaccion.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:578px">
+    <h2>Tamaños de toque</h2>
+    <p class=sub>46px de alto y 8px entre dos blancos vecinos: el pulgar manda, no la retícula</p>
+    <iframe src="guidelines/toque.card.html" title="Ficha de tamaños de toque" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/toque.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:776px">
+    <h2>Texto</h2>
+    <p class=sub>Seis tamaños, tres interlineados, dos familias: Space Grotesk para la app, Newsreader para leer</p>
+    <iframe src="guidelines/texto.card.html" title="Ficha de texto" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/texto.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:669px">
+    <h2>Mono</h2>
+    <p class=sub>JetBrains Mono es para lo que se compara en columna: números, códigos, tokens. No para dar textura.</p>
+    <iframe src="guidelines/mono.card.html" title="Ficha de mono" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/mono.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:725px">
+    <h2>Etiquetas</h2>
+    <p class=sub>Mayúsculas a 12px con .05em de tracking, y solo en dos lugares. Nunca en una frase.</p>
+    <iframe src="guidelines/etiquetas.card.html" title="Ficha de etiquetas" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/etiquetas.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:722px">
+    <h2>Aire</h2>
+    <p class=sub>Una escala de 4, seis escalones, y ningún valor intermedio inventado</p>
+    <iframe src="guidelines/aire.card.html" title="Ficha de aire" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/aire.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:580px">
+    <h2>Radios</h2>
+    <p class=sub>Cuatro esquinas con un trabajo cada una. El radio dice qué tan blando es algo, no qué tan moderno.</p>
+    <iframe src="guidelines/radios.card.html" title="Ficha de radios" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/radios.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:676px">
+    <h2>Bordes</h2>
+    <p class=sub>Tres grosores con un trabajo cada uno: separar, tocar, marcar. No un grosor por componente.</p>
+    <iframe src="guidelines/bordes.card.html" title="Ficha de bordes" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/bordes.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:527px">
+    <h2>Movimiento</h2>
+    <p class=sub>Solo acuse de recibo. Dos duraciones, una curva, y todo se apaga con prefers-reduced-motion.</p>
+    <iframe src="guidelines/movimiento.card.html" title="Ficha de movimiento" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/movimiento.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:844px">
+    <h2>Contraste</h2>
+    <p class=sub>4.5:1 en todo lo que es texto, en los dos modos, y el color nunca es la única señal</p>
+    <iframe src="guidelines/contraste.card.html" title="Ficha de contraste" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/contraste.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:886px">
+    <h2>Voz</h2>
+    <p class=sub>Voseo, el dato concreto, y la app admite lo que no sabe. Sin signos de admiración.</p>
+    <iframe src="guidelines/voz.card.html" title="Ficha de voz" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/voz.card.html">Abrir sola</a></p>
+  </section>
+
+  <section class=ficha style="--alto:436px">
+    <h2>Anti-referencia</h2>
+    <p class=sub>Lo que Kiri NO es: dashboard de SaaS, app de consumo, panel de admin</p>
+    <iframe src="guidelines/anti-referencia.card.html" title="Ficha de anti-referencia" loading=lazy></iframe>
+    <p class=vinculos><a class=kiri-link href="guidelines/anti-referencia.card.html">Abrir sola</a></p>
+  </section>
+
+  <h2 class=grupo-titulo>El sistema entero</h2>
   <section class=ficha style="--alto:1100px">
     <h2>Pantallas completas</h2>
     <p class=sub>Rutero, Notif, Mail y los cursos con los mismos tokens.</p>
