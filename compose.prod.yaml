@@ -1,0 +1,19 @@
+# Producción en vps2. Sin ports: el 80 y el 443 son del Caddy de MyContacts,
+# que llega a este contenedor por nombre (kiri-design:8080) sobre la red
+# compartida kiri-edge. La imagen es pública y se construye en CI: acá no hay
+# build.
+name: kiri-design
+
+services:
+  kiri-design:
+    image: ghcr.io/kiri23/kiri-design:${IMAGE_TAG:-latest}
+    container_name: kiri-design
+    restart: unless-stopped
+    mem_limit: 64m
+    networks:
+      - kiri-edge
+
+networks:
+  kiri-edge:
+    # La crea el job deploy (y el de MyContacts) antes del up.
+    external: true

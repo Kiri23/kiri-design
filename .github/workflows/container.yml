@@ -11,6 +11,7 @@ permissions:
 
 env:
   IMAGE: ghcr.io/kiri23/kiri-design
+  DEPLOY_DIR: deploy/kiri-design
 
 jobs:
   build:
@@ -68,3 +69,64 @@ jobs:
         run: |
           docker push "$IMAGE:$GITHUB_SHA"
           docker push "$IMAGE:latest"
+
+  # Copia el patrón de Kiri23/mycontacts (.github/workflows/deploy.yml).
+  # Se salta, no falla, mientras vars.VPS_HOST esté vacío: el acceso a vps2
+  # (Tailscale OIDC + ssh como ci) lo configura el wizard de kiriInfra#31.
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && vars.VPS_HOST != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    concurrency:
+      group: deploy-prod
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: tailscale/github-action@v4
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          audience: ${{ secrets.TS_AUDIENCE }}
+          tags: tag:ci
+          ping: ${{ vars.VPS_HOST }}
+
+      - name: Prepare the deploy dir and the shared kiri-edge network
+        run: >
+          ssh -o StrictHostKeyChecking=accept-new ${{ vars.VPS_USER }}@${{ vars.VPS_HOST }}
+          "mkdir -p ${{ env.DEPLOY_DIR }}
+          && (docker network inspect kiri-edge >/dev/null 2>&1 || docker network create kiri-edge)"
+
+      - name: Copy compose to vps2
+        run: >
+          scp -o StrictHostKeyChecking=accept-new
+          compose.prod.yaml
+          ${{ vars.VPS_USER }}@${{ vars.VPS_HOST }}:${{ env.DEPLOY_DIR }}/
+
+      # La imagen es pública: vps2 la baja sin docker login.
+      - name: Pull and start the new image
+        run: >
+          ssh -o StrictHostKeyChecking=accept-new ${{ vars.VPS_USER }}@${{ vars.VPS_HOST }}
+          "cd ${{ env.DEPLOY_DIR }}
+          && export IMAGE_TAG=${{ github.sha }}
+          && docker compose -f compose.prod.yaml pull
+          && docker compose -f compose.prod.yaml up -d --no-build --remove-orphans"
+
+      - name: Report the status through Cloudflare
+        continue-on-error: true
+        run: >
+          curl -s -o /dev/null -w "through Cloudflare: HTTP %{http_code}\n"
+          https://design.kiri231.com/health
+
+      - name: Check the origin directly
+        run: |
+          for _ in $(seq 1 20); do
+            if [ "$(curl -sf --connect-timeout 5 --max-time 10 --resolve design.kiri231.com:443:${{ vars.VPS_PUBLIC_IP }} https://design.kiri231.com/health)" = "ok" ]; then
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "the origin never became ready"
+          exit 1
