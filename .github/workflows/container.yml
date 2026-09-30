@@ -97,7 +97,7 @@ jobs:
         run: >
           ssh -o StrictHostKeyChecking=accept-new ${{ vars.VPS_USER }}@${{ vars.VPS_HOST }}
           "mkdir -p ${{ env.DEPLOY_DIR }}
-          && (docker network inspect kiri-edge >/dev/null 2>&1 || docker network create kiri-edge)"
+          && (docker network inspect kiri-edge >/dev/null 2>&1 || docker network create kiri-edge 2>/dev/null || docker network inspect kiri-edge >/dev/null)"
 
       - name: Copy compose to vps2
         run: >
