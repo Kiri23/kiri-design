@@ -1,0 +1,70 @@
+name: Container
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE: ghcr.io/kiri23/kiri-design
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: |
+            ${{ env.IMAGE }}:${{ github.sha }}
+            ${{ env.IMAGE }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Run
+        run: docker run -d --name kiri-design -p 8080:8080 "$IMAGE:$GITHUB_SHA"
+
+      - name: Smoke test
+        run: |
+          for _ in $(seq 1 20); do
+            curl -fsS http://localhost:8080/health >/dev/null 2>&1 && break
+            sleep 1
+          done
+          test "$(curl -fsS http://localhost:8080/health)" = "ok"
+          # Las rutas: la raíz, el taller, y dos que el taller pide con fetch
+          # (taller.html, const PIEZAS: la primera ficha y su criterio).
+          for ruta in / /taller.html \
+            /componentes/estructura/barras.card.html \
+            /componentes/estructura/barra.prompt.md; do
+            codigo=$(curl -fsS -o /dev/null -w "%{http_code}" "http://localhost:8080$ruta")
+            echo "GET $ruta -> $codigo"
+            test "$codigo" = 200
+          done
+
+      - name: Logs if it failed
+        if: failure()
+        run: docker logs kiri-design || true
+
+      - name: Log in to GHCR
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          docker push "$IMAGE:$GITHUB_SHA"
+          docker push "$IMAGE:latest"

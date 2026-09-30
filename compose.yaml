@@ -1,0 +1,6 @@
+services:
+  kiri-design:
+    image: ghcr.io/kiri23/kiri-design:${IMAGE_TAG:-latest}
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"

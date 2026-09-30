@@ -1,0 +1,13 @@
+# Caddy de adentro del contenedor: sirve los estáticos en :8080.
+# No es el Caddy de borde: el TLS y los dominios los pone el reverse proxy de afuera.
+{
+	admin off
+}
+
+:8080 {
+	root * /srv
+	respond /health "ok" 200
+	# No hay index.html: la raíz abre el taller.
+	rewrite / /taller.html
+	file_server
+}

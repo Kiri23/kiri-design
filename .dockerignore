@@ -1,0 +1,21 @@
+# Git y CI
+.git
+.github
+
+# Dev: validador y reglas de lint (no los pide el navegador)
+_verificar.mjs
+_adherence.oxlintrc.json
+
+# Lo mismo que ignora .gitignore
+node_modules/
+.DS_Store
+_ds_bundle.js
+_ds_manifest.json
+templates/pantalla-app/support.js
+
+# Lo que arma la imagen, no lo que sirve
+Dockerfile
+.dockerignore
+compose.yaml
+
+# Ojo: los *.md se quedan. El taller pide los .prompt.md con fetch.

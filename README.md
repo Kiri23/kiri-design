@@ -33,6 +33,17 @@ El taller lee las fichas con `fetch`, así que **necesita HTTP**: abierto como
 Sin `-d`, `kiri-serve` sirve la raíz del repo git, así que alcanza con correrlo
 desde adentro.
 
+## Con Docker
+
+```sh
+docker compose up
+```
+
+Abrí http://localhost:8080/taller.html. La raíz también abre el taller.
+Es un Caddy que sirve los archivos tal cual, en el 8080 y solo en `127.0.0.1`.
+`/health` responde `ok`. La imagen la publica el CI en
+`ghcr.io/kiri23/kiri-design` con cada push a `master`.
+
 ## Verificar
 
 ```sh
