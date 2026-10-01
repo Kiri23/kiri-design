@@ -72,7 +72,9 @@ jobs:
 
   # Copia el patrón de Kiri23/mycontacts (.github/workflows/deploy.yml).
   # Se salta, no falla, mientras vars.VPS_HOST esté vacío: el acceso a vps2
-  # (Tailscale OIDC + ssh como ci) lo configura el wizard de kiriInfra#31.
+  # (Tailscale OIDC + ssh como ci) lo configura el wizard de Kiri23/kiriInfra,
+  # `scripts/setup-ci-tailscale.sh kiri-design`. El 80/443 es del borde
+  # kiri-edge, que toma las labels de compose.prod.yaml solo: sin caddy reload.
   deploy:
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/master' && vars.VPS_HOST != ''
