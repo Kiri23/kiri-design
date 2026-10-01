@@ -1,0 +1,26 @@
+# Producción en vps2. Sin ports: el 80 y el 443 son del borde compartido
+# kiri-edge (Kiri23/kiriInfra, services/kiri-edge). Su controller lee las
+# labels caddy de los contenedores en la red kiri-edge y le manda la config al
+# server: no hay Caddyfile que editar ni reload que hacer. La imagen es pública
+# y se construye en CI: acá no hay build.
+#
+# Sin container_name: el controller engancha por la IP del contenedor en
+# kiri-edge ({{upstreams 8080}}), no por nombre, y el runbook del borde no lo
+# pide. Solo existía para que el Caddyfile de MyContacts lo resolviera.
+name: kiri-design
+
+services:
+  kiri-design:
+    image: ghcr.io/kiri23/kiri-design:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    mem_limit: 64m
+    networks:
+      - kiri-edge
+    labels:
+      caddy: design.kiri231.com
+      caddy.reverse_proxy: "{{upstreams 8080}}"   # el puerto DENTRO del contenedor
+
+networks:
+  kiri-edge:
+    # La crea el job deploy antes del up: compose no crea redes external.
+    external: true
